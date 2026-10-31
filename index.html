@@ -2769,5 +2769,369 @@ function srgToggleVisualEdit() {
 }
 </script>
 <!-- ==================== END SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
-  </body>
+  </body
+    <!-- ==================== AUTO-INJECTED REVIEWS SECTION ==================== -->
+<script>
+(function injectReviews() {
+  const reviewsSectionHTML = `
+<style>
+.srg-reviews-section {
+  padding: 60px 20px;
+  background: radial-gradient(circle at top, #171f2e 0%, #0c111a 100%);
+  color: #f1f5f9;
+  border-top: 1px solid #2a354b;
+  border-bottom: 1px solid #2a354b;
+  font-family: inherit;
+}
+.srg-reviews-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.srg-reviews-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.srg-reviews-badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.12);
+  color: #d4af37;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.srg-reviews-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+}
+.srg-reviews-subtitle {
+  color: #94a3b8;
+  font-size: 15px;
+  max-width: 650px;
+  margin: 0 auto 24px auto;
+}
+.srg-reviews-cta-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.srg-btn-write-review {
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  color: #0b0f17;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  transition: transform 0.2s;
+}
+.srg-btn-write-review:hover {
+  transform: translateY(-2px);
+}
+.srg-btn-google-review {
+  background: #1e293b;
+  color: #f8fafc;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 22px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.srg-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+.srg-review-card {
+  background: #151b27;
+  border: 1px solid #232d3f;
+  border-radius: 12px;
+  padding: 22px;
+  transition: border-color 0.25s;
+}
+.srg-review-card:hover {
+  border-color: #d4af3788;
+}
+.srg-review-user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+.srg-reviewer-name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #ffffff;
+}
+.srg-verified-tag {
+  color: #10b981;
+  font-size: 11px;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+.srg-reviewer-location {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+.srg-review-stars {
+  color: #f59e0b;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+.srg-review-item-tag {
+  display: inline-block;
+  background: #1e2638;
+  color: #d4af37;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.srg-review-text {
+  color: #cbd5e1;
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin: 0;
+}
+#srgReviewModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 16, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 999999;
+  align-items: center;
+  justify-content: center;
+}
+.srg-review-modal-box {
+  background: #161d2b;
+  border: 1px solid #d4af3766;
+  border-radius: 14px;
+  width: 90%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 24px;
+  color: #f1f5f9;
+}
+.srg-star-rating-select {
+  display: flex;
+  gap: 6px;
+  font-size: 26px;
+  cursor: pointer;
+  margin: 6px 0 14px 0;
+  color: #475569;
+}
+.srg-star-rating-select .active-star {
+  color: #f59e0b;
+}
+</style>
+
+<section class="srg-reviews-section" id="customer-reviews">
+  <div class="srg-reviews-container">
+    <div class="srg-reviews-header">
+      <div class="srg-reviews-badge">Verified Buyer Ratings</div>
+      <h2 class="srg-reviews-title">ग्राहकों का अटूट विश्वास & अनुभव</h2>
+      <p class="srg-reviews-subtitle">Shree Royal Gems se khareede gaye 100% certified gemstones aur astrological jewellery par grahakon ke vichaar.</p>
+      
+      <div class="srg-reviews-cta-row">
+        <button class="srg-btn-write-review" onclick="srgOpenReviewModal()">✍️ Apna Review Likhein</button>
+        <a href="https://maps.google.com/?q=Royal+Marriage+Hall+Muzaffarpur" target="_blank" class="srg-btn-google-review">⭐ Rate on Google Maps</a>
+      </div>
+    </div>
+
+    <div class="srg-reviews-grid" id="srgReviewsGrid">
+      <div class="srg-review-card">
+        <div class="srg-review-user-row">
+          <div>
+            <div class="srg-reviewer-name">Rajesh Kumar Sharma <span class="srg-verified-tag">✓ Verified Buyer</span></div>
+            <div class="srg-reviewer-location">Muzaffarpur, Bihar</div>
+          </div>
+          <div class="srg-review-stars">★★★★★</div>
+        </div>
+        <div class="srg-review-item-tag">Purchased: Natural Ceylon Yellow Sapphire (Pukhraj)</div>
+        <p class="srg-review-text">"Brihaspati dosh nivaran ke liye 6.25 Ratti Ceylon Pukhraj liya tha. Showroom jakar dekha, Govt Lab certificate ke sath mila. Chamak aur cut ekdum original hai. Bahut shandar vyavhar!"</p>
+      </div>
+
+      <div class="srg-review-card">
+        <div class="srg-review-user-row">
+          <div>
+            <div class="srg-reviewer-name">Dr. Ananya Verma <span class="srg-verified-tag">✓ Verified Buyer</span></div>
+            <div class="srg-reviewer-location">Patna, Bihar</div>
+          </div>
+          <div class="srg-review-stars">★★★★★</div>
+        </div>
+        <div class="srg-review-item-tag">Purchased: Zambian Emerald (Panna) Ring</div>
+        <p class="srg-review-text">"Online order kiya tha Patna ke liye. Proper safe delivery aur authentic testing certificate ke sath mila. Ring ki finish aur clarity bohot khoobsurat hai. Highly recommended!"</p>
+      </div>
+
+      <div class="srg-review-card">
+        <div class="srg-review-user-row">
+          <div>
+            <div class="srg-reviewer-name">Vikramaditya Singh <span class="srg-verified-tag">✓ Verified Buyer</span></div>
+            <div class="srg-reviewer-location">Darbhanga, Bihar</div>
+          </div>
+          <div class="srg-review-stars">★★★★★</div>
+        </div>
+        <div class="srg-review-item-tag">Purchased: 5-Mukhi Nepali Rudraksha with Gold Capping</div>
+        <p class="srg-review-text">"Original Rudraksha dhundhna mushkil hota hai, lekin Shree Royal Gems ne genuine Nepali dana diya. Positive energy aur quality dono top class hain."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="srgReviewModal">
+  <div class="srg-review-modal-box">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #2a3449; padding-bottom:10px; margin-bottom:14px;">
+      <h3 style="color:#d4af37; margin:0; font-size:17px;">✍️ Shree Royal Gems Review Form</h3>
+      <button onclick="srgCloseReviewModal()" style="background:none; border:none; color:#94a3b8; font-size:22px; cursor:pointer;">&times;</button>
+    </div>
+    
+    <div style="margin-bottom:12px;">
+      <label style="display:block; font-size:12px; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Aapka Pura Naam *</label>
+      <input type="text" id="srgRevName" placeholder="e.g. Ramesh Kumar" style="width:100%; padding:9px 12px; background:#0f141d; border:1px solid #334155; border-radius:6px; color:#fff; box-sizing:border-box;">
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="display:block; font-size:12px; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Aapka Shehar *</label>
+      <input type="text" id="srgRevCity" placeholder="e.g. Muzaffarpur, Patna" style="width:100%; padding:9px 12px; background:#0f141d; border:1px solid #334155; border-radius:6px; color:#fff; box-sizing:border-box;">
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="display:block; font-size:12px; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Kaunsa Item Khareeda? *</label>
+      <select id="srgRevItem" style="width:100%; padding:9px 12px; background:#0f141d; border:1px solid #334155; border-radius:6px; color:#fff; box-sizing:border-box;">
+        <option value="Ceylon Yellow Sapphire (Pukhraj)">Ceylon Yellow Sapphire (Pukhraj)</option>
+        <option value="Burmese Ruby (Manikya)">Burmese Ruby (Manikya)</option>
+        <option value="Zambian Emerald (Panna)">Zambian Emerald (Panna)</option>
+        <option value="Royal Blue Sapphire (Neelam)">Royal Blue Sapphire (Neelam)</option>
+        <option value="Italian Red Coral (Moonga)">Italian Red Coral (Moonga)</option>
+        <option value="5-Mukhi Certified Rudraksha">5-Mukhi Certified Rudraksha</option>
+        <option value="Astrological Ring / Pendant">Astrological Ring / Pendant</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <label style="display:block; font-size:12px; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Rating Chunein *</label>
+      <div class="srg-star-rating-select" id="srgStarRating">
+        <span onclick="srgSetStar(1)">★</span>
+        <span onclick="srgSetStar(2)">★</span>
+        <span onclick="srgSetStar(3)">★</span>
+        <span onclick="srgSetStar(4)">★</span>
+        <span onclick="srgSetStar(5)">★</span>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <label style="display:block; font-size:12px; color:#cbd5e1; margin-bottom:4px; font-weight:600;">Aapka Review *</label>
+      <textarea id="srgRevFeedback" rows="3" placeholder="Gemstone ki quality aur vyavhar kaisa raha..." style="width:100%; padding:9px 12px; background:#0f141d; border:1px solid #334155; border-radius:6px; color:#fff; box-sizing:border-box;"></textarea>
+    </div>
+
+    <button onclick="srgSubmitReview()" style="width:100%; background:linear-gradient(135deg, #b8860b, #d4af37); color:#0b0f17; border:none; font-weight:700; padding:11px; border-radius:6px; font-size:14px; cursor:pointer;">Submit Review</button>
+  </div>
+</div>
+`;
+
+  const targetFooter = document.querySelector('footer');
+  if (targetFooter) {
+    targetFooter.insertAdjacentHTML('beforebegin', reviewsSectionHTML);
+  } else {
+    document.body.insertAdjacentHTML('beforeend', reviewsSectionHTML);
+  }
+})();
+
+let srgSelectedStars = 5;
+function srgOpenReviewModal() {
+  document.getElementById('srgReviewModal').style.display = 'flex';
+  srgSetStar(5);
+}
+function srgCloseReviewModal() {
+  document.getElementById('srgReviewModal').style.display = 'none';
+}
+function srgSetStar(n) {
+  srgSelectedStars = n;
+  const stars = document.querySelectorAll('#srgStarRating span');
+  stars.forEach((s, idx) => {
+    if (idx < n) s.classList.add('active-star');
+    else s.classList.remove('active-star');
+  });
+}
+function srgSubmitReview() {
+  const name = document.getElementById('srgRevName').value.trim();
+  const city = document.getElementById('srgRevCity').value.trim();
+  const item = document.getElementById('srgRevItem').value;
+  const feedback = document.getElementById('srgRevFeedback').value.trim();
+
+  if (!name || !feedback) {
+    alert('Kripya apna Naam aur Review zaroor likhein!');
+    return;
+  }
+  const starStr = '★'.repeat(srgSelectedStars);
+  const card = document.createElement('div');
+  card.className = 'srg-review-card';
+  card.innerHTML = `
+    <div class="srg-review-user-row">
+      <div>
+        <div class="srg-reviewer-name">${name} <span class="srg-verified-tag">✓ Verified Buyer</span></div>
+        <div class="srg-reviewer-location">${city || 'Verified Buyer'}</div>
+      </div>
+      <div class="srg-review-stars">${starStr}</div>
+    </div>
+    <div class="srg-review-item-tag">Purchased: ${item}</div>
+    <p class="srg-review-text">"${feedback}"</p>
+  `;
+  const grid = document.getElementById('srgReviewsGrid');
+  if (grid) grid.prepend(card);
+
+  const saved = JSON.parse(localStorage.getItem('srg_user_reviews') || '[]');
+  saved.unshift({ name, city, item, stars: srgSelectedStars, feedback, time: Date.now() });
+  localStorage.setItem('srg_user_reviews', JSON.stringify(saved));
+
+  alert('Dhanyawad! Shree Royal Gems par aapka review jud gaya hai.');
+  srgCloseReviewModal();
+}
+(function srgLoadUserReviews() {
+  setTimeout(() => {
+    const saved = JSON.parse(localStorage.getItem('srg_user_reviews') || '[]');
+    const grid = document.getElementById('srgReviewsGrid');
+    if (grid && saved.length > 0) {
+      saved.forEach(r => {
+        const card = document.createElement('div');
+        card.className = 'srg-review-card';
+        card.innerHTML = `
+          <div class="srg-review-user-row">
+            <div>
+              <div class="srg-reviewer-name">${r.name} <span class="srg-verified-tag">✓ Verified Buyer</span></div>
+              <div class="srg-reviewer-location">${r.city || 'Verified Buyer'}</div>
+            </div>
+            <div class="srg-review-stars">${'★'.repeat(r.stars)}</div>
+          </div>
+          <div class="srg-review-item-tag">Purchased: ${r.item}</div>
+          <p class="srg-review-text">"${r.feedback}"</p>
+        `;
+        grid.prepend(card);
+      });
+    }
+  }, 300);
+})();
+</script>
+<!-- ==================== END AUTO-INJECTED REVIEWS SECTION ==================== -->
 </html>

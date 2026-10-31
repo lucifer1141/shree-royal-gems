@@ -194,9 +194,9 @@
       </a>
     </div>
   </header>
-  <!-- ==================== SHREE ROYAL GEMS 100% AUTHENTIC VEDIC KUNDLI PORTAL ==================== -->
+<!-- ==================== SHREE ROYAL GEMS - OFFICIAL ASTROSAGE KUNDLI PORTAL ==================== -->
 <style>
-.srg-portal-section {
+.srg-astrosage-section {
   padding: 50px 20px;
   background: radial-gradient(circle at 50% 20%, #172236 0%, #0a0e17 100%);
   color: #f8fafc;
@@ -204,15 +204,15 @@
   border-bottom: 2px solid rgba(212, 175, 55, 0.35);
   position: relative;
 }
-.srg-portal-container {
-  max-width: 1050px;
+.srg-astrosage-container {
+  max-width: 900px;
   margin: 0 auto;
 }
-.srg-portal-badge-wrap {
+.srg-astrosage-badge-wrap {
   text-align: center;
   margin-bottom: 12px;
 }
-.srg-portal-badge {
+.srg-astrosage-badge {
   display: inline-block;
   background: rgba(212, 175, 55, 0.15);
   color: #d4af37;
@@ -224,7 +224,7 @@
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
-.srg-portal-title {
+.srg-astrosage-title {
   text-align: center;
   font-size: 32px;
   font-weight: 800;
@@ -232,129 +232,163 @@
   margin: 0 0 10px 0;
   line-height: 1.3;
 }
-.srg-portal-subtitle {
+.srg-astrosage-subtitle {
   text-align: center;
   color: #94a3b8;
   font-size: 15.5px;
-  max-width: 720px;
-  margin: 0 auto 30px auto;
+  max-width: 700px;
+  margin: 0 auto 25px auto;
 }
-.srg-portal-card {
+.srg-astrosage-card {
   background: #131b29;
   border: 1px solid #d4af3766;
   border-radius: 16px;
-  overflow: hidden;
+  padding: 30px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
 }
-.srg-portal-card-header {
-  background: #182335;
+.srg-astrosage-card-header {
   border-bottom: 1px solid #28374d;
-  padding: 16px 24px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
 }
-.srg-portal-card-header h3 {
+.srg-astrosage-card-header h3 {
   margin: 0;
   font-size: 18px;
   color: #d4af37;
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
-.srg-portal-verified-tag {
-  background: rgba(16, 185, 129, 0.15);
-  color: #10b981;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  font-size: 12px;
-  padding: 4px 10px;
-  border-radius: 6px;
+.srg-astrosage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) {
+  .srg-astrosage-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.srg-as-field label {
+  display: block;
+  font-size: 13px;
+  color: #cbd5e1;
+  margin-bottom: 6px;
   font-weight: 600;
 }
-.srg-portal-iframe-wrap {
+.srg-as-field input, .srg-as-field select {
   width: 100%;
-  height: 750px;
-  background: #0d121c;
-  position: relative;
+  padding: 11px 14px;
+  background: #0a0f17;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s;
 }
-.srg-portal-iframe {
+.srg-as-field input:focus, .srg-as-field select:focus {
+  border-color: #d4af37;
+}
+.srg-btn-astrosage-generate {
   width: 100%;
-  height: 100%;
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  color: #0b0f17;
+  font-size: 16px;
+  font-weight: 800;
+  padding: 15px;
+  border-radius: 10px;
   border: none;
-  display: block;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
-.srg-portal-cta-banner {
-  background: linear-gradient(135deg, #162030 0%, #0d1420 100%);
-  border-top: 1px solid #d4af3755;
-  padding: 24px;
+.srg-btn-astrosage-generate:hover {
+  transform: translateY(-2px);
+}
+
+.srg-astrosage-bottom-cta {
+  background: #0a0f17;
+  border: 1px dashed #d4af3755;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 25px;
   text-align: center;
 }
-.srg-portal-cta-banner h4 {
-  margin: 0 0 6px 0;
-  color: #ffffff;
-  font-size: 20px;
-  font-weight: 700;
-}
-.srg-portal-cta-banner p {
-  color: #cbd5e1;
-  font-size: 14.5px;
-  max-width: 650px;
-  margin: 0 auto 16px auto;
-  line-height: 1.5;
-}
-.srg-btn-wa-gemstone {
+.srg-btn-wa-panditji {
   background: #25d366;
   color: #052e16;
   font-weight: 800;
   font-size: 15px;
-  padding: 13px 26px;
+  padding: 12px 24px;
   border-radius: 8px;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
-}
-.srg-btn-wa-gemstone:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+  margin-top: 10px;
 }
 </style>
 
-<section class="srg-portal-section" id="vedic-kundli-portal">
-  <div class="srg-portal-container">
-    <div class="srg-portal-badge-wrap">
-      <div class="srg-portal-badge">✨ 100% AUTHENTIC VEDIC KUNDLI (SWISS EPHEMERIS) ✨</div>
+<section class="srg-astrosage-section" id="astrological-consultation">
+  <div class="srg-astrosage-container">
+    <div class="srg-astrosage-badge-wrap">
+      <div class="srg-astrosage-badge">✨ POWERED BY ASTROSAGE VEDIC ENGINE ✨</div>
     </div>
     
-    <h2 class="srg-portal-title">अपनी प्रामाणिक जन्म कुंडली एवं ग्रह चक्र देखें</h2>
-    <p class="srg-portal-subtitle">Shree Royal Gems ke certified portal par apna Naam, Janam Tithi, Samay aur Sthan darj karein — turant dekhein apna 100% shuddh Lagna Chart aur Grah Dasha.</p>
+    <h2 class="srg-astrosage-title">अपनी प्रामाणिक जन्म कुंडली एवं भाग्यशाली रत्न जानें</h2>
+    <p class="srg-astrosage-subtitle">Bharat ke sabse vishwasniya AstroSage Ganit dwara apni 100% shuddh Janam Kundli dekhein aur Shree Royal Gems se certified ratan ki salah lein.</p>
     
-    <div class="srg-portal-card">
-      <div class="srg-portal-card-header">
-        <h3>🔮 Vedic Janam Patrika & Lagna Calculator</h3>
-        <span class="srg-portal-verified-tag">✓ Swiss Ephemeris & Lahiri Ayanamsha</span>
+    <div class="srg-astrosage-card">
+      <div class="srg-astrosage-card-header">
+        <h3>🔮 AstroSage Vedic Kundli Generator</h3>
+        <span style="background:rgba(16,185,129,0.15); color:#10b981; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600;">✓ 100% Accurate Ephemeris</span>
       </div>
 
-      <!-- Live Authentic Vedic Calculator Embed -->
-      <div class="srg-portal-iframe-wrap">
-        <iframe 
-          src="https://kundli.click/widget-embed.php" 
-          class="srg-portal-iframe" 
-          title="Shree Royal Gems Vedic Kundli Portal"
-          loading="lazy">
-        </iframe>
+      <div class="srg-astrosage-grid">
+        <div class="srg-as-field">
+          <label>Aapka Pura Naam *</label>
+          <input type="text" id="srgAsName" placeholder="e.g. Ramesh Kumar">
+        </div>
+        <div class="srg-as-field">
+          <label>Gender (Ling) *</label>
+          <select id="srgAsGender">
+            <option value="Male">Purush (Male)</option>
+            <option value="Female">Mahila (Female)</option>
+          </select>
+        </div>
+        <div class="srg-as-field">
+          <label>Janam Tithi (Date of Birth) *</label>
+          <input type="date" id="srgAsDob">
+        </div>
+        <div class="srg-as-field">
+          <label>Janam Samay (Time of Birth) *</label>
+          <input type="time" id="srgAsTob">
+        </div>
+        <div class="srg-as-field" style="grid-column: span 2;">
+          <label>Janam Sthan (City, State) *</label>
+          <input type="text" id="srgAsPlace" placeholder="e.g. Muzaffarpur, Bihar">
+        </div>
       </div>
 
-      <!-- Business Bridge: Gemstone Guidance with Pandit Ji -->
-      <div class="srg-portal-cta-banner">
-        <h4>👑 Kundli Dekh Li? Ab Jaaniye Apna Asli Bhagya Ratan</h4>
-        <p>Aapki Kundli me kaunsa grah yogkarak hai aur kaunsa marak? Galat ratan pehanane se bachein. Shree Royal Gems ke Senior Astrologer & Pandit Ji se WhatsApp par 1-on-1 certified gemstone guidance lein.</p>
-        <a href="https://wa.me/919065665497?text=Pranam%20Pandit%20Ji%2C%20maine%20website%20par%20apni%20Kundli%20dekhi%20hai.%20Kripya%20meri%20Kundli%20ke%20anusaar%20kaunsa%20Bhagya%20Ratan%20(Pukhraj%2C%20Panna%2C%20Manik%2C%20Neelam)%20dharan%20karna%20chahiye%20bataiye." target="_blank" class="srg-btn-wa-gemstone">
-          <span>💬 Pandit Ji Se Free Ratan Salah Lein (WhatsApp Chat)</span>
+      <button class="srg-btn-astrosage-generate" onclick="srgOpenAstroSage()">
+        <span>🔮 Asli AstroSage Kundli Kholein & Dekhein</span>
+      </button>
+
+      <!-- Post-Generation Gemstone Advice -->
+      <div class="srg-astrosage-bottom-cta">
+        <h4 style="margin:0 0 6px 0; color:#d4af37; font-size:16px;">👑 Kundli Ban Gayi? Ab Shree Royal Gems Ke Pandit Ji Se Ratan Janein</h4>
+        <p style="color:#cbd5e1; font-size:13.5px; margin:0 0 10px 0;">Aapki Kundli ke anusaar Pukhraj, Manik, Panna ya Neelam me se kaunsa certified stone pehanna shubh hoga, Pandit ji se WhatsApp par direct free salah lein:</p>
+        <a id="srgWaPanditLink" href="https://wa.me/919065665497?text=Pranam%20Pandit%20Ji%2C%20maine%20AstroSage%20par%20apni%20Kundli%20banayi%20hai.%20Mere%20liye%20kaunsa%20Bhagya%20Ratan%20pehanna%20shubh%20hoga%3F" target="_blank" class="srg-btn-wa-panditji">
+          <span>💬 Pandit Ji Se Free Gemstone Salah Lein (WhatsApp)</span>
         </a>
       </div>
     </div>
@@ -362,19 +396,38 @@
 </section>
 
 <script>
-// Automatically place right below header/navbar if present
-(function placeKundliPortal() {
+function srgOpenAstroSage() {
+  const name = document.getElementById('srgAsName').value.trim();
+  const dob = document.getElementById('srgAsDob').value;
+  const tob = document.getElementById('srgAsTob').value;
+  const place = document.getElementById('srgAsPlace').value.trim();
+
+  if (name || dob || place) {
+    const waText = encodeURIComponent(
+      `Pranam Pandit Ji, maine Shree Royal Gems website par AstroSage se Kundli check ki hai.\n` +
+      `Naam: ${name || 'N/A'}\n` +
+      `DOB: ${dob || 'N/A'}, Samay: ${tob || 'N/A'}\n` +
+      `Sthan: ${place || 'N/A'}\n` +
+      `Kripya meri Kundli dekhkar shubh Bhagya Ratan (Pukhraj, Panna, Manik, Neelam) batayein.`
+    );
+    document.getElementById('srgWaPanditLink').href = `https://wa.me/919065665497?text=${waText}`;
+  }
+
+  window.open('https://hindi.astrosage.com/kundli/', '_blank');
+}
+
+(function placeAstroHero() {
   setTimeout(() => {
-    const portalSec = document.getElementById('vedic-kundli-portal');
+    const astroSec = document.getElementById('astrological-consultation');
     const header = document.querySelector('header') || document.querySelector('nav');
-    if (header && portalSec && header.nextSibling !== portalSec) {
-      header.parentNode.insertBefore(portalSec, header.nextSibling);
+    if (header && astroSec && header.nextSibling !== astroSec) {
+      header.parentNode.insertBefore(astroSec, header.nextSibling);
     }
   }, 100);
 })();
 </script>
-<!-- ==================== END SHREE ROYAL GEMS AUTHENTIC KUNDLI PORTAL ==================== -->
-
+<!-- ==================== END SHREE ROYAL GEMS ASTROSAGE KUNDLI PORTAL ==================== -->
+  
   <div id="homeView">
 <!-- HERO SECTION (Japam Aesthetic with High Impact Photography) -->
   <section id="hero" class="relative emerald-gradient text-white overflow-hidden py-12 md:py-20 border-b-4 border-brand-gold">

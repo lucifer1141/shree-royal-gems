@@ -81,7 +81,15 @@
         <span class="hidden sm:inline text-slate-500 font-medium">Muzaffarpur Market:</span>
         <span id="rateLastUpdatedText" class="text-[10px] text-slate-500 font-medium hidden md:inline">Today, 31 Oct</span>
       </div>
-
+<div class="text-[10px] text-slate-500 mt-1">
+  Rate data:
+  <a href="https://trackliveprice.com"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="underline">
+    TrackLivePrice
+  </a>
+</div>
       <!-- Live Rate Figures -->
       <div class="flex items-center gap-3 sm:gap-5 font-semibold text-[11px] sm:text-xs">
         <span class="text-amber-950 flex items-center gap-1">
@@ -2130,24 +2138,82 @@
     let currentRates = storage.get('sr_daily_rates_v2', DEFAULT_RATES);
 
     function computePurities(base24k, silverKg) {
-      const g24 = Number(base24k) || 142255;
-      const sil = Number(silverKg) || 190478;
-      return {
-        gold24k: g24,
-        gold24k_am: Math.round(g24 * 0.9992),
-        gold995: Math.round(g24 * 0.9960),
-        gold22k: Math.round(g24 * (130306 / 142255)), // Exact 916 IBJA ratio: ~0.9160
-        gold18k: Math.round(g24 * (106691 / 142255)), // Exact 750 IBJA ratio: ~0.7499
-        gold14k: Math.round(g24 * (83219 / 142255)),  // Exact 585 IBJA ratio: ~0.5850
-        silverPerKg: sil,
-        silverPerG: +(sil / 1000).toFixed(2),
-        comexGold: 4031.40,
-        session: 'Live Store & IBJA Benchmark',
-        source: 'IBJA India Bullion Report',
-        lastUpdated: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
-      };
+  const g24 = Number(base24k) || 0;
+  const sil = Number(silverKg) || 0;
+
+  return {
+    gold24k: g24,
+    gold24k_am: g24,
+    gold995: Math.round(g24 * 0.9960),
+    gold22k: Math.round(g24 * (916 / 999)),
+    gold18k: Math.round(g24 * (750 / 999)),
+    gold14k: Math.round(g24 * (585 / 999)),
+    silverPerKg: sil,
+    silverPerG: +(sil / 1000).toFixed(2),
+    comexGold: 0,
+    session: 'IBJA Daily Benchmark',
+    source: 'TrackLivePrice / IBJA',
+    lastUpdated: 'Waiting for live data'
+  };
+}
+    async function refreshMetalRates() {
+  try {
+    const [goldResponse, silverResponse] = await Promise.all([
+      fetch('https://trackliveprice.com/api/gold/999.json?_=' + Date.now()),
+      fetch('https://trackliveprice.com/api/silver.json?_=' + Date.now())
+    ]);
+
+    if (!goldResponse.ok || !silverResponse.ok) {
+      throw new Error('Rate API unavailable');
     }
 
+    const goldData = await goldResponse.json();
+    const silverData = await silverResponse.json();
+
+    const goldRows = goldData.rows || [];
+    const silverRows = silverData.rows || [];
+
+    if (!goldRows.length || !silverRows.length) {
+      throw new Error('Rate data missing');
+    }
+
+    const latestGold = goldRows[goldRows.length - 1];
+    const latestSilver = silverRows[silverRows.length - 1];
+
+    const goldPer10g = Number(latestGold.close) * 10;
+    const silverPerKg = Number(latestSilver.close) * 1000;
+
+    if (
+      !Number.isFinite(goldPer10g) ||
+      !Number.isFinite(silverPerKg) ||
+      goldPer10g <= 0 ||
+      silverPerKg <= 0
+    ) {
+      throw new Error('Invalid rates');
+    }
+
+    currentRates = computePurities(goldPer10g, silverPerKg);
+
+    currentRates.lastUpdated =
+      'Gold: ' + latestGold.date +
+      ' | Silver: ' + latestSilver.date;
+
+    currentRates.source = 'TrackLivePrice / IBJA';
+
+    if (typeof storage !== 'undefined' && storage.set) {
+      storage.set('sr_daily_rates_v2', currentRates);
+    }
+
+    renderRatesUI();
+
+    console.log('Metal rates updated:', currentRates);
+
+  } catch (error) {
+    console.error('Metal rate update failed:', error);
+  }
+}
+refreshMetalRates();
+setInterval(refreshMetalRates, 15 * 60 * 1000);
     function renderRatesUI() {
       // Top Ticker
       document.getElementById('tickerGold24k').textContent = formatINR(currentRates.gold24k);

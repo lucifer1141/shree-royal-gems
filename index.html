@@ -221,572 +221,9 @@
             <a href="#bestsellers" class="w-full sm:w-auto px-8 py-3.5 rounded-full gold-gradient text-slate-900 font-bold text-sm tracking-wide shadow-lg hover:brightness-110 active:scale-95 transition-all text-center">
               Explore Collection <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
             </a>
-            <a href="#srg-rashi-suite" class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-amber-100 font-semibold text-sm border border-brand-gold/40 transition-all text-center">
+            <a href="#calculator" class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 text-amber-100 font-semibold text-sm border border-brand-gold/40 transition-all text-center">
               <i class="fa-solid fa-sparkles text-brand-gold mr-1.5"></i> Find Your Rashi Stone
             </a>
-            <!-- ==================== SHREE ROYAL GEMS - RASHI & DAY-WISE HORA GEMSTONE RECOMMENDER ==================== -->
-<style>
-#srg-rashi-suite {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 50px 16px;
-  background: #0b0f19;
-  color: #f8fafc;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  border-top: 2px solid #d4af37;
-  border-bottom: 2px solid #d4af37;
-  margin: 30px 0;
-}
-.srg-rashi-wrap {
-  max-width: 980px;
-  margin: 0 auto;
-}
-.srg-header-area {
-  text-align: center;
-  margin-bottom: 25px;
-}
-.srg-badge-tag {
-  display: inline-block;
-  background: rgba(212, 175, 55, 0.15);
-  color: #d4af37;
-  border: 1px solid #d4af37;
-  padding: 5px 16px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.srg-heading {
-  color: #ffffff;
-  font-size: 28px;
-  font-weight: 800;
-  margin: 10px 0 6px 0;
-}
-.srg-subheading {
-  color: #94a3b8;
-  font-size: 14px;
-  margin: 0;
-}
-
-/* 12 Rashi Buttons Grid */
-.srg-rashi-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-  margin: 20px 0;
-}
-@media (max-width: 768px) {
-  .srg-rashi-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-@media (max-width: 480px) {
-  .srg-rashi-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-.srg-btn-item {
-  background: #141c2b;
-  border: 1px solid #28374d;
-  border-radius: 10px;
-  padding: 12px 6px;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s ease;
-}
-.srg-btn-item:hover, .srg-btn-item.srg-active {
-  background: #223049;
-  border-color: #d4af37;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-}
-.srg-btn-icon {
-  font-size: 22px;
-  display: block;
-}
-.srg-btn-hindi {
-  font-size: 13.5px;
-  font-weight: 700;
-  color: #ffffff;
-  display: block;
-}
-.srg-btn-eng {
-  font-size: 10.5px;
-  color: #94a3b8;
-  display: block;
-}
-
-/* Result Box */
-.srg-display-box {
-  background: #131b29;
-  border: 2px solid #d4af37;
-  border-radius: 14px;
-  padding: 24px;
-  margin-top: 15px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
-}
-.srg-top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #28374d;
-  padding-bottom: 12px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.srg-main-stone-banner {
-  background: #090e17;
-  border: 1px solid #2a374d;
-  border-radius: 10px;
-  padding: 16px;
-  margin-bottom: 16px;
-  text-align: center;
-}
-.srg-details-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 18px;
-  font-size: 13.5px;
-}
-.srg-details-table td {
-  padding: 8px 10px;
-  border-bottom: 1px solid #1a2538;
-}
-.srg-details-table td:first-child {
-  color: #94a3b8;
-  width: 35%;
-}
-.srg-details-table td:last-child {
-  color: #f8fafc;
-  font-weight: 600;
-}
-
-/* Day-Wise Hora Timetable Section */
-.srg-hora-box {
-  background: #090e17;
-  border: 1px solid #d4af3766;
-  border-radius: 12px;
-  padding: 16px;
-  margin: 18px 0;
-}
-.srg-hora-title {
-  color: #d4af37;
-  font-size: 15px;
-  font-weight: 700;
-  margin: 0 0 10px 0;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.srg-hora-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-.srg-hora-table th {
-  background: #172235;
-  color: #d4af37;
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #28374d;
-}
-.srg-hora-table td {
-  padding: 8px;
-  border-bottom: 1px solid #1a2538;
-  color: #cbd5e1;
-}
-.srg-hora-table tr:hover td {
-  background: rgba(212, 175, 55, 0.05);
-}
-.srg-hora-highlight {
-  color: #fcd34d !important;
-  font-weight: 700;
-}
-
-.srg-order-btn {
-  background: #25d366;
-  color: #052e16;
-  font-size: 15.5px;
-  font-weight: 800;
-  padding: 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
-  transition: transform 0.2s;
-}
-.srg-order-btn:hover {
-  transform: translateY(-2px);
-}
-</style>
-
-<section id="srg-rashi-suite">
-  <div class="srg-rashi-wrap">
-    <div class="srg-header-area">
-      <span class="srg-badge-tag">✨ VEDIC RASHI, RATAN & HORA TIMINGS ✨</span>
-      <h2 class="srg-heading">अपनी राशि चुनें & शुभ रत्न व दिन-वार होरा समय जानें</h2>
-      <p class="srg-subheading">Apni Rashi par click karein aur janein shubh ratan, dharan vidhi aur Somvar se Ravivar tak ki shubh Hora timings:</p>
-    </div>
-
-    <!-- 12 Clickable Buttons -->
-    <div class="srg-rashi-grid">
-      <div class="srg-btn-item srg-active" onclick="srgShow('mesh')" id="b-mesh">
-        <span class="srg-btn-icon">♈</span>
-        <span class="srg-btn-hindi">मेष</span>
-        <span class="srg-btn-eng">Aries</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('vrishabh')" id="b-vrishabh">
-        <span class="srg-btn-icon">♉</span>
-        <span class="srg-btn-hindi">वृषभ</span>
-        <span class="srg-btn-eng">Taurus</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('mithun')" id="b-mithun">
-        <span class="srg-btn-icon">♊</span>
-        <span class="srg-btn-hindi">मिथुन</span>
-        <span class="srg-btn-eng">Gemini</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('kark')" id="b-kark">
-        <span class="srg-btn-icon">♋</span>
-        <span class="srg-btn-hindi">कर्क</span>
-        <span class="srg-btn-eng">Cancer</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('singh')" id="b-singh">
-        <span class="srg-btn-icon">♌</span>
-        <span class="srg-btn-hindi">सिंह</span>
-        <span class="srg-btn-eng">Leo</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('kanya')" id="b-kanya">
-        <span class="srg-btn-icon">♍</span>
-        <span class="srg-btn-hindi">कन्या</span>
-        <span class="srg-btn-eng">Virgo</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('tula')" id="b-tula">
-        <span class="srg-btn-icon">♎</span>
-        <span class="srg-btn-hindi">तुला</span>
-        <span class="srg-btn-eng">Libra</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('vrishchik')" id="b-vrishchik">
-        <span class="srg-btn-icon">♏</span>
-        <span class="srg-btn-hindi">वृश्चिक</span>
-        <span class="srg-btn-eng">Scorpio</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('dhanu')" id="b-dhanu">
-        <span class="srg-btn-icon">♐</span>
-        <span class="srg-btn-hindi">धनु</span>
-        <span class="srg-btn-eng">Sagittarius</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('makar')" id="b-makar">
-        <span class="srg-btn-icon">♑</span>
-        <span class="srg-btn-hindi">मकर</span>
-        <span class="srg-btn-eng">Capricorn</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('kumbh')" id="b-kumbh">
-        <span class="srg-btn-icon">♒</span>
-        <span class="srg-btn-hindi">कुंभ</span>
-        <span class="srg-btn-eng">Aquarius</span>
-      </div>
-      <div class="srg-btn-item" onclick="srgShow('meen')" id="b-meen">
-        <span class="srg-btn-icon">♓</span>
-        <span class="srg-btn-hindi">मीन</span>
-        <span class="srg-btn-eng">Pisces</span>
-      </div>
-    </div>
-
-    <!-- Result Box -->
-    <div class="srg-display-box" id="srgDisplayCard">
-      <div class="srg-top-row">
-        <div>
-          <h3 style="margin:0; font-size:22px; color:#ffffff;" id="srgOutName">मेष राशि (Mesh / Aries)</h3>
-          <span style="color:#d4af37; font-size:14px; font-weight:600;" id="srgOutLord">स्वामी ग्रह: मंगल देव (Mars)</span>
-        </div>
-        <span style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37; padding:4px 12px; border-radius:14px; font-size:12px; font-weight:700;">
-          ✓ Certified Recommendation
-        </span>
-      </div>
-
-      <div class="srg-main-stone-banner">
-        <div style="font-size:12px; color:#94a3b8; text-transform:uppercase; margin-bottom:4px;">👑 Mukhya Bhagya Ratan</div>
-        <div style="font-size:24px; font-weight:800; color:#d4af37;" id="srgOutStone">लाल मूंगा (Red Coral)</div>
-      </div>
-
-      <table class="srg-details-table">
-        <tr>
-          <td>Upratan (Alternative):</td>
-          <td id="srgOutSub">रेड कार्नेलियन (Carnelian)</td>
-        </tr>
-        <tr>
-          <td>Shubh Dhatu (Metal):</td>
-          <td id="srgOutMetal">तांबा या पीला सोना (Copper / Gold)</td>
-        </tr>
-        <tr>
-          <td>Kaunsi Ungli (Finger):</td>
-          <td id="srgOutFinger">अनामिका (Ring Finger)</td>
-        </tr>
-        <tr>
-          <td>Mukhya Din (Primary Day):</td>
-          <td id="srgOutDay">मंगलवार सुबह (Shukla Paksha)</td>
-        </tr>
-        <tr>
-          <td>Pramukh Labh:</td>
-          <td id="srgOutBenefits">साहस, आत्मविश्वास, ऊर्जा और रक्त संबंधी विकारों में चमत्कारी लाभ।</td>
-        </tr>
-      </table>
-
-      <!-- DAY-WISE HORA TIME TABLE -->
-      <div class="srg-hora-box">
-        <div class="srg-hora-title">
-          <span>🕒 <span id="srgHoraLordName">मंगल देव की होरा (Mangal Hora)</span> — 7 दिनों का सटीक समय सारणी</span>
-        </div>
-        <p style="font-size:12.5px; color:#94a3b8; margin:0 0 10px 0;">
-          यदि आप मंगलवार को रत्न न पहन पाएं, तो सप्ताह के किसी भी दिन नीचे दिए गए समय (होरा काल) में धारण कर सकते हैं:
-        </p>
-
-        <table class="srg-hora-table">
-          <thead>
-            <tr>
-              <th style="width:30%;">दिन (Day)</th>
-              <th style="width:70%;">शुभ होरा समय (Auspicious Hora Timing)</th>
-            </tr>
-          </thead>
-          <tbody id="srgHoraRows">
-            <!-- Dynamically populated rows -->
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Direct WhatsApp Action Button -->
-      <a id="srgOutWaBtn" href="https://wa.me/919065665497?text=Pranam%20Shree%20Royal%20Gems%2C%20meri%20Rashi%20Mesh%20hai%20aur%20mujhe%20Lal%20Moonga%20(Red%20Coral)%20lena%20hai.%20Kripya%20original%20stone%20ke%20photos%2C%20rate%20aur%20dharan%20vidhi%20WhatsApp%20par%20bhejein." target="_blank" class="srg-order-btn">
-        <span>💬 Pandit Ji Se Is Ratan Ka Rate & Photos WhatsApp Par Mangwayein</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<script>
-var HORA_SCHEDULE = {
-  mangal: {
-    title: "मंगल देव की होरा (Mangal Hora - लाल मूंगा)",
-    days: [
-      { day: "रविवार (Sunday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
-      { day: "सोमवार (Monday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
-      { day: "मंगलवार (Tuesday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
-      { day: "बुधवार (Wednesday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
-      { day: "गुरुवार (Thursday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
-      { day: "शुक्रवार (Friday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
-      { day: "शनिवार (Saturday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" }
-    ]
-  },
-  shukra: {
-    title: "शुक्र देव की होरा (Shukra Hora - ओपल / सफेद पुखराज / हीरा)",
-    days: [
-      { day: "रविवार (Sunday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
-      { day: "सोमवार (Monday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
-      { day: "मंगलवार (Tuesday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
-      { day: "बुधवार (Wednesday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
-      { day: "गुरुवार (Thursday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
-      { day: "शुक्रवार (Friday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
-      { day: "शनिवार (Saturday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" }
-    ]
-  },
-  budh: {
-    title: "बुध देव की होरा (Budh Hora - पन्ना / Emerald)",
-    days: [
-      { day: "रविवार (Sunday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
-      { day: "सोमवार (Monday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
-      { day: "मंगलवार (Tuesday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
-      { day: "बुधवार (Wednesday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
-      { day: "गुरुवार (Thursday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
-      { day: "शुक्रवार (Friday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
-      { day: "शनिवार (Saturday)", time: "11:00 AM - 12:00 PM (दोपहर)" }
-    ]
-  },
-  chandra: {
-    title: "चंद्र देव की होरा (Chandra Hora - सच्चा मोती / Pearl)",
-    days: [
-      { day: "रविवार (Sunday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
-      { day: "सोमवार (Monday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
-      { day: "मंगलवार (Tuesday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
-      { day: "बुधवार (Wednesday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
-      { day: "गुरुवार (Thursday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
-      { day: "शुक्रवार (Friday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
-      { day: "शनिवार (Saturday)", time: "12:00 PM - 01:00 PM (दोपहर)" }
-    ]
-  },
-  surya: {
-    title: "सूर्य देव की होरा (Surya Hora - माणिक्य / Ruby)",
-    days: [
-      { day: "रविवार (Sunday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
-      { day: "सोमवार (Monday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
-      { day: "मंगलवार (Tuesday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
-      { day: "बुधवार (Wednesday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
-      { day: "गुरुवार (Thursday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
-      { day: "शुक्रवार (Friday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
-      { day: "शनिवार (Saturday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" }
-    ]
-  },
-  guru: {
-    title: "बृहस्पति (गुरु) देव की होरा (Guru Hora - पीला पुखराज)",
-    days: [
-      { day: "रविवार (Sunday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
-      { day: "सोमवार (Monday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
-      { day: "मंगलवार (Tuesday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
-      { day: "बुधवार (Wednesday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
-      { day: "गुरुवार (Thursday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
-      { day: "शुक्रवार (Friday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
-      { day: "शनिवार (Saturday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" }
-    ]
-  },
-  shani: {
-    title: "शनि देव की होरा (Shani Hora - नीलम / जामुनिया)",
-    days: [
-      { day: "रविवार (Sunday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
-      { day: "सोमवार (Monday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
-      { day: "मंगलवार (Tuesday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
-      { day: "बुधवार (Wednesday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
-      { day: "गुरुवार (Thursday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
-      { day: "शुक्रवार (Friday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
-      { day: "शनिवार (Saturday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true }
-    ]
-  }
-};
-
-var SRG_DATA = {
-  mesh: {
-    name: "मेष राशि (Mesh / Aries)",
-    lord: "मंगल देव (Mars)",
-    stone: "लाल मूंगा (Red Coral)",
-    sub: "रेड कार्नेलियन (Carnelian)",
-    metal: "तांबा या पीला सोना (Copper / Gold)",
-    finger: "अनामिका (Ring Finger)",
-    day: "मंगलवार सुबह (Shukla Paksha)",
-    horaKey: "mangal",
-    benefits: "साहस, आत्मविश्वास, ऊर्जा और रक्त संबंधी विकारों में चमत्कारी लाभ। नेतृत्व और जमीन के कार्यों में सफलता।"
-  },
-  vrishabh: {
-    name: "वृषभ राशि (Vrishabh / Taurus)",
-    lord: "शुक्र देव (Venus)",
-    stone: "ओपल / सफेद पुखराज / हीरा (Opal / White Sapphire)",
-    sub: "जिरकॉन (White Zircon)",
-    metal: "चांदी या प्लेटिनम (Silver / Platinum)",
-    finger: "मध्यमा या कनिष्ठा (Middle or Little Finger)",
-    day: "शुक्रवार सुबह (Friday Morning)",
-    horaKey: "shukra",
-    benefits: "धन-वैभव, आकर्षण, दांपत्य सुख और व्यापार में अपार तरक्की।"
-  },
-  mithun: {
-    name: "मिथुन राशि (Mithun / Gemini)",
-    lord: "बुध देव (Mercury)",
-    stone: "पन्ना (Emerald / Panna)",
-    sub: "पेरिडॉट / हरा ओनेक्स (Green Peridot)",
-    metal: "सोना या चांदी (Gold / Silver)",
-    finger: "कनिष्ठा (Little Finger)",
-    day: "बुधवार सुबह (Wednesday Morning)",
-    horaKey: "budh",
-    benefits: "तीव्र बुद्धि, एकाग्रता, वाणी में प्रभाव और व्यापारिक मुनाफे में लाभ।"
-  },
-  kark: {
-    name: "कर्क राशि (Kark / Cancer)",
-    lord: "चंद्र देव (Moon)",
-    stone: "सच्चा मोती (Natural Pearl / Moti)",
-    sub: "मूनस्टोन (Moonstone)",
-    metal: "शुद्ध चांदी (Pure Silver)",
-    finger: "कनिष्ठा (Little Finger)",
-    day: "सोमवार सुबह (Monday Morning)",
-    horaKey: "chandra",
-    benefits: "मानसिक शांति, तनाव व अनिद्रा से राहत, क्रोध पर नियंत्रण और माता का सुख।"
-  },
-  singh: {
-    name: "सिंह राशि (Singh / Leo)",
-    lord: "सूर्य देव (Sun)",
-    stone: "माणिक्य (Natural Ruby / Manik)",
-    sub: "रेड गार्नेट (Garnet)",
-    metal: "तांबा या पीला सोना (Gold / Copper)",
-    finger: "अनामिका (Ring Finger)",
-    day: "रविवार सुबह (Sunday Morning)",
-    horaKey: "surya",
-    benefits: "मान-सम्मान, सरकारी नौकरी, नेतृत्व क्षमता और आत्मविश्वास में भारी वृद्धि।"
-  },
-  kanya: {
-    name: "कन्या राशि (Kanya / Virgo)",
-    lord: "बुध देव (Mercury)",
-    stone: "पन्ना (Emerald / Panna)",
-    sub: "हरा पेरिडॉट (Green Peridot)",
-    metal: "पीला सोना या चांदी (Gold / Silver)",
-    finger: "कनिष्ठा (Little Finger)",
-    day: "बुधवार सुबह (Wednesday Morning)",
-    horaKey: "budh",
-    benefits: "शिक्षा, हिसाब-किताब, व्यापारिक सफलता और कर्ज मुक्ति में सहायक।"
-  },
-  tula: {
-    name: "तुला राशि (Tula / Libra)",
-    lord: "शुक्र देव (Venus)",
-    stone: "ओपल / सफेद पुखराज (Opal / White Sapphire)",
-    sub: "जिरकॉन (White Zircon)",
-    metal: "शुद्ध चांदी (Silver)",
-    finger: "मध्यमा या कनिष्ठा (Middle / Little Finger)",
-    day: "शुक्रवार सुबह (Friday Morning)",
-    horaKey: "shukra",
-    benefits: "ग्लैमर, सुंदरता, समाज में प्रतिष्ठा और दांपत्य जीवन में मधुरता।"
-  },
-  vrishchik: {
-    name: "वृश्चिक राशि (Vrishchik / Scorpio)",
-    lord: "मंगल देव (Mars)",
-    stone: "त्रिकोणीय लाल मूंगा (Italian Red Coral)",
-    sub: "रेड कार्नेलियन (Carnelian)",
-    metal: "तांबा या सोना (Copper / Gold)",
-    finger: "अनामिका (Ring Finger)",
-    day: "मंगलवार सुबह (Tuesday Morning)",
-    horaKey: "mangal",
-    benefits: "शत्रुओं पर विजय, दुर्घटनाओं से रक्षा, शारीरिक ऊर्जा और साहस में वृद्धि।"
-  },
-  dhanu: {
-    name: "धनु राशि (Dhanu / Sagittarius)",
-    lord: "बृहस्पति देव (Jupiter)",
-    stone: "पीला पुखराज (Yellow Sapphire)",
-    sub: "गोल्डन सिट्रीन / सुनहला (Citrine)",
-    metal: "पीला सोना या पीतल (Gold / Brass)",
-    finger: "तर्जनी (Index Finger)",
-    day: "गुरुवार सुबह (Thursday Morning)",
-    horaKey: "guru",
-    benefits: "विवाह बाधा दूर, धन-दौलत, उच्च शिक्षा और भाग्य में निरंतर वृद्धि।"
-  },
-  makar: {
-    name: "मकर राशि (Makar / Capricorn)",
-    lord: "शनि देव (Saturn)",
-    stone: "नीलम (Blue Sapphire / Neelam)",
-    sub: "जामुनिया (Amethyst / Katela)",
-    metal: "पंचधातु या चांदी (Panchdhatu / Silver)",
-    finger: "मध्यमा (Middle Finger)",
-    day: "शनिवार शाम (Saturday Evening)",
-    horaKey: "shani",
-    benefits: "साढ़ेसाती से राहत, अचानक धन लाभ, करियर में स्थायित्व और सुरक्षा।"
-  },
-  kumbh: {
-    name: "कुंभ राशि (Kumbh / Aquarius)",
-    lord: "शनि देव (Saturn)",
-    stone: "नीलम / जामुनिया (Blue Sapphire / Amethyst)",
-    sub: "नीली (Iolite / Neeli)",
-    metal: "पंचधातु या चांदी (Panchdhatu / Silver)",
-    finger: "मध्यमा (Middle Finger)",
-    day: "शनिवार शाम (Saturday Evening)",
-    horaKey: "shani",
-    benefits: "व्यापार में नई ऊंचाइयां, मानसिक शांति, रुका हुआ धन वापस मिलना।"
-  },
-  meen: {
-    name: "मीन राशि (Meen / Pisces)",
-    lord: "बृहस्पति देव (Jupiter)",
-    stone: "पीला पुखराज (Yellow Sapphire / Pukhraj)",
-    sub: "पीला सुनहला (Citrine)",
-    metal: "पीला सोना या पीतल (Gold / Brass)",
-    finger: "तर्जनी (Index Finger)",
-    day: "
           </div>
 
           <!-- Trust Badges (Japam Inspired) -->
@@ -3697,4 +3134,567 @@ function srgSubmitReview() {
 })();
 </script>
 <!-- ==================== END AUTO-INJECTED REVIEWS SECTION ==================== -->
+  <!-- ==================== SHREE ROYAL GEMS - RASHI & DAY-WISE HORA GEMSTONE RECOMMENDER ==================== -->
+<style>
+#srg-rashi-suite {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px 16px;
+  background: #0b0f19;
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
+  margin: 30px 0;
+}
+.srg-rashi-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.srg-header-area {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.srg-badge-tag {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.srg-heading {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 10px 0 6px 0;
+}
+.srg-subheading {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* 12 Rashi Buttons Grid */
+.srg-rashi-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin: 20px 0;
+}
+@media (max-width: 768px) {
+  .srg-rashi-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .srg-rashi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.srg-btn-item {
+  background: #141c2b;
+  border: 1px solid #28374d;
+  border-radius: 10px;
+  padding: 12px 6px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+.srg-btn-item:hover, .srg-btn-item.srg-active {
+  background: #223049;
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+.srg-btn-icon {
+  font-size: 22px;
+  display: block;
+}
+.srg-btn-hindi {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+  display: block;
+}
+.srg-btn-eng {
+  font-size: 10.5px;
+  color: #94a3b8;
+  display: block;
+}
+
+/* Result Box */
+.srg-display-box {
+  background: #131b29;
+  border: 2px solid #d4af37;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+.srg-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #28374d;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.srg-main-stone-banner {
+  background: #090e17;
+  border: 1px solid #2a374d;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.srg-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+}
+.srg-details-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #1a2538;
+}
+.srg-details-table td:first-child {
+  color: #94a3b8;
+  width: 35%;
+}
+.srg-details-table td:last-child {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+/* Day-Wise Hora Timetable Section */
+.srg-hora-box {
+  background: #090e17;
+  border: 1px solid #d4af3766;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 18px 0;
+}
+.srg-hora-title {
+  color: #d4af37;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.srg-hora-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.srg-hora-table th {
+  background: #172235;
+  color: #d4af37;
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #28374d;
+}
+.srg-hora-table td {
+  padding: 8px;
+  border-bottom: 1px solid #1a2538;
+  color: #cbd5e1;
+}
+.srg-hora-table tr:hover td {
+  background: rgba(212, 175, 55, 0.05);
+}
+.srg-hora-highlight {
+  color: #fcd34d !important;
+  font-weight: 700;
+}
+
+.srg-order-btn {
+  background: #25d366;
+  color: #052e16;
+  font-size: 15.5px;
+  font-weight: 800;
+  padding: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s;
+}
+.srg-order-btn:hover {
+  transform: translateY(-2px);
+}
+</style>
+
+<section id="srg-rashi-suite">
+  <div class="srg-rashi-wrap">
+    <div class="srg-header-area">
+      <span class="srg-badge-tag">✨ VEDIC RASHI, RATAN & HORA TIMINGS ✨</span>
+      <h2 class="srg-heading">अपनी राशि चुनें & शुभ रत्न व दिन-वार होरा समय जानें</h2>
+      <p class="srg-subheading">Apni Rashi par click karein aur janein shubh ratan, dharan vidhi aur Somvar se Ravivar tak ki shubh Hora timings:</p>
+    </div>
+
+    <!-- 12 Clickable Buttons -->
+    <div class="srg-rashi-grid">
+      <div class="srg-btn-item srg-active" onclick="srgShow('mesh')" id="b-mesh">
+        <span class="srg-btn-icon">♈</span>
+        <span class="srg-btn-hindi">मेष</span>
+        <span class="srg-btn-eng">Aries</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('vrishabh')" id="b-vrishabh">
+        <span class="srg-btn-icon">♉</span>
+        <span class="srg-btn-hindi">वृषभ</span>
+        <span class="srg-btn-eng">Taurus</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('mithun')" id="b-mithun">
+        <span class="srg-btn-icon">♊</span>
+        <span class="srg-btn-hindi">मिथुन</span>
+        <span class="srg-btn-eng">Gemini</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('kark')" id="b-kark">
+        <span class="srg-btn-icon">♋</span>
+        <span class="srg-btn-hindi">कर्क</span>
+        <span class="srg-btn-eng">Cancer</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('singh')" id="b-singh">
+        <span class="srg-btn-icon">♌</span>
+        <span class="srg-btn-hindi">सिंह</span>
+        <span class="srg-btn-eng">Leo</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('kanya')" id="b-kanya">
+        <span class="srg-btn-icon">♍</span>
+        <span class="srg-btn-hindi">कन्या</span>
+        <span class="srg-btn-eng">Virgo</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('tula')" id="b-tula">
+        <span class="srg-btn-icon">♎</span>
+        <span class="srg-btn-hindi">तुला</span>
+        <span class="srg-btn-eng">Libra</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('vrishchik')" id="b-vrishchik">
+        <span class="srg-btn-icon">♏</span>
+        <span class="srg-btn-hindi">वृश्चिक</span>
+        <span class="srg-btn-eng">Scorpio</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('dhanu')" id="b-dhanu">
+        <span class="srg-btn-icon">♐</span>
+        <span class="srg-btn-hindi">धनु</span>
+        <span class="srg-btn-eng">Sagittarius</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('makar')" id="b-makar">
+        <span class="srg-btn-icon">♑</span>
+        <span class="srg-btn-hindi">मकर</span>
+        <span class="srg-btn-eng">Capricorn</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('kumbh')" id="b-kumbh">
+        <span class="srg-btn-icon">♒</span>
+        <span class="srg-btn-hindi">कुंभ</span>
+        <span class="srg-btn-eng">Aquarius</span>
+      </div>
+      <div class="srg-btn-item" onclick="srgShow('meen')" id="b-meen">
+        <span class="srg-btn-icon">♓</span>
+        <span class="srg-btn-hindi">मीन</span>
+        <span class="srg-btn-eng">Pisces</span>
+      </div>
+    </div>
+
+    <!-- Result Box -->
+    <div class="srg-display-box" id="srgDisplayCard">
+      <div class="srg-top-row">
+        <div>
+          <h3 style="margin:0; font-size:22px; color:#ffffff;" id="srgOutName">मेष राशि (Mesh / Aries)</h3>
+          <span style="color:#d4af37; font-size:14px; font-weight:600;" id="srgOutLord">स्वामी ग्रह: मंगल देव (Mars)</span>
+        </div>
+        <span style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37; padding:4px 12px; border-radius:14px; font-size:12px; font-weight:700;">
+          ✓ Certified Recommendation
+        </span>
+      </div>
+
+      <div class="srg-main-stone-banner">
+        <div style="font-size:12px; color:#94a3b8; text-transform:uppercase; margin-bottom:4px;">👑 Mukhya Bhagya Ratan</div>
+        <div style="font-size:24px; font-weight:800; color:#d4af37;" id="srgOutStone">लाल मूंगा (Red Coral)</div>
+      </div>
+
+      <table class="srg-details-table">
+        <tr>
+          <td>Upratan (Alternative):</td>
+          <td id="srgOutSub">रेड कार्नेलियन (Carnelian)</td>
+        </tr>
+        <tr>
+          <td>Shubh Dhatu (Metal):</td>
+          <td id="srgOutMetal">तांबा या पीला सोना (Copper / Gold)</td>
+        </tr>
+        <tr>
+          <td>Kaunsi Ungli (Finger):</td>
+          <td id="srgOutFinger">अनामिका (Ring Finger)</td>
+        </tr>
+        <tr>
+          <td>Mukhya Din (Primary Day):</td>
+          <td id="srgOutDay">मंगलवार सुबह (Shukla Paksha)</td>
+        </tr>
+        <tr>
+          <td>Pramukh Labh:</td>
+          <td id="srgOutBenefits">साहस, आत्मविश्वास, ऊर्जा और रक्त संबंधी विकारों में चमत्कारी लाभ।</td>
+        </tr>
+      </table>
+
+      <!-- DAY-WISE HORA TIME TABLE -->
+      <div class="srg-hora-box">
+        <div class="srg-hora-title">
+          <span>🕒 <span id="srgHoraLordName">मंगल देव की होरा (Mangal Hora)</span> — 7 दिनों का सटीक समय सारणी</span>
+        </div>
+        <p style="font-size:12.5px; color:#94a3b8; margin:0 0 10px 0;">
+          यदि आप मंगलवार को रत्न न पहन पाएं, तो सप्ताह के किसी भी दिन नीचे दिए गए समय (होरा काल) में धारण कर सकते हैं:
+        </p>
+
+        <table class="srg-hora-table">
+          <thead>
+            <tr>
+              <th style="width:30%;">दिन (Day)</th>
+              <th style="width:70%;">शुभ होरा समय (Auspicious Hora Timing)</th>
+            </tr>
+          </thead>
+          <tbody id="srgHoraRows">
+            <!-- Dynamically populated rows -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Direct WhatsApp Action Button -->
+      <a id="srgOutWaBtn" href="https://wa.me/919065665497?text=Pranam%20Shree%20Royal%20Gems%2C%20meri%20Rashi%20Mesh%20hai%20aur%20mujhe%20Lal%20Moonga%20(Red%20Coral)%20lena%20hai.%20Kripya%20original%20stone%20ke%20photos%2C%20rate%20aur%20dharan%20vidhi%20WhatsApp%20par%20bhejein." target="_blank" class="srg-order-btn">
+        <span>💬 Pandit Ji Se Is Ratan Ka Rate & Photos WhatsApp Par Mangwayein</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+var HORA_SCHEDULE = {
+  mangal: {
+    title: "मंगल देव की होरा (Mangal Hora - लाल मूंगा)",
+    days: [
+      { day: "रविवार (Sunday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
+      { day: "सोमवार (Monday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
+      { day: "मंगलवार (Tuesday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
+      { day: "बुधवार (Wednesday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
+      { day: "गुरुवार (Thursday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
+      { day: "शुक्रवार (Friday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
+      { day: "शनिवार (Saturday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" }
+    ]
+  },
+  shukra: {
+    title: "शुक्र देव की होरा (Shukra Hora - ओपल / सफेद पुखराज / हीरा)",
+    days: [
+      { day: "रविवार (Sunday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
+      { day: "सोमवार (Monday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
+      { day: "मंगलवार (Tuesday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
+      { day: "बुधवार (Wednesday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
+      { day: "गुरुवार (Thursday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
+      { day: "शुक्रवार (Friday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
+      { day: "शनिवार (Saturday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" }
+    ]
+  },
+  budh: {
+    title: "बुध देव की होरा (Budh Hora - पन्ना / Emerald)",
+    days: [
+      { day: "रविवार (Sunday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
+      { day: "सोमवार (Monday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
+      { day: "मंगलवार (Tuesday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
+      { day: "बुधवार (Wednesday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
+      { day: "गुरुवार (Thursday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
+      { day: "शुक्रवार (Friday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
+      { day: "शनिवार (Saturday)", time: "11:00 AM - 12:00 PM (दोपहर)" }
+    ]
+  },
+  chandra: {
+    title: "चंद्र देव की होरा (Chandra Hora - सच्चा मोती / Pearl)",
+    days: [
+      { day: "रविवार (Sunday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
+      { day: "सोमवार (Monday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
+      { day: "मंगलवार (Tuesday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
+      { day: "बुधवार (Wednesday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
+      { day: "गुरुवार (Thursday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
+      { day: "शुक्रवार (Friday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
+      { day: "शनिवार (Saturday)", time: "12:00 PM - 01:00 PM (दोपहर)" }
+    ]
+  },
+  surya: {
+    title: "सूर्य देव की होरा (Surya Hora - माणिक्य / Ruby)",
+    days: [
+      { day: "रविवार (Sunday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
+      { day: "सोमवार (Monday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
+      { day: "मंगलवार (Tuesday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
+      { day: "बुधवार (Wednesday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
+      { day: "गुरुवार (Thursday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
+      { day: "शुक्रवार (Friday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
+      { day: "शनिवार (Saturday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" }
+    ]
+  },
+  guru: {
+    title: "बृहस्पति (गुरु) देव की होरा (Guru Hora - पीला पुखराज)",
+    days: [
+      { day: "रविवार (Sunday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
+      { day: "सोमवार (Monday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
+      { day: "मंगलवार (Tuesday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
+      { day: "बुधवार (Wednesday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
+      { day: "गुरुवार (Thursday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true },
+      { day: "शुक्रवार (Friday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
+      { day: "शनिवार (Saturday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" }
+    ]
+  },
+  shani: {
+    title: "शनि देव की होरा (Shani Hora - नीलम / जामुनिया)",
+    days: [
+      { day: "रविवार (Sunday)", time: "10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM" },
+      { day: "सोमवार (Monday)", time: "07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM" },
+      { day: "मंगलवार (Tuesday)", time: "11:00 AM - 12:00 PM (दोपहर)" },
+      { day: "बुधवार (Wednesday)", time: "08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM" },
+      { day: "गुरुवार (Thursday)", time: "12:00 PM - 01:00 PM (दोपहर)" },
+      { day: "शुक्रवार (Friday)", time: "09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM" },
+      { day: "शनिवार (Saturday) ⭐", time: "06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM", best: true }
+    ]
+  }
+};
+
+var SRG_DATA = {
+  mesh: {
+    name: "मेष राशि (Mesh / Aries)",
+    lord: "मंगल देव (Mars)",
+    stone: "लाल मूंगा (Red Coral)",
+    sub: "रेड कार्नेलियन (Carnelian)",
+    metal: "तांबा या पीला सोना (Copper / Gold)",
+    finger: "अनामिका (Ring Finger)",
+    day: "मंगलवार सुबह (Shukla Paksha)",
+    horaKey: "mangal",
+    benefits: "साहस, आत्मविश्वास, ऊर्जा और रक्त संबंधी विकारों में चमत्कारी लाभ। नेतृत्व और जमीन के कार्यों में सफलता।"
+  },
+  vrishabh: {
+    name: "वृषभ राशि (Vrishabh / Taurus)",
+    lord: "शुक्र देव (Venus)",
+    stone: "ओपल / सफेद पुखराज / हीरा (Opal / White Sapphire)",
+    sub: "जिरकॉन (White Zircon)",
+    metal: "चांदी या प्लेटिनम (Silver / Platinum)",
+    finger: "मध्यमा या कनिष्ठा (Middle or Little Finger)",
+    day: "शुक्रवार सुबह (Friday Morning)",
+    horaKey: "shukra",
+    benefits: "धन-वैभव, आकर्षण, दांपत्य सुख और व्यापार में अपार तरक्की।"
+  },
+  mithun: {
+    name: "मिथुन राशि (Mithun / Gemini)",
+    lord: "बुध देव (Mercury)",
+    stone: "पन्ना (Emerald / Panna)",
+    sub: "पेरिडॉट / हरा ओनेक्स (Green Peridot)",
+    metal: "सोना या चांदी (Gold / Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "बुधवार सुबह (Wednesday Morning)",
+    horaKey: "budh",
+    benefits: "तीव्र बुद्धि, एकाग्रता, वाणी में प्रभाव और व्यापारिक मुनाफे में लाभ।"
+  },
+  kark: {
+    name: "कर्क राशि (Kark / Cancer)",
+    lord: "चंद्र देव (Moon)",
+    stone: "सच्चा मोती (Natural Pearl / Moti)",
+    sub: "मूनस्टोन (Moonstone)",
+    metal: "शुद्ध चांदी (Pure Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "सोमवार सुबह (Monday Morning)",
+    horaKey: "chandra",
+    benefits: "मानसिक शांति, तनाव व अनिद्रा से राहत, क्रोध पर नियंत्रण और माता का सुख।"
+  },
+  singh: {
+    name: "सिंह राशि (Singh / Leo)",
+    lord: "सूर्य देव (Sun)",
+    stone: "माणिक्य (Natural Ruby / Manik)",
+    sub: "रेड गार्नेट (Garnet)",
+    metal: "तांबा या पीला सोना (Gold / Copper)",
+    finger: "अनामिका (Ring Finger)",
+    day: "रविवार सुबह (Sunday Morning)",
+    horaKey: "surya",
+    benefits: "मान-सम्मान, सरकारी नौकरी, नेतृत्व क्षमता और आत्मविश्वास में भारी वृद्धि।"
+  },
+  kanya: {
+    name: "कन्या राशि (Kanya / Virgo)",
+    lord: "बुध देव (Mercury)",
+    stone: "पन्ना (Emerald / Panna)",
+    sub: "हरा पेरिडॉट (Green Peridot)",
+    metal: "पीला सोना या चांदी (Gold / Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "बुधवार सुबह (Wednesday Morning)",
+    horaKey: "budh",
+    benefits: "शिक्षा, हिसाब-किताब, व्यापारिक सफलता और कर्ज मुक्ति में सहायक।"
+  },
+  tula: {
+    name: "तुला राशि (Tula / Libra)",
+    lord: "शुक्र देव (Venus)",
+    stone: "ओपल / सफेद पुखराज (Opal / White Sapphire)",
+    sub: "जिरकॉन (White Zircon)",
+    metal: "शुद्ध चांदी (Silver)",
+    finger: "मध्यमा या कनिष्ठा (Middle / Little Finger)",
+    day: "शुक्रवार सुबह (Friday Morning)",
+    horaKey: "shukra",
+    benefits: "ग्लैमर, सुंदरता, समाज में प्रतिष्ठा और दांपत्य जीवन में मधुरता।"
+  },
+  vrishchik: {
+    name: "वृश्चिक राशि (Vrishchik / Scorpio)",
+    lord: "मंगल देव (Mars)",
+    stone: "त्रिकोणीय लाल मूंगा (Italian Red Coral)",
+    sub: "रेड कार्नेलियन (Carnelian)",
+    metal: "तांबा या सोना (Copper / Gold)",
+    finger: "अनामिका (Ring Finger)",
+    day: "मंगलवार सुबह (Tuesday Morning)",
+    horaKey: "mangal",
+    benefits: "शत्रुओं पर विजय, दुर्घटनाओं से रक्षा, शारीरिक ऊर्जा और साहस में वृद्धि।"
+  },
+  dhanu: {
+    name: "धनु राशि (Dhanu / Sagittarius)",
+    lord: "बृहस्पति देव (Jupiter)",
+    stone: "पीला पुखराज (Yellow Sapphire)",
+    sub: "गोल्डन सिट्रीन / सुनहला (Citrine)",
+    metal: "पीला सोना या पीतल (Gold / Brass)",
+    finger: "तर्जनी (Index Finger)",
+    day: "गुरुवार सुबह (Thursday Morning)",
+    horaKey: "guru",
+    benefits: "विवाह बाधा दूर, धन-दौलत, उच्च शिक्षा और भाग्य में निरंतर वृद्धि।"
+  },
+  makar: {
+    name: "मकर राशि (Makar / Capricorn)",
+    lord: "शनि देव (Saturn)",
+    stone: "नीलम (Blue Sapphire / Neelam)",
+    sub: "जामुनिया (Amethyst / Katela)",
+    metal: "पंचधातु या चांदी (Panchdhatu / Silver)",
+    finger: "मध्यमा (Middle Finger)",
+    day: "शनिवार शाम (Saturday Evening)",
+    horaKey: "shani",
+    benefits: "साढ़ेसाती से राहत, अचानक धन लाभ, करियर में स्थायित्व और सुरक्षा।"
+  },
+  kumbh: {
+    name: "कुंभ राशि (Kumbh / Aquarius)",
+    lord: "शनि देव (Saturn)",
+    stone: "नीलम / जामुनिया (Blue Sapphire / Amethyst)",
+    sub: "नीली (Iolite / Neeli)",
+    metal: "पंचधातु या चांदी (Panchdhatu / Silver)",
+    finger: "मध्यमा (Middle Finger)",
+    day: "शनिवार शाम (Saturday Evening)",
+    horaKey: "shani",
+    benefits: "व्यापार में नई ऊंचाइयां, मानसिक शांति, रुका हुआ धन वापस मिलना।"
+  },
+  meen: {
+    name: "मीन राशि (Meen / Pisces)",
+    lord: "बृहस्पति देव (Jupiter)",
+    stone: "पीला पुखराज (Yellow Sapphire / Pukhraj)",
+    sub: "पीला सुनहला (Citrine)",
+    metal: "पीला सोना या पीतल (Gold / Brass)",
+    finger: "तर्जनी (Index Finger)",
+    day: "
 </html>

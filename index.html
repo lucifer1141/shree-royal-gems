@@ -3780,4 +3780,518 @@ try {
 }
 </script>
 <!-- ==================== END SHREE ROYAL GEMS RECOMMENDER ==================== -->
+<!-- ==================== SHREE ROYAL GEMS - VEDIC MULANK (NUMEROLOGY) GEMSTONE RECOMMENDER ==================== -->
+<style>
+#srg-mulank-suite {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 50px 16px;
+  background: #0d131f;
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  border-top: 2px solid #d4af37;
+  border-bottom: 2px solid #d4af37;
+  margin: 35px 0;
+}
+.srg-mulank-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+.srg-mulank-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.srg-m-badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  border: 1px solid #d4af37;
+  padding: 5px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.srg-m-heading {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 800;
+  margin: 10px 0 6px 0;
+}
+.srg-m-subheading {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0;
+}
+
+.srg-dob-calc-box {
+  background: #151d2c;
+  border: 1px solid #2a374d;
+  border-radius: 12px;
+  padding: 18px;
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.srg-dob-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fcd34d;
+}
+.srg-dob-select {
+  background: #090e17;
+  color: #ffffff;
+  border: 1px solid #d4af37;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+}
+
+.srg-mulank-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 8px;
+  margin: 20px 0;
+}
+@media (max-width: 850px) {
+  .srg-mulank-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+@media (max-width: 480px) {
+  .srg-mulank-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.srg-m-btn {
+  background: #141c2b;
+  border: 1px solid #28374d;
+  border-radius: 10px;
+  padding: 12px 4px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+.srg-m-btn:hover, .srg-m-btn.srg-m-active {
+  background: #223049;
+  border-color: #d4af37;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+.srg-m-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #d4af37;
+  display: block;
+}
+.srg-m-txt {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  display: block;
+  margin-top: 2px;
+}
+.srg-m-dates {
+  font-size: 9.5px;
+  color: #94a3b8;
+  display: block;
+  margin-top: 2px;
+}
+
+.srg-m-display-box {
+  background: #131b29;
+  border: 2px solid #d4af37;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 15px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+}
+.srg-m-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #28374d;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.srg-m-stone-banner {
+  background: #090e17;
+  border: 1px solid #2a374d;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+.srg-m-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 18px;
+  font-size: 13.5px;
+}
+.srg-m-details-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid #1a2538;
+}
+.srg-m-details-table td:first-child {
+  color: #94a3b8;
+  width: 35%;
+}
+.srg-m-details-table td:last-child {
+  color: #f8fafc;
+  font-weight: 600;
+}
+.srg-m-order-btn {
+  background: #25d366;
+  color: #052e16;
+  font-size: 15.5px;
+  font-weight: 800;
+  padding: 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+  transition: transform 0.2s;
+}
+.srg-m-order-btn:hover {
+  transform: translateY(-2px);
+}
+</style>
+
+<section id="srg-mulank-suite">
+  <div class="srg-mulank-wrap">
+    <div class="srg-mulank-header">
+      <span class="srg-m-badge">🔢 VEDIC NUMEROLOGY & MULANK GUIDE 🔢</span>
+      <h2 class="srg-m-heading">जन्म तारीख से जानें अपना मूलांक & भाग्य रत्न</h2>
+      <p class="srg-m-subheading">Agar aapko apni Rashi nahi pata, toh apni Janm Tarikh chunein aur turant janein apna shubh ratan:</p>
+    </div>
+
+    <!-- Date of Birth Quick Dropdown -->
+    <div class="srg-dob-calc-box">
+      <span class="srg-dob-label">🎂 अपनी जन्म तारीख (Date of Birth) चुनें:</span>
+      <select id="srgDobPicker" class="srg-dob-select" onchange="srgOnDobChange()">
+        <option value="1">1 तारीख (1st)</option>
+        <option value="2">2 तारीख (2nd)</option>
+        <option value="3">3 तारीख (3rd)</option>
+        <option value="4">4 तारीख (4th)</option>
+        <option value="5">5 तारीख (5th)</option>
+        <option value="6">6 तारीख (6th)</option>
+        <option value="7">7 तारीख (7th)</option>
+        <option value="8">8 तारीख (8th)</option>
+        <option value="9">9 तारीख (9th)</option>
+        <option value="10">10 तारीख (10th)</option>
+        <option value="11">11 तारीख (11th)</option>
+        <option value="12">12 तारीख (12th)</option>
+        <option value="13">13 तारीख (13th)</option>
+        <option value="14">14 तारीख (14th)</option>
+        <option value="15">15 तारीख (15th)</option>
+        <option value="16">16 तारीख (16th)</option>
+        <option value="17">17 तारीख (17th)</option>
+        <option value="18">18 तारीख (18th)</option>
+        <option value="19">19 तारीख (19th)</option>
+        <option value="20">20 तारीख (20th)</option>
+        <option value="21">21 तारीख (21st)</option>
+        <option value="22">22 तारीख (22nd)</option>
+        <option value="23">23 तारीख (23rd)</option>
+        <option value="24">24 तारीख (24th)</option>
+        <option value="25">25 तारीख (25th)</option>
+        <option value="26">26 तारीख (26th)</option>
+        <option value="27">27 तारीख (27th)</option>
+        <option value="28">28 तारीख (28th)</option>
+        <option value="29">29 तारीख (29th)</option>
+        <option value="30">30 तारीख (30th)</option>
+        <option value="31">31 तारीख (31st)</option>
+      </select>
+      <span style="color:#94a3b8; font-size:13px;">(या नीचे दिए गए मूलांक पर सीधा क्लिक करें)</span>
+    </div>
+
+    <!-- 9 Mulank Clickable Buttons -->
+    <div class="srg-mulank-grid">
+      <div class="srg-m-btn srg-m-active" onclick="srgShowMulank(1)" id="mb-1">
+        <span class="srg-m-num">1</span>
+        <span class="srg-m-txt">मूलांक 1</span>
+        <span class="srg-m-dates">1, 10, 19, 28</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(2)" id="mb-2">
+        <span class="srg-m-num">2</span>
+        <span class="srg-m-txt">मूलांक 2</span>
+        <span class="srg-m-dates">2, 11, 20, 29</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(3)" id="mb-3">
+        <span class="srg-m-num">3</span>
+        <span class="srg-m-txt">मूलांक 3</span>
+        <span class="srg-m-dates">3, 12, 21, 30</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(4)" id="mb-4">
+        <span class="srg-m-num">4</span>
+        <span class="srg-m-txt">मूलांक 4</span>
+        <span class="srg-m-dates">4, 13, 22, 31</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(5)" id="mb-5">
+        <span class="srg-m-num">5</span>
+        <span class="srg-m-txt">मूलांक 5</span>
+        <span class="srg-m-dates">5, 14, 23</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(6)" id="mb-6">
+        <span class="srg-m-num">6</span>
+        <span class="srg-m-txt">मूलांक 6</span>
+        <span class="srg-m-dates">6, 15, 24</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(7)" id="mb-7">
+        <span class="srg-m-num">7</span>
+        <span class="srg-m-txt">मूलांक 7</span>
+        <span class="srg-m-dates">7, 16, 25</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(8)" id="mb-8">
+        <span class="srg-m-num">8</span>
+        <span class="srg-m-txt">मूलांक 8</span>
+        <span class="srg-m-dates">8, 17, 26</span>
+      </div>
+      <div class="srg-m-btn" onclick="srgShowMulank(9)" id="mb-9">
+        <span class="srg-m-num">9</span>
+        <span class="srg-m-txt">मूलांक 9</span>
+        <span class="srg-m-dates">9, 18, 27</span>
+      </div>
+    </div>
+
+    <!-- Result Display Card (Pre-loaded with Mulank 1 by default) -->
+    <div class="srg-m-display-box" id="srgMulankCard">
+      <div class="srg-m-top-row">
+        <div>
+          <h3 style="margin:0; font-size:22px; color:#ffffff;" id="srgMOutName">मूलांक 1 (Mulank 1) — जन्म तारीख: 1, 10, 19, 28</h3>
+          <span style="color:#d4af37; font-size:14px; font-weight:600;" id="srgMOutLord">स्वामी ग्रह: सूर्य देव (Sun)</span>
+        </div>
+        <span style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37; padding:4px 12px; border-radius:14px; font-size:12px; font-weight:700;">
+          ✓ Numerology Recommendation
+        </span>
+      </div>
+
+      <div class="srg-m-stone-banner">
+        <div style="font-size:12px; color:#94a3b8; text-transform:uppercase; margin-bottom:4px;">👑 Mukhya Bhagya Ratan</div>
+        <div style="font-size:24px; font-weight:800; color:#d4af37;" id="srgMOutStone">माणिक्य (Natural Ruby / Manik)</div>
+      </div>
+
+      <table class="srg-m-details-table">
+        <tr>
+          <td>Upratan (Alternative):</td>
+          <td id="srgMOutSub">रेड गार्नेट (Red Garnet)</td>
+        </tr>
+        <tr>
+          <td>Shubh Rang (Lucky Color):</td>
+          <td id="srgMOutColor" style="color:#fcd34d;">लाल, केसरिया, सुनहरा (Red / Saffron / Golden)</td>
+        </tr>
+        <tr>
+          <td>Shubh Dhatu (Metal):</td>
+          <td id="srgMOutMetal">तांबा या पीला सोना (Gold / Copper)</td>
+        </tr>
+        <tr>
+          <td>Kaunsi Ungli (Finger):</td>
+          <td id="srgMOutFinger">अनामिका (Ring Finger)</td>
+        </tr>
+        <tr>
+          <td>Dharan Ka Din & Hora:</td>
+          <td id="srgMOutDay">रविवार सुबह (सूर्य की शुभ होरा में)</td>
+        </tr>
+        <tr>
+          <td>Ank Jyotish Labh:</td>
+          <td id="srgMOutBenefits">मान-सम्मान, सरकारी कार्यों में सफलता, नेतृत्व क्षमता और आत्मविश्वास में अपार वृद्धि।</td>
+        </tr>
+      </table>
+
+      <!-- Direct WhatsApp Action Button -->
+      <a id="srgMOutWaBtn" href="https://wa.me/919065665497?text=Pranam%20Shree%20Royal%20Gems%2C%20meri%20Janm%20Tarikh%20ke%20anusar%20mera%20Mulank%201%20hai%20aur%20mera%20Bhagya%20Ratan%20Manikya%20(Ruby)%20nikla%20hai.%20Kripya%20original%20stone%20ke%20photos%2C%20rate%20aur%20dharan%20vidhi%20WhatsApp%20par%20bhejein." target="_blank" class="srg-m-order-btn">
+        <span>💬 Pandit Ji Se Is Ratan Ka Rate & Photos WhatsApp Par Mangwayein</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+var SRG_MULANK_DATA = {
+  1: {
+    dates: "1, 10, 19, 28",
+    name: "मूलांक 1 (Mulank 1)",
+    lord: "सूर्य देव (Sun)",
+    stone: "माणिक्य (Natural Ruby / Manik)",
+    sub: "रेड गार्नेट (Red Garnet)",
+    metal: "तांबा या पीला सोना (Gold / Copper)",
+    finger: "अनामिका (Ring Finger)",
+    day: "रविवार सुबह (सूर्य की शुभ होरा में)",
+    color: "लाल, केसरिया, सुनहरा (Red / Saffron / Golden)",
+    benefits: "मान-सम्मान, सरकारी कार्यों में सफलता, नेतृत्व क्षमता, व्यापारिक वृद्धि और आत्मविश्वास में अपार लाभ।"
+  },
+  2: {
+    dates: "2, 11, 20, 29",
+    name: "मूलांक 2 (Mulank 2)",
+    lord: "चंद्र देव (Moon)",
+    stone: "सच्चा मोती (Natural Pearl / Moti)",
+    sub: "मूनस्टोन (Moonstone)",
+    metal: "शुद्ध चांदी (Pure Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "सोमवार सुबह (चंद्र की शुभ होरा में)",
+    color: "सफेद, दूधिया (White / Silver)",
+    benefits: "मानसिक शांति, तनाव व अनिद्रा से मुक्ति, क्रोध पर नियंत्रण, रचनात्मक सोच और माता का भरपूर सुख।"
+  },
+  3: {
+    dates: "3, 12, 21, 30",
+    name: "मूलांक 3 (Mulank 3)",
+    lord: "बृहस्पति देव (Jupiter)",
+    stone: "पीला पुखराज (Yellow Sapphire)",
+    sub: "पीला सुनहला (Citrine)",
+    metal: "पीला सोना या पीतल (Gold / Brass)",
+    finger: "तर्जनी (Index Finger)",
+    day: "गुरुवार सुबह (गुरु की शुभ होरा में)",
+    color: "पीला, हल्दी रंग, सुनहरा (Yellow / Golden)",
+    benefits: "ज्ञान, धन-वैभव, उच्च शिक्षा, अध्यापन, विवाह बाधा से मुक्ति और भाग्य में निरंतर वृद्धि।"
+  },
+  4: {
+    dates: "4, 13, 22, 31",
+    name: "मूलांक 4 (Mulank 4)",
+    lord: "राहु देव (Rahu)",
+    stone: "गोमेद (Hessonite Garnet / Gomed)",
+    sub: "ब्राउन जिरकॉन (Brown Zircon)",
+    metal: "अष्टधातु या पंचधातु (Ashtadhatu)",
+    finger: "मध्यमा (Middle Finger)",
+    day: "शनिवार शाम / बुधवार (शनि या बुध की होरा में)",
+    color: "धुआंधार, गहरा बादामी (Smoky Brown)",
+    benefits: "अचानक धन लाभ, कानूनी मामलों में विजय, राजनीति, सट्टा व शेयर बाज़ार में अप्रत्याशित सफलता।"
+  },
+  5: {
+    dates: "5, 14, 23",
+    name: "मूलांक 5 (Mulank 5)",
+    lord: "बुध देव (Mercury)",
+    stone: "पन्ना (Emerald / Panna)",
+    sub: "पेरिडॉट / हरा ओनेक्स (Green Peridot)",
+    metal: "सोना या चांदी (Gold / Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "बुधवार सुबह (बुध की शुभ होरा में)",
+    color: "हरा (Emerald Green)",
+    benefits: "तीव्र बुद्धि, सम्मोहन वाणी, एकाग्रता, व्यापार और सीए/बैंकिंग/मार्केटिंग में भारी मुनाफा।"
+  },
+  6: {
+    dates: "6, 15, 24",
+    name: "मूलांक 6 (Mulank 6)",
+    lord: "शुक्र देव (Venus)",
+    stone: "ओपल / सफेद पुखराज / हीरा (Opal / Diamond)",
+    sub: "सफेद जिरकॉन (White Zircon)",
+    metal: "शुद्ध चांदी या प्लेटिनम (Silver / Platinum)",
+    finger: "मध्यमा या कनिष्ठा (Middle / Little Finger)",
+    day: "शुक्रवार सुबह (शुक्र की शुभ होरा में)",
+    color: "सफेद, चमकदार (Shimmering White)",
+    benefits: "धन-वैभव, आकर्षण, लक्जरी जीवन, दांपत्य प्रेम और कला-फिल्म-फैशन उद्योग में अपार सफलता।"
+  },
+  7: {
+    dates: "7, 16, 25",
+    name: "मूलांक 7 (Mulank 7)",
+    lord: "केतु देव (Ketu)",
+    stone: "लहसुनिया (Cat's Eye / Chrysoberyl)",
+    sub: "टाइगर आई (Tiger Eye)",
+    metal: "अष्टधातु या चांदी (Panchdhatu / Silver)",
+    finger: "कनिष्ठा या मध्यमा (Little / Middle Finger)",
+    day: "गुरुवार या शनिवार (गुरु या शनि की होरा में)",
+    color: "धूसर, बिल्ली की आंख जैसा (Cat's Eye Green-Yellow)",
+    benefits: "नजर दोष व गुप्त शत्रुओं से रक्षा, इंट्यूशन पावर, मानसिक एकाग्रता और आध्यात्मिक उन्नति।"
+  },
+  8: {
+    dates: "8, 17, 26",
+    name: "मूलांक 8 (Mulank 8)",
+    lord: "शनि देव (Saturn)",
+    stone: "नीलम (Blue Sapphire / Neelam)",
+    sub: "जामुनिया (Amethyst / Katela)",
+    metal: "पंचधातु या चांदी (Panchdhatu / Silver)",
+    finger: "मध्यमा (Middle Finger)",
+    day: "शनिवार शाम (शनि की शुभ होरा में)",
+    color: "गहरा नीला, काला (Navy Blue / Black)",
+    benefits: "शनि की साढ़ेसाती व ढैय्या से रक्षा, अचानक धन लाभ, अनुशासन, स्थायित्व और दीर्घायु।"
+  },
+  9: {
+    dates: "9, 18, 27",
+    name: "मूलांक 9 (Mulank 9)",
+    lord: "मंगल देव (Mars)",
+    stone: "त्रिकोणीय लाल मूंगा (Italian Red Coral)",
+    sub: "रेड कार्नेलियन (Carnelian)",
+    metal: "तांबा या पीला सोना (Copper / Gold)",
+    finger: "अनामिका (Ring Finger)",
+    day: "मंगलवार सुबह (मंगल की शुभ होरा में)",
+    color: "लाल, सिंदूरी (Bright Red)",
+    benefits: "अदम्य साहस, ऊर्जा, रक्त विकारों से रक्षा, पुलिस/सेना/खेल और भूमि-मकान में अपार लाभ।"
+  }
+};
+
+function srgCalcMulankFromDate(dayNum) {
+  var d = parseInt(dayNum, 10);
+  if (isNaN(d) || d < 1) return 1;
+  var sum = d;
+  while (sum > 9) {
+    var digits = sum.toString().split('');
+    sum = 0;
+    for (var i = 0; i < digits.length; i++) {
+      sum += parseInt(digits[i], 10);
+    }
+  }
+  return sum;
+}
+
+function srgOnDobChange() {
+  var picker = document.getElementById('srgDobPicker');
+  if (!picker) return;
+  var selectedDay = picker.value;
+  var mulank = srgCalcMulankFromDate(selectedDay);
+  srgShowMulank(mulank);
+}
+
+function srgShowMulank(num) {
+  var d = SRG_MULANK_DATA[num];
+  if (!d) return;
+
+  var allBtns = document.querySelectorAll('.srg-m-btn');
+  for (var i = 0; i < allBtns.length; i++) {
+    allBtns[i].classList.remove('srg-m-active');
+  }
+  var activeBtn = document.getElementById('mb-' + num);
+  if (activeBtn) activeBtn.classList.add('srg-m-active');
+
+  var elName = document.getElementById('srgMOutName');
+  if (elName) elName.innerText = d.name + " — जन्म तारीख: " + d.dates;
+  var elLord = document.getElementById('srgMOutLord');
+  if (elLord) elLord.innerText = "स्वामी ग्रह: " + d.lord;
+  var elStone = document.getElementById('srgMOutStone');
+  if (elStone) elStone.innerText = d.stone;
+  var elSub = document.getElementById('srgMOutSub');
+  if (elSub) elSub.innerText = d.sub;
+  var elColor = document.getElementById('srgMOutColor');
+  if (elColor) elColor.innerText = d.color;
+  var elMetal = document.getElementById('srgMOutMetal');
+  if (elMetal) elMetal.innerText = d.metal;
+  var elFinger = document.getElementById('srgMOutFinger');
+  if (elFinger) elFinger.innerText = d.finger;
+  var elDay = document.getElementById('srgMOutDay');
+  if (elDay) elDay.innerText = d.day;
+  var elBen = document.getElementById('srgMOutBenefits');
+  if (elBen) elBen.innerText = d.benefits;
+
+  var waText = encodeURIComponent(
+    "Pranam Shree Royal Gems,\n" +
+    "Maine website par check kiya hai. Mera " + d.name + " hai (Tarikh: " + d.dates + ").\n" +
+    "Mera Bhagya Ratan *" + d.stone + "* nikla hai.\n" +
+    "Kripya original certified stone ke photos, rate aur dharan vidhi WhatsApp par bhejein."
+  );
+  var waBtn = document.getElementById('srgMOutWaBtn');
+  if (waBtn) waBtn.href = "https://wa.me/919065665497?text=" + waText;
+}
+</script>
+<!-- ==================== END SHREE ROYAL GEMS MULANK RECOMMENDER ==================== -->
 </html>

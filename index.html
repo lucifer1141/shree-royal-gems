@@ -2434,35 +2434,15 @@
     runCalculator();
     handleRouting();
   </script>
-  <!-- ==================== SHREE ROYAL GEMS OWNER ADMIN SUITE ==================== -->
+  <!-- ==================== SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
 <style>
-.srg-owner-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: linear-gradient(135deg, #b8860b, #d4af37);
-  color: #120e06;
-  font-weight: 700;
-  font-size: 13px;
-  padding: 6px 14px;
-  border-radius: 20px;
-  cursor: pointer;
-  border: 1px solid #ffd700;
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
-  transition: all 0.25s ease;
-  margin-left: 15px;
-}
-.srg-owner-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-}
 #srgOwnerModal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(8, 10, 16, 0.85);
-  backdrop-filter: blur(8px);
-  z-index: 99999;
+  background: rgba(8, 10, 16, 0.88);
+  backdrop-filter: blur(10px);
+  z-index: 999999;
   align-items: center;
   justify-content: center;
   font-family: inherit;
@@ -2477,7 +2457,7 @@
   overflow-y: auto;
   padding: 26px;
   color: #f1f5f9;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
 }
 .srg-modal-header {
   display: flex;
@@ -2491,6 +2471,9 @@
   color: #d4af37;
   font-size: 20px;
   font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 .srg-close-btn {
   background: none;
@@ -2564,28 +2547,28 @@
 <div id="srgOwnerModal">
   <div class="srg-modal-card">
     <div class="srg-modal-header">
-      <div class="srg-modal-title">👑 Shree Royal Owner Portal</div>
+      <div class="srg-modal-title">🔒 Shree Royal Secret Owner Portal</div>
       <button class="srg-close-btn" onclick="srgCloseOwnerModal()">&times;</button>
     </div>
     
     <div id="srgPinSection">
       <div style="text-align:center; padding:15px 0;">
         <p style="color:#94a3b8; font-size:14px; margin-bottom:10px;">Dukaan ka Secret PIN daalein (Default: <b>8210</b>):</p>
-        <input type="password" id="srgOwnerPin" class="srg-pin-input" placeholder="••••" maxlength="6">
+        <input type="password" id="srgOwnerPin" class="srg-pin-input" placeholder="••••" maxlength="6" autofocus>
         <button class="srg-btn-primary" onclick="srgVerifyPin()">Portal Kholein</button>
         <p id="srgPinErr" style="color:#ef4444; font-size:13px; margin-top:8px; display:none;">Galat PIN! Dobara check karein.</p>
       </div>
     </div>
 
     <div id="srgDashSection" style="display:none;">
-      <p style="color:#22c55e; font-size:13px; margin-top:0;">✅ Welcome, Shree Royal Gems & Jewellery!</p>
+      <p style="color:#22c55e; font-size:13px; margin-top:0;">✅ Authenticated: Shree Royal Gems & Jewellery</p>
       
       <div style="background:#0f141d; padding:12px; border-radius:8px; border:1px solid #334155; margin-bottom:15px; font-size:13px;">
         <b style="color:#d4af37;">📊 Live Google Sheets Catalog:</b>
         <div style="margin-top:4px;"><a href="https://docs.google.com/spreadsheets/d/1LSBiL_pN4iycOmVe9XzohDn7LJkRDjjz_Dh_EEDrw6I/edit" target="_blank" style="color:#38bdf8; text-decoration:underline;">Google Sheet Kholein ↗</a></div>
       </div>
 
-      <h4 style="color:#d4af37; margin:15px 0 10px 0; font-size:16px;">➕ Naya Gemstone Jodein</h4>
+      <h4 style="color:#d4af37; margin:15px 0 10px 0; font-size:16px;">➕ Naya Gemstone / Jewellery Jodein</h4>
       <div class="srg-form-group">
         <label>Item Name</label>
         <input type="text" id="srgNewName" placeholder="e.g. Ceylon Yellow Sapphire (Pukhraj)">
@@ -2624,26 +2607,42 @@
       
       <div class="srg-actions-bar">
         <button class="srg-btn-secondary" onclick="srgToggleVisualEdit()">✏️ Screen Par Rate Edit Karein</button>
-        <button class="srg-btn-secondary" onclick="srgLogout()">Logout</button>
+        <button class="srg-btn-secondary" onclick="srgLogout()">Close & Exit</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-(function initOwnerButton() {
-  const checkFooter = setInterval(() => {
-    const footerBar = document.querySelector('footer div:last-child') || document.querySelector('footer') || document.body;
-    if (footerBar && !document.getElementById('srgOwnerTrigger')) {
-      const btn = document.createElement('button');
-      btn.id = 'srgOwnerTrigger';
-      btn.className = 'srg-owner-btn';
-      btn.innerHTML = '👑 Owner Login';
-      btn.onclick = srgOpenOwnerModal;
-      footerBar.appendChild(btn);
-      clearInterval(checkFooter);
+// Pure Secret Access: Public website par koi button nahi dikhega
+(function checkSecretAccess() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('admin') || urlParams.has('owner')) {
+    setTimeout(() => { srgOpenOwnerModal(); }, 500);
+  }
+
+  // Secret Shortcut: Keyboard par Ctrl + Shift + O dabayein
+  document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && (e.key === 'O' || e.key === 'o')) {
+      srgOpenOwnerModal();
     }
-  }, 400);
+  });
+
+  // Secret Gesture: Footer me "Shree Royal Gems" par lagatar 3 baar click karein
+  let clickCount = 0;
+  let clickTimer = null;
+  document.addEventListener('click', (e) => {
+    if (e.target && e.target.innerText && e.target.innerText.includes('Shree Royal Gems')) {
+      clickCount++;
+      clearTimeout(clickTimer);
+      if (clickCount >= 3) {
+        clickCount = 0;
+        srgOpenOwnerModal();
+      } else {
+        clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+      }
+    }
+  });
 })();
 
 function srgOpenOwnerModal() {
@@ -2667,7 +2666,10 @@ function srgLogout() {
   document.getElementById('srgPinSection').style.display = 'block';
   document.getElementById('srgOwnerPin').value = '';
   srgCloseOwnerModal();
+  const cleanUrl = window.location.origin + window.location.pathname;
+  window.history.replaceState({}, document.title, cleanUrl);
 }
+
 function srgAddNewProduct() {
   const name = document.getElementById('srgNewName').value.trim();
   const cat = document.getElementById('srgNewCat').value;
@@ -2688,6 +2690,7 @@ function srgAddNewProduct() {
   srgCloseOwnerModal();
   location.reload();
 }
+
 function srgToggleVisualEdit() {
   const isEditing = document.body.contentEditable === 'true';
   document.body.contentEditable = isEditing ? 'false' : 'true';
@@ -2699,6 +2702,6 @@ function srgToggleVisualEdit() {
   }
 }
 </script>
-<!-- ==================== END SHREE ROYAL GEMS OWNER ADMIN SUITE ==================== -->
-</body>
+<!-- ==================== END SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
+  </body>
 </html>

@@ -3134,7 +3134,7 @@ function srgSubmitReview() {
 })();
 </script>
 <!-- ==================== END AUTO-INJECTED REVIEWS SECTION ==================== -->
-  <!-- ==================== SHREE ROYAL GEMS - RASHI & DAY-WISE HORA GEMSTONE RECOMMENDER ==================== -->
+ <!-- ==================== SHREE ROYAL GEMS - RASHI & DAY-WISE HORA GEMSTONE RECOMMENDER ==================== -->
 <style>
 #srg-rashi-suite {
   display: block;
@@ -3452,7 +3452,7 @@ function srgSubmitReview() {
       <!-- DAY-WISE HORA TIME TABLE -->
       <div class="srg-hora-box">
         <div class="srg-hora-title">
-          <span>🕒 <span id="srgHoraLordName">मंगल देव की होरा (Mangal Hora)</span> — 7 दिनों का सटीक समय सारणी</span>
+          <span>🕒 <span id="srgHoraLordName">मंगल देव की होरा (Mangal Hora - लाल मूंगा)</span> — 7 दिनों का सटीक समय सारणी</span>
         </div>
         <p style="font-size:12.5px; color:#94a3b8; margin:0 0 10px 0;">
           यदि आप मंगलवार को रत्न न पहन पाएं, तो सप्ताह के किसी भी दिन नीचे दिए गए समय (होरा काल) में धारण कर सकते हैं:
@@ -3466,7 +3466,13 @@ function srgSubmitReview() {
             </tr>
           </thead>
           <tbody id="srgHoraRows">
-            <!-- Dynamically populated rows -->
+            <tr><td>रविवार (Sunday)</td><td>12:00 PM - 01:00 PM (दोपहर)</td></tr>
+            <tr><td>सोमवार (Monday)</td><td>09:00 AM - 10:00 AM | 04:00 PM - 05:00 PM</td></tr>
+            <tr class="srg-hora-highlight"><td class="srg-hora-highlight">मंगलवार (Tuesday) ⭐</td><td class="srg-hora-highlight">06:00 AM - 07:00 AM (सूर्योदय) | 01:00 PM - 02:00 PM</td></tr>
+            <tr><td>बुधवार (Wednesday)</td><td>10:00 AM - 11:00 AM | 05:00 PM - 06:00 PM</td></tr>
+            <tr><td>गुरुवार (Thursday)</td><td>07:00 AM - 08:00 AM | 02:00 PM - 03:00 PM</td></tr>
+            <tr><td>शुक्रवार (Friday)</td><td>11:00 AM - 12:00 PM (दोपहर)</td></tr>
+            <tr><td>शनिवार (Saturday)</td><td>08:00 AM - 09:00 AM | 03:00 PM - 04:00 PM</td></tr>
           </tbody>
         </table>
       </div>
@@ -3696,7 +3702,7 @@ var SRG_DATA = {
     sub: "पीला सुनहला (Citrine)",
     metal: "पीला सोना या पीतल (Gold / Brass)",
     finger: "तर्जनी (Index Finger)",
-    day: ""गुरुवार सुबह (Thursday Morning)",
+    day: "गुरुवार सुबह (Thursday Morning)",
     horaKey: "guru",
     benefits: "आध्यात्मिक शांति, संतान सुख, व्यापार में लाभ और संपूर्ण खुशहाली।"
   }
@@ -3706,7 +3712,11 @@ function srgRenderHoraTable(horaKey) {
   var hData = HORA_SCHEDULE[horaKey];
   if (!hData) return;
 
-  document.getElementById('srgHoraLordName').innerText = hData.title;
+  var lordTitleEl = document.getElementById('srgHoraLordName');
+  if (lordTitleEl) {
+    lordTitleEl.innerText = hData.title;
+  }
+
   var rowsHtml = "";
   for (var i = 0; i < hData.days.length; i++) {
     var item = hData.days[i];
@@ -3716,7 +3726,10 @@ function srgRenderHoraTable(horaKey) {
       '<td' + highlightCls + '>' + item.time + '</td>' +
       '</tr>';
   }
-  document.getElementById('srgHoraRows').innerHTML = rowsHtml;
+  var rowsEl = document.getElementById('srgHoraRows');
+  if (rowsEl) {
+    rowsEl.innerHTML = rowsHtml;
+  }
 }
 
 function srgShow(key) {
@@ -3730,14 +3743,22 @@ function srgShow(key) {
   var activeBtn = document.getElementById('b-' + key);
   if (activeBtn) activeBtn.classList.add('srg-active');
 
-  document.getElementById('srgOutName').innerText = d.name;
-  document.getElementById('srgOutLord').innerText = "स्वामी ग्रह: " + d.lord;
-  document.getElementById('srgOutStone').innerText = d.stone;
-  document.getElementById('srgOutSub').innerText = d.sub;
-  document.getElementById('srgOutMetal').innerText = d.metal;
-  document.getElementById('srgOutFinger').innerText = d.finger;
-  document.getElementById('srgOutDay').innerText = d.day;
-  document.getElementById('srgOutBenefits').innerText = d.benefits;
+  var elName = document.getElementById('srgOutName');
+  if (elName) elName.innerText = d.name;
+  var elLord = document.getElementById('srgOutLord');
+  if (elLord) elLord.innerText = "स्वामी ग्रह: " + d.lord;
+  var elStone = document.getElementById('srgOutStone');
+  if (elStone) elStone.innerText = d.stone;
+  var elSub = document.getElementById('srgOutSub');
+  if (elSub) elSub.innerText = d.sub;
+  var elMetal = document.getElementById('srgOutMetal');
+  if (elMetal) elMetal.innerText = d.metal;
+  var elFinger = document.getElementById('srgOutFinger');
+  if (elFinger) elFinger.innerText = d.finger;
+  var elDay = document.getElementById('srgOutDay');
+  if (elDay) elDay.innerText = d.day;
+  var elBen = document.getElementById('srgOutBenefits');
+  if (elBen) elBen.innerText = d.benefits;
 
   srgRenderHoraTable(d.horaKey);
 
@@ -3747,11 +3768,16 @@ function srgShow(key) {
     "Mera Bhagya Ratan *" + d.stone + "* nikla hai.\n" +
     "Kripya original stone ke photos, rate aur dharan vidhi WhatsApp par bhejein."
   );
-  document.getElementById('srgOutWaBtn').href = "https://wa.me/919065665497?text=" + waText;
+  var waBtn = document.getElementById('srgOutWaBtn');
+  if (waBtn) waBtn.href = "https://wa.me/919065665497?text=" + waText;
 }
 
-// Initial render for Mesh on load
-srgRenderHoraTable('mangal');
+// Initial render
+try {
+  srgRenderHoraTable('mangal');
+} catch (e) {
+  console.log(e);
+}
 </script>
 <!-- ==================== END SHREE ROYAL GEMS RECOMMENDER ==================== -->
 </html>

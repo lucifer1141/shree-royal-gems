@@ -2553,7 +2553,7 @@
     
     <div id="srgPinSection">
       <div style="text-align:center; padding:15px 0;">
-        <p style="color:#94a3b8; font-size:14px; margin-bottom:10px;">Dukaan ka Secret PIN daalein (Default: <b>8210</b>):</p>
+        <p style="color:#94a3b8; font-size:14px; margin-bottom:10px;">Dukaan ka Secret PIN daalein:</p>
         <input type="password" id="srgOwnerPin" class="srg-pin-input" placeholder="••••" maxlength="6" autofocus>
         <button class="srg-btn-primary" onclick="srgVerifyPin()">Portal Kholein</button>
         <p id="srgPinErr" style="color:#ef4444; font-size:13px; margin-top:8px; display:none;">Galat PIN! Dobara check karein.</p>
@@ -2654,7 +2654,7 @@ function srgCloseOwnerModal() {
 }
 function srgVerifyPin() {
   const pin = document.getElementById('srgOwnerPin').value.trim();
-  if (pin === '8210' || pin === '1234' || pin === '9065') {
+  if (pin === '9065' || pin === '1141' || pin === '6509') {
     document.getElementById('srgPinSection').style.display = 'none';
     document.getElementById('srgDashSection').style.display = 'block';
   } else {

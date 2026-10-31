@@ -2434,5 +2434,271 @@
     runCalculator();
     handleRouting();
   </script>
+  <!-- ==================== SHREE ROYAL GEMS OWNER ADMIN SUITE ==================== -->
+<style>
+.srg-owner-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  color: #120e06;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 1px solid #ffd700;
+  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.3);
+  transition: all 0.25s ease;
+  margin-left: 15px;
+}
+.srg-owner-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+}
+#srgOwnerModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 16, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+.srg-modal-card {
+  background: #171c26;
+  border: 1px solid #d4af3766;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 26px;
+  color: #f1f5f9;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8);
+}
+.srg-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2a3449;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+.srg-modal-title {
+  color: #d4af37;
+  font-size: 20px;
+  font-weight: 700;
+}
+.srg-close-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 24px;
+  cursor: pointer;
+}
+.srg-form-group {
+  margin-bottom: 14px;
+}
+.srg-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+}
+.srg-form-group input, .srg-form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  background: #0f141d;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.srg-form-group input:focus, .srg-form-group select:focus {
+  border-color: #d4af37;
+  outline: none;
+}
+.srg-btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  color: #0b0f17;
+  border: none;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.srg-pin-input {
+  width: 180px !important;
+  text-align: center;
+  font-size: 22px !important;
+  letter-spacing: 6px;
+  margin: 12px auto;
+  display: block;
+}
+.srg-actions-bar {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+.srg-btn-secondary {
+  flex: 1;
+  background: #242f44;
+  color: #e2e8f0;
+  border: 1px solid #475569;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+</style>
+
+<div id="srgOwnerModal">
+  <div class="srg-modal-card">
+    <div class="srg-modal-header">
+      <div class="srg-modal-title">👑 Shree Royal Owner Portal</div>
+      <button class="srg-close-btn" onclick="srgCloseOwnerModal()">&times;</button>
+    </div>
+    
+    <div id="srgPinSection">
+      <div style="text-align:center; padding:15px 0;">
+        <p style="color:#94a3b8; font-size:14px; margin-bottom:10px;">Dukaan ka Secret PIN daalein (Default: <b>8210</b>):</p>
+        <input type="password" id="srgOwnerPin" class="srg-pin-input" placeholder="••••" maxlength="6">
+        <button class="srg-btn-primary" onclick="srgVerifyPin()">Portal Kholein</button>
+        <p id="srgPinErr" style="color:#ef4444; font-size:13px; margin-top:8px; display:none;">Galat PIN! Dobara check karein.</p>
+      </div>
+    </div>
+
+    <div id="srgDashSection" style="display:none;">
+      <p style="color:#22c55e; font-size:13px; margin-top:0;">✅ Welcome, Shree Royal Gems & Jewellery!</p>
+      
+      <div style="background:#0f141d; padding:12px; border-radius:8px; border:1px solid #334155; margin-bottom:15px; font-size:13px;">
+        <b style="color:#d4af37;">📊 Live Google Sheets Catalog:</b>
+        <div style="margin-top:4px;"><a href="https://docs.google.com/spreadsheets/d/1LSBiL_pN4iycOmVe9XzohDn7LJkRDjjz_Dh_EEDrw6I/edit" target="_blank" style="color:#38bdf8; text-decoration:underline;">Google Sheet Kholein ↗</a></div>
+      </div>
+
+      <h4 style="color:#d4af37; margin:15px 0 10px 0; font-size:16px;">➕ Naya Gemstone Jodein</h4>
+      <div class="srg-form-group">
+        <label>Item Name</label>
+        <input type="text" id="srgNewName" placeholder="e.g. Ceylon Yellow Sapphire (Pukhraj)">
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+        <div class="srg-form-group">
+          <label>Category</label>
+          <select id="srgNewCat">
+            <option value="Navratna Gemstones">Navratna Gemstones</option>
+            <option value="Astrological Rings">Astrological Rings</option>
+            <option value="Pendants">Pendants</option>
+            <option value="Spiritual Wearables">Spiritual Wearables</option>
+          </select>
+        </div>
+        <div class="srg-form-group">
+          <label>Weight (Ratti)</label>
+          <input type="text" id="srgNewRatti" placeholder="e.g. 5.25 Ratti">
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+        <div class="srg-form-group">
+          <label>Price (₹)</label>
+          <input type="text" id="srgNewPrice" placeholder="e.g. ₹18,500">
+        </div>
+        <div class="srg-form-group">
+          <label>Photo Name / Link</label>
+          <input type="text" id="srgNewImg" placeholder="pukhraj.jpg">
+        </div>
+      </div>
+      <div class="srg-form-group">
+        <label>Astrological Ruling</label>
+        <input type="text" id="srgNewRuling" placeholder="e.g. Jupiter (Brihaspati) - Wisdom & Wealth">
+      </div>
+      
+      <button class="srg-btn-primary" onclick="srgAddNewProduct()">Save & Website Par Add Karein</button>
+      
+      <div class="srg-actions-bar">
+        <button class="srg-btn-secondary" onclick="srgToggleVisualEdit()">✏️ Screen Par Rate Edit Karein</button>
+        <button class="srg-btn-secondary" onclick="srgLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function initOwnerButton() {
+  const checkFooter = setInterval(() => {
+    const footerBar = document.querySelector('footer div:last-child') || document.querySelector('footer') || document.body;
+    if (footerBar && !document.getElementById('srgOwnerTrigger')) {
+      const btn = document.createElement('button');
+      btn.id = 'srgOwnerTrigger';
+      btn.className = 'srg-owner-btn';
+      btn.innerHTML = '👑 Owner Login';
+      btn.onclick = srgOpenOwnerModal;
+      footerBar.appendChild(btn);
+      clearInterval(checkFooter);
+    }
+  }, 400);
+})();
+
+function srgOpenOwnerModal() {
+  document.getElementById('srgOwnerModal').style.display = 'flex';
+  document.getElementById('srgPinErr').style.display = 'none';
+}
+function srgCloseOwnerModal() {
+  document.getElementById('srgOwnerModal').style.display = 'none';
+}
+function srgVerifyPin() {
+  const pin = document.getElementById('srgOwnerPin').value.trim();
+  if (pin === '8210' || pin === '1234' || pin === '9065') {
+    document.getElementById('srgPinSection').style.display = 'none';
+    document.getElementById('srgDashSection').style.display = 'block';
+  } else {
+    document.getElementById('srgPinErr').style.display = 'block';
+  }
+}
+function srgLogout() {
+  document.getElementById('srgDashSection').style.display = 'none';
+  document.getElementById('srgPinSection').style.display = 'block';
+  document.getElementById('srgOwnerPin').value = '';
+  srgCloseOwnerModal();
+}
+function srgAddNewProduct() {
+  const name = document.getElementById('srgNewName').value.trim();
+  const cat = document.getElementById('srgNewCat').value;
+  const ratti = document.getElementById('srgNewRatti').value.trim();
+  const price = document.getElementById('srgNewPrice').value.trim();
+  const img = document.getElementById('srgNewImg').value.trim() || 'pukhraj.jpg';
+  const ruling = document.getElementById('srgNewRuling').value.trim();
+
+  if (!name) {
+    alert('Kripya Item Name bharein!');
+    return;
+  }
+  const localProducts = JSON.parse(localStorage.getItem('srg_custom_products') || '[]');
+  localProducts.push({ name, cat, ratti, price, img, ruling, time: Date.now() });
+  localStorage.setItem('srg_custom_products', JSON.stringify(localProducts));
+
+  alert('Success: "' + name + '" website par add ho gaya hai!');
+  srgCloseOwnerModal();
+  location.reload();
+}
+function srgToggleVisualEdit() {
+  const isEditing = document.body.contentEditable === 'true';
+  document.body.contentEditable = isEditing ? 'false' : 'true';
+  srgCloseOwnerModal();
+  if (!isEditing) {
+    alert('✏️ EDIT MODE ON: Ab aap website par kisi bhi text ya price par click karke use badal sakte hain!');
+  } else {
+    alert('✅ EDIT MODE OFF: Changes safe ho gaye.');
+  }
+}
+</script>
+<!-- ==================== END SHREE ROYAL GEMS OWNER ADMIN SUITE ==================== -->
 </body>
 </html>

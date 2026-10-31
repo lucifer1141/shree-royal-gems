@@ -194,9 +194,9 @@
       </a>
     </div>
   </header>
-<!-- ==================== SHREE ROYAL GEMS - OFFICIAL ASTROSAGE KUNDLI PORTAL ==================== -->
+  <!-- ==================== SHREE ROYAL GEMS - RASHI GEMSTONE RECOMMENDER ==================== -->
 <style>
-.srg-astrosage-section {
+.srg-rashi-section {
   padding: 50px 20px;
   background: radial-gradient(circle at 50% 20%, #172236 0%, #0a0e17 100%);
   color: #f8fafc;
@@ -204,15 +204,15 @@
   border-bottom: 2px solid rgba(212, 175, 55, 0.35);
   position: relative;
 }
-.srg-astrosage-container {
-  max-width: 900px;
+.srg-rashi-container {
+  max-width: 1050px;
   margin: 0 auto;
 }
-.srg-astrosage-badge-wrap {
+.srg-rashi-badge-wrap {
   text-align: center;
   margin-bottom: 12px;
 }
-.srg-astrosage-badge {
+.srg-rashi-badge {
   display: inline-block;
   background: rgba(212, 175, 55, 0.15);
   color: #d4af37;
@@ -224,7 +224,7 @@
   text-transform: uppercase;
   letter-spacing: 1.2px;
 }
-.srg-astrosage-title {
+.srg-rashi-title {
   text-align: center;
   font-size: 32px;
   font-weight: 800;
@@ -232,201 +232,518 @@
   margin: 0 0 10px 0;
   line-height: 1.3;
 }
-.srg-astrosage-subtitle {
+.srg-rashi-subtitle {
   text-align: center;
   color: #94a3b8;
   font-size: 15.5px;
-  max-width: 700px;
-  margin: 0 auto 25px auto;
+  max-width: 720px;
+  margin: 0 auto 30px auto;
 }
-.srg-astrosage-card {
+
+.srg-selector-card {
   background: #131b29;
   border: 1px solid #d4af3766;
   border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  padding: 26px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+  margin-bottom: 30px;
 }
-.srg-astrosage-card-header {
-  border-bottom: 1px solid #28374d;
-  padding-bottom: 15px;
-  margin-bottom: 20px;
+.srg-input-row {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.srg-astrosage-card-header h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #d4af37;
-}
-.srg-astrosage-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
-@media (max-width: 600px) {
-  .srg-astrosage-grid {
-    grid-template-columns: 1fr;
-  }
+.srg-select-box {
+  flex: 1;
+  min-width: 260px;
+  max-width: 380px;
 }
-.srg-as-field label {
+.srg-select-box label {
   display: block;
   font-size: 13px;
   color: #cbd5e1;
-  margin-bottom: 6px;
   font-weight: 600;
+  margin-bottom: 6px;
 }
-.srg-as-field input, .srg-as-field select {
+.srg-select-box select, .srg-select-box input {
   width: 100%;
-  padding: 11px 14px;
+  padding: 12px 14px;
   background: #0a0f17;
   border: 1px solid #334155;
   border-radius: 8px;
   color: #ffffff;
-  font-size: 14px;
-  box-sizing: border-box;
+  font-size: 14.5px;
   outline: none;
+  box-sizing: border-box;
   transition: border-color 0.2s;
 }
-.srg-as-field input:focus, .srg-as-field select:focus {
+.srg-select-box select:focus, .srg-select-box input:focus {
   border-color: #d4af37;
 }
-.srg-btn-astrosage-generate {
+
+.srg-grid-12 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+@media (max-width: 850px) {
+  .srg-grid-12 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (max-width: 550px) {
+  .srg-grid-12 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.srg-rashi-btn {
+  background: #0a0f17;
+  border: 1px solid #28374d;
+  border-radius: 10px;
+  padding: 14px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #f1f5f9;
+}
+.srg-rashi-btn:hover, .srg-rashi-btn.active {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: #d4af37;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.25);
+}
+.srg-rashi-icon {
+  font-size: 24px;
+  display: block;
+  margin-bottom: 4px;
+}
+.srg-rashi-name {
+  font-size: 13.5px;
+  font-weight: 700;
+  display: block;
+}
+.srg-rashi-eng {
+  font-size: 11px;
+  color: #94a3b8;
+  display: block;
+}
+
+#srgRashiResultBox {
+  display: none;
+  background: linear-gradient(135deg, #162030 0%, #0d1420 100%);
+  border: 2px solid #d4af37;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  animation: srgFadeIn 0.35s ease-out;
+}
+@keyframes srgFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.srg-res-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #28374d;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.srg-res-title {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+  font-weight: 800;
+}
+.srg-res-lord {
+  color: #d4af37;
+  font-size: 15px;
+  font-weight: 600;
+}
+.srg-res-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+@media (max-width: 650px) {
+  .srg-res-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.srg-res-info-card {
+  background: #090e17;
+  border: 1px solid #2a374d;
+  border-radius: 12px;
+  padding: 18px;
+}
+.srg-res-info-card h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.srg-res-highlight {
+  font-size: 22px;
+  font-weight: 800;
+  color: #d4af37;
+  margin: 0 0 4px 0;
+}
+.srg-res-detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #1a2538;
+  font-size: 13.5px;
+}
+.srg-res-detail-row:last-child {
+  border-bottom: none;
+}
+.srg-btn-order-stone {
   width: 100%;
-  background: linear-gradient(135deg, #b8860b, #d4af37);
-  color: #0b0f17;
+  background: #25d366;
+  color: #052e16;
   font-size: 16px;
   font-weight: 800;
   padding: 15px;
   border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-  transition: transform 0.2s;
+  text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
 }
-.srg-btn-astrosage-generate:hover {
+.srg-btn-order-stone:hover {
   transform: translateY(-2px);
-}
-
-.srg-astrosage-bottom-cta {
-  background: #0a0f17;
-  border: 1px dashed #d4af3755;
-  border-radius: 12px;
-  padding: 18px;
-  margin-top: 25px;
-  text-align: center;
-}
-.srg-btn-wa-panditji {
-  background: #25d366;
-  color: #052e16;
-  font-weight: 800;
-  font-size: 15px;
-  padding: 12px 24px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.55);
 }
 </style>
 
-<section class="srg-astrosage-section" id="astrological-consultation">
-  <div class="srg-astrosage-container">
-    <div class="srg-astrosage-badge-wrap">
-      <div class="srg-astrosage-badge">✨ POWERED BY ASTROSAGE VEDIC ENGINE ✨</div>
+<section class="srg-rashi-section" id="astrological-consultation">
+  <div class="srg-rashi-container">
+    <div class="srg-rashi-badge-wrap">
+      <div class="srg-rashi-badge">✨ VEDIC RASHI & BHAGYA RATAN GUIDE ✨</div>
     </div>
     
-    <h2 class="srg-astrosage-title">अपनी प्रामाणिक जन्म कुंडली एवं भाग्यशाली रत्न जानें</h2>
-    <p class="srg-astrosage-subtitle">Bharat ke sabse vishwasniya AstroSage Ganit dwara apni 100% shuddh Janam Kundli dekhein aur Shree Royal Gems se certified ratan ki salah lein.</p>
-    
-    <div class="srg-astrosage-card">
-      <div class="srg-astrosage-card-header">
-        <h3>🔮 AstroSage Vedic Kundli Generator</h3>
-        <span style="background:rgba(16,185,129,0.15); color:#10b981; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:600;">✓ 100% Accurate Ephemeris</span>
-      </div>
+    <h2 class="srg-rashi-title">अपनी राशि चुनें & जानें अपना चमत्कारी भाग्य रत्न</h2>
+    <p class="srg-rashi-subtitle">Shree Royal Gems ke Vedic ganit ke anusaar apni Rashi par click karein aur turant janein kaunsa certified ratan aapke jeevan me unnoti aur bhagya layega.</p>
 
-      <div class="srg-astrosage-grid">
-        <div class="srg-as-field">
-          <label>Aapka Pura Naam *</label>
-          <input type="text" id="srgAsName" placeholder="e.g. Ramesh Kumar">
-        </div>
-        <div class="srg-as-field">
-          <label>Gender (Ling) *</label>
-          <select id="srgAsGender">
-            <option value="Male">Purush (Male)</option>
-            <option value="Female">Mahila (Female)</option>
+    <!-- Interactive Selection Box -->
+    <div class="srg-selector-card">
+      <div class="srg-input-row">
+        <!-- Dropdown Selector -->
+        <div class="srg-select-box">
+          <label>Apni Rashi Chunein:</label>
+          <select id="srgRashiSelect" onchange="srgSelectRashi(this.value)">
+            <option value="">-- Rashi Select Karein --</option>
+            <option value="mesh">मेष (Mesh / Aries)</option>
+            <option value="vrishabh">वृषभ (Vrishabh / Taurus)</option>
+            <option value="mithun">मिथुन (Mithun / Gemini)</option>
+            <option value="kark">कर्क (Kark / Cancer)</option>
+            <option value="singh">सिंह (Singh / Leo)</option>
+            <option value="kanya">कन्या (Kanya / Virgo)</option>
+            <option value="tula">तुला (Tula / Libra)</option>
+            <option value="vrishchik">वृश्चिक (Vrishchik / Scorpio)</option>
+            <option value="dhanu">धनु (Dhanu / Sagittarius)</option>
+            <option value="makar">मकर (Makar / Capricorn)</option>
+            <option value="kumbh">कुंभ (Kumbh / Aquarius)</option>
+            <option value="meen">मीन (Meen / Pisces)</option>
           </select>
         </div>
-        <div class="srg-as-field">
-          <label>Janam Tithi (Date of Birth) *</label>
-          <input type="date" id="srgAsDob">
-        </div>
-        <div class="srg-as-field">
-          <label>Janam Samay (Time of Birth) *</label>
-          <input type="time" id="srgAsTob">
-        </div>
-        <div class="srg-as-field" style="grid-column: span 2;">
-          <label>Janam Sthan (City, State) *</label>
-          <input type="text" id="srgAsPlace" placeholder="e.g. Muzaffarpur, Bihar">
+
+        <!-- Name Letter Search Helper -->
+        <div class="srg-select-box">
+          <label>Rashi nahi pata? Apne Naam Ka Pehla Akshar Dalein:</label>
+          <input type="text" id="srgNameLetterInput" placeholder="Jaise: R, S, A, P, M, V..." oninput="srgFindRashiByLetter(this.value)">
         </div>
       </div>
 
-      <button class="srg-btn-astrosage-generate" onclick="srgOpenAstroSage()">
-        <span>🔮 Asli AstroSage Kundli Kholein & Dekhein</span>
-      </button>
-
-      <!-- Post-Generation Gemstone Advice -->
-      <div class="srg-astrosage-bottom-cta">
-        <h4 style="margin:0 0 6px 0; color:#d4af37; font-size:16px;">👑 Kundli Ban Gayi? Ab Shree Royal Gems Ke Pandit Ji Se Ratan Janein</h4>
-        <p style="color:#cbd5e1; font-size:13.5px; margin:0 0 10px 0;">Aapki Kundli ke anusaar Pukhraj, Manik, Panna ya Neelam me se kaunsa certified stone pehanna shubh hoga, Pandit ji se WhatsApp par direct free salah lein:</p>
-        <a id="srgWaPanditLink" href="https://wa.me/919065665497?text=Pranam%20Pandit%20Ji%2C%20maine%20AstroSage%20par%20apni%20Kundli%20banayi%20hai.%20Mere%20liye%20kaunsa%20Bhagya%20Ratan%20pehanna%20shubh%20hoga%3F" target="_blank" class="srg-btn-wa-panditji">
-          <span>💬 Pandit Ji Se Free Gemstone Salah Lein (WhatsApp)</span>
-        </a>
+      <!-- 12 Quick Click Cards -->
+      <div class="srg-grid-12">
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('mesh')" id="rbtn-mesh">
+          <span class="srg-rashi-icon">♈</span>
+          <span class="srg-rashi-name">मेष</span>
+          <span class="srg-rashi-eng">Aries</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('vrishabh')" id="rbtn-vrishabh">
+          <span class="srg-rashi-icon">♉</span>
+          <span class="srg-rashi-name">वृषभ</span>
+          <span class="srg-rashi-eng">Taurus</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('mithun')" id="rbtn-mithun">
+          <span class="srg-rashi-icon">♊</span>
+          <span class="srg-rashi-name">मिथुन</span>
+          <span class="srg-rashi-eng">Gemini</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('kark')" id="rbtn-kark">
+          <span class="srg-rashi-icon">♋</span>
+          <span class="srg-rashi-name">कर्क</span>
+          <span class="srg-rashi-eng">Cancer</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('singh')" id="rbtn-singh">
+          <span class="srg-rashi-icon">♌</span>
+          <span class="srg-rashi-name">सिंह</span>
+          <span class="srg-rashi-eng">Leo</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('kanya')" id="rbtn-kanya">
+          <span class="srg-rashi-icon">♍</span>
+          <span class="srg-rashi-name">कन्या</span>
+          <span class="srg-rashi-eng">Virgo</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('tula')" id="rbtn-tula">
+          <span class="srg-rashi-icon">♎</span>
+          <span class="srg-rashi-name">तुला</span>
+          <span class="srg-rashi-eng">Libra</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('vrishchik')" id="rbtn-vrishchik">
+          <span class="srg-rashi-icon">♏</span>
+          <span class="srg-rashi-name">वृश्चिक</span>
+          <span class="srg-rashi-eng">Scorpio</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('dhanu')" id="rbtn-dhanu">
+          <span class="srg-rashi-icon">♐</span>
+          <span class="srg-rashi-name">धनु</span>
+          <span class="srg-rashi-eng">Sagittarius</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('makar')" id="rbtn-makar">
+          <span class="srg-rashi-icon">♑</span>
+          <span class="srg-rashi-name">मकर</span>
+          <span class="srg-rashi-eng">Capricorn</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('kumbh')" id="rbtn-kumbh">
+          <span class="srg-rashi-icon">♒</span>
+          <span class="srg-rashi-name">कुंभ</span>
+          <span class="srg-rashi-eng">Aquarius</span>
+        </div>
+        <div class="srg-rashi-btn" onclick="srgSelectRashi('meen')" id="rbtn-meen">
+          <span class="srg-rashi-icon">♓</span>
+          <span class="srg-rashi-name">मीन</span>
+          <span class="srg-rashi-eng">Pisces</span>
+        </div>
       </div>
+    </div>
+
+    <!-- RESULT RECOMMENDATION BOX (SHOWN ON CLICK) -->
+    <div id="srgRashiResultBox">
+      <div class="srg-res-header">
+        <div>
+          <h3 class="srg-res-title" id="srgResRashiName">मेष राशि (Mesh / Aries)</h3>
+          <span class="srg-res-lord" id="srgResLord">स्वामी ग्रह: मंगल देव (Mars)</span>
+        </div>
+        <span style="background:rgba(212,175,55,0.15); color:#d4af37; border:1px solid #d4af37; padding:6px 14px; border-radius:20px; font-size:12.5px; font-weight:700;">
+          ✓ 100% Vedic Recommendation
+        </span>
+      </div>
+
+      <div class="srg-res-grid">
+        <!-- Main Stone -->
+        <div class="srg-res-info-card">
+          <h4>👑 Mukhya Bhagya Ratan (Primary Stone)</h4>
+          <div class="srg-res-highlight" id="srgResMainStone">लाल मूंगा (Red Coral)</div>
+          <div class="srg-res-detail-row">
+            <span style="color:#94a3b8;">Upratan (Alternative):</span>
+            <b style="color:#f8fafc;" id="srgResSubStone">रेड कार्नेलियन (Carnelian)</b>
+          </div>
+          <div class="srg-res-detail-row">
+            <span style="color:#94a3b8;">Shubh Dhaatu (Metal):</span>
+            <b style="color:#f8fafc;" id="srgResMetal">तांबा / पीला सोना</b>
+          </div>
+          <div class="srg-res-detail-row">
+            <span style="color:#94a3b8;">Ungli (Finger):</span>
+            <b style="color:#f8fafc;" id="srgResFinger">अनामिका (Ring Finger)</b>
+          </div>
+          <div class="srg-res-detail-row">
+            <span style="color:#94a3b8;">Dharan Karne Ka Din:</span>
+            <b style="color:#f8fafc;" id="srgResDay">मंगलवार सुबह (Shukla Paksha)</b>
+          </div>
+        </div>
+
+        <!-- Astrological Benefits -->
+        <div class="srg-res-info-card">
+          <h4>🌟 Ratan Pehanne Ke Labh (Benefits)</h4>
+          <p id="srgResBenefits" style="color:#cbd5e1; font-size:14px; line-height:1.6; margin:0 0 15px 0;">
+            साहस, आत्मविश्वास, ऊर्जा और रक्त संबंधी विकारों में लाभ। कार्यक्षेत्र में आ रही बाधाएं दूर होती हैं।
+          </p>
+          <div style="background:#0a0f17; border:1px dashed #334155; border-radius:8px; padding:10px; font-size:12.5px; color:#94a3b8;">
+            💡 <b>Shree Royal Gems Assurance:</b> Hamare sabhi ratan 100% natural, untreated aur certified lab report ke sath aate hain.
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button: Direct Showroom WhatsApp Order -->
+      <a id="srgOrderStoneBtn" href="#" target="_blank" class="srg-btn-order-stone">
+        <span>💬 Pandit Ji Se Is Ratan Ka Rate & Lab Certificate WhatsApp Par Mangwayein</span>
+      </a>
     </div>
   </div>
 </section>
 
 <script>
-function srgOpenAstroSage() {
-  const name = document.getElementById('srgAsName').value.trim();
-  const dob = document.getElementById('srgAsDob').value;
-  const tob = document.getElementById('srgAsTob').value;
-  const place = document.getElementById('srgAsPlace').value.trim();
+const SRG_RASHI_DB = {
+  mesh: {
+    name: "मेष राशि (Mesh / Aries)",
+    lord: "मंगल देव (Mars)",
+    stone: "लाल मूंगा (Red Coral)",
+    subStone: "रेड कार्नेलियन (Carnelian)",
+    metal: "तांबा / पीला सोना (Copper / Gold)",
+    finger: "अनामिका (Ring Finger)",
+    day: "मंगलवार प्रातः (Tuesday Morning)",
+    benefits: "साहस, ऊर्जा, आत्मबल और रक्त संबंधी विकारों में चमत्कारी लाभ। पुलिस, सेना, जमीन और नेतृत्व कार्यों में सफलता दिलाता है।",
+    letters: ["a", "ch", "l", "chu", "che", "cho", "la", "li", "lu", "le", "lo", "अ", "च", "ल"]
+  },
+  vrishabh: {
+    name: "वृषभ राशि (Vrishabh / Taurus)",
+    lord: "शुक्र देव (Venus)",
+    stone: "ओपल / सफेद पुखराज / हीरा (Opal / White Sapphire)",
+    subStone: "अमेरिकन डायमंड / जिरकॉन (White Zircon)",
+    metal: "चांदी / प्लेटिनम (Silver / Platinum)",
+    finger: "मध्यमा या कनिष्ठा (Middle or Little Finger)",
+    day: "शुक्रवार प्रातः (Friday Morning)",
+    benefits: "आकर्षण, धन-वैभव, भौतिक सुख, वैवाहिक सुख और कला, मीडिया व व्यापार में अपार तरक्की प्रदान करता है।",
+    letters: ["i", "u", "e", "o", "va", "vi", "vu", "ve", "vo", "इ", "उ", "ए", "ओ", "व"]
+  },
+  mithun: {
+    name: "मिथुन राशि (Mithun / Gemini)",
+    lord: "बुध देव (Mercury)",
+    stone: "पन्ना (Emerald / Panna)",
+    subStone: "ओनेक्स / पेरिडॉट (Green Tourmaline / Peridot)",
+    metal: "पीला सोना / कांसा / चांदी (Gold / Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "बुधवार प्रातः (Wednesday Morning)",
+    benefits: "तीव्र बुद्धि, एकाग्रता, व्यापारिक समझ, वाणी में प्रभाव और त्वचा संबंधी रोगों में अत्यंत लाभकारी है।",
+    letters: ["k", "ka", "ki", "ku", "gh", "ch", "ke", "ko", "ha", "क", "घ", "छ", "ह"]
+  },
+  kark: {
+    name: "कर्क राशि (Kark / Cancer)",
+    lord: "चंद्र देव (Moon)",
+    stone: "सच्चा मोती (Natural Basra / South Sea Pearl)",
+    subStone: "मूनस्टोन (Moonstone)",
+    metal: "शुद्ध चांदी (Pure Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "सोमवार प्रातः (Monday Morning)",
+    benefits: "मानसिक शांति, क्रोध पर नियंत्रण, अनिद्रा से राहत, डिप्रेशन दूर और माता के सुख व स्नेह में वृद्धि।",
+    letters: ["hi", "hu", "he", "ho", "da", "di", "du", "de", "do", "ड", "हे", "हो"]
+  },
+  singh: {
+    name: "सिंह राशि (Singh / Leo)",
+    lord: "सूर्य देव (Sun)",
+    stone: "माणिक्य (Natural Ruby / Manik)",
+    subStone: "रेड गार्नेट (Garnet / Laldi)",
+    metal: "तांबा / पीला सोना (Gold / Copper)",
+    finger: "अनामिका (Ring Finger)",
+    day: "रविवार प्रातः (Sunday Morning)",
+    benefits: "शाही ठाठ-बाट, नेतृत्व क्षमता, सरकारी नौकरी में पदोन्नति, मान-सम्मान और पिता का पूर्ण सहयोग।",
+    letters: ["m", "ma", "mi", "mu", "me", "mo", "ta", "ti", "tu", "te", "म", "ट"]
+  },
+  kanya: {
+    name: "कन्या राशि (Kanya / Virgo)",
+    lord: "बुध देव (Mercury)",
+    stone: "पन्ना (Emerald / Panna)",
+    subStone: "ग्रीन पेरिडॉट (Peridot / Maragatham)",
+    metal: "पीला सोना / चांदी (Gold / Silver)",
+    finger: "कनिष्ठा (Little Finger)",
+    day: "बुधवार प्रातः (Wednesday Morning)",
+    benefits: "गणित, हिसाब-किताब, पढ़ाई में सफलता, नए व्यापार में मुनाफा और कर्ज से मुक्ति में सहायक।",
+    letters: ["to", "pa", "pi", "pu", "sha", "na", "th", "pe", "po", "प", "ष", "ण", "ठ"]
+  },
+  tula: {
+    name: "तुला राशि (Tula / Libra)",
+    lord: "शुक्र देव (Venus)",
+    stone: "ओपल / सफेद पुखराज (Australian Opal / White Sapphire)",
+    subStone: "जिरकॉन (White Zircon)",
+    metal: "चांदी / सफेद सोना (Silver / White Gold)",
+    finger: "मध्यमा या कनिष्ठा (Middle / Little Finger)",
+    day: "शुक्रवार प्रातः (Friday Morning)",
+    benefits: "सुंदरता, ग्लैमर, दांपत्य जीवन में मधुरता, समाज में लोकप्रियता और सुख-समृद्धि की प्राप्ति।",
+    letters: ["r", "ra", "ri", "ru", "re", "ro", "ta", "ti", "tu", "te", "र", "त"]
+  },
+  vrishchik: {
+    name: "वृश्चिक राशि (Vrishchik / Scorpio)",
+    lord: "मंगल देव (Mars)",
+    stone: "त्रिकोणीय लाल मूंगा (Italian Red Coral)",
+    subStone: "कार्नेलियन (Red Carnelian)",
+    metal: "तांबा / पीला सोना (Copper / Gold)",
+    finger: "अनामिका (Ring Finger)",
+    day: "मंगलवार प्रातः (Tuesday Morning)",
+    benefits: "शत्रुओं पर विजय, भय से मुक्ति, शारीरिक ऊर्जा और दुर्घटनाओं से रक्षा करने वाला शक्तिशाली रत्न।",
+    letters: ["to", "na", "ni", "nu", "ne", "no", "ya", "yi", "yu", "न", "य"]
+  },
+  dhanu: {
+    name: "धनु राशि (Dhanu / Sagittarius)",
+    lord: "बृहस्पति देव (Jupiter)",
+    stone: "पीला पुखराज (Ceylon Yellow Sapphire)",
+    subStone: "गोल्डन टोपाज / सिट्रीन (Citrine / Sunela)",
+    metal: "पीला सोना / पीतल (Gold / Brass)",
+    finger: "तर्जनी (Index Finger)",
+    day: "गुरुवार प्रातः (Thursday Morning)",
+    benefits: "विवाह में आ रही अड़चनों का अंत, संतान सुख, उच्च शिक्षा, धन-संपत्ति और ज्ञान में अत्यधिक वृद्धि।",
+    letters: ["ye", "yo", "bha", "bhi", "bhu", "dha", "pha", "dha", "bhe", "भ", "ध", "फ", "ढ"]
+  },
+  makar: {
+    name: "मकर राशि (Makar / Capricorn)",
+    lord: "शनि देव (Saturn)",
+    stone: "नीलम (Blue Sapphire / Neelam)",
+    subStone: "जामुनिया / एमेथिस्ट (Amethyst / Katela)",
+    metal: "पंचधातु / अष्टधातु / चांदी (Panchdhatu / Silver)",
+    finger: "मध्यमा (Middle Finger)",
+    day: "शनिवार सांध्य (Saturday)",
+    benefits: "शनि की साढ़ेसाती व ढैय्या से रक्षा, अचानक धन लाभ, करियर में स्थिरता और कानूनी मामलों में राहत।",
+    letters: ["bh", "bho", "ja", "ji", "khi", "khu", "khe", "kho", "ga", "gi", "ख", "ज", "ग"]
+  },
+  kumbh: {
+    name: "कुंभ राशि (Kumbh / Aquarius)",
+    lord: "शनि देव (Saturn)",
+    stone: "नीलम / जामुनिया (Blue Sapphire / Amethyst)",
+    subStone: "नीली (Iolite / Neeli)",
+    metal: "पंचधातु / लोहा / चांदी (Panchdhatu / Silver)",
+    finger: "मध्यमा (Middle Finger)",
+    day: "शनिवार सांध्य (Saturday)",
+    benefits: "दूरदर्शिता, नई खोज व बिजनेस में सफलता, मानसिक तनाव से मुक्ति और भाग्य का पूर्ण सहयोग।",
+    letters: ["s", "sa", "si", "su", "se", "so", "da", "स", "श", "दा"]
+  },
+  meen: {
+    name: "मीन राशि (Meen / Pisces)",
+    lord: "बृहस्पति देव (Jupiter)",
+    stone: "पीला पुखराज (Yellow Sapphire / Pukhraj)",
+    subStone: "पीला सुनहला / सिट्रीन (Golden Citrine)",
+    metal: "पीला सोना / पीतल (Gold / Brass)",
+    finger: "तर्जनी (Index Finger)",
+    day: "गुरुवार प्रातः (Thursday Morning)",
+    benefits: "आध्यात्मिक उन्नति, भाग्य वृद्धि, व्यापार में अपार लाभ, मान-प्रतिष्ठा और परिवार में सुख-शांति।",
+    letters: ["di", "du", "th", "jha", "de", "do", "cha", "chi", "द", "थ", "झ", "दे"]
+  }
+};
 
-  if (name || dob || place) {
-    const waText = encodeURIComponent(
-      `Pranam Pandit Ji, maine Shree Royal Gems website par AstroSage se Kundli check ki hai.\n` +
-      `Naam: ${name || 'N/A'}\n` +
-      `DOB: ${dob || 'N/A'}, Samay: ${tob || 'N/A'}\n` +
-      `Sthan: ${place || 'N/A'}\n` +
-      `Kripya meri Kundli dekhkar shubh Bhagya Ratan (Pukhraj, Panna, Manik, Neelam) batayein.`
-    );
-    document.getElementById('srgWaPanditLink').href = `https://wa.me/919065665497?text=${waText}`;
+function srgSelectRashi(rashiKey) {
+  if (!rashiKey || !SRG_RASHI_DB[rashiKey]) {
+    document.getElementById('srgRashiResultBox').style.display = 'none';
+    return;
   }
 
-  window.open('https://www.astrosage.com/kundli/', '_blank');
-}
+  const rashi = SRG_RASHI_DB[rashiKey];
 
-(function placeAstroHero() {
-  setTimeout(() => {
-    const astroSec = document.getElementById('astrological-consultation');
-    const header = document.querySelector('header') || document.querySelector('nav');
-    if (header && astroSec && header.nextSibling !== astroSec) {
-      header.parentNode.insertBefore(astroSec, header.nextSibling);
-    }
-  }, 100);
-})();
-</script>
-<!-- ==================== END SHREE ROYAL GEMS ASTROSAGE KUNDLI PORTAL ==================== -->
+  document.querySelectorAll('.srg-rashi-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById('rbtn-' + rashiKey);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  document.getElementById('srgRashiSelect').value = rashiKey;
+
+  document.getElementById('srgResRashiName').innerText = rashi.name;
+  document.getElementById('srgResLord').innerText = "स्वामी ग्रह: " + rashi.lord;
+  document.getElementById('srgResMainStone').innerText = rashi.stone;
+  document.getElementById('srgResSubStone').innerText = rashi.subStone;
+  document.getElementById('srgResMetal').innerText = rashi.metal;
+  document.getElementById('srgResFinger').innerText = rashi.finger;
+  document.getElementById('srgResDay').innerText = rashi.day;
+  document.getElementById('srgResBenefits').innerText = rashi.benef
   
   <div id="homeView">
 <!-- HERO SECTION (Japam Aesthetic with High Impact Photography) -->

@@ -3696,5 +3696,62 @@ var SRG_DATA = {
     sub: "पीला सुनहला (Citrine)",
     metal: "पीला सोना या पीतल (Gold / Brass)",
     finger: "तर्जनी (Index Finger)",
-    day: "
+    day: ""गुरुवार सुबह (Thursday Morning)",
+    horaKey: "guru",
+    benefits: "आध्यात्मिक शांति, संतान सुख, व्यापार में लाभ और संपूर्ण खुशहाली।"
+  }
+};
+
+function srgRenderHoraTable(horaKey) {
+  var hData = HORA_SCHEDULE[horaKey];
+  if (!hData) return;
+
+  document.getElementById('srgHoraLordName').innerText = hData.title;
+  var rowsHtml = "";
+  for (var i = 0; i < hData.days.length; i++) {
+    var item = hData.days[i];
+    var highlightCls = item.best ? ' class="srg-hora-highlight"' : '';
+    rowsHtml += '<tr>' +
+      '<td' + highlightCls + '>' + item.day + '</td>' +
+      '<td' + highlightCls + '>' + item.time + '</td>' +
+      '</tr>';
+  }
+  document.getElementById('srgHoraRows').innerHTML = rowsHtml;
+}
+
+function srgShow(key) {
+  var d = SRG_DATA[key];
+  if (!d) return;
+
+  var allBtns = document.querySelectorAll('.srg-btn-item');
+  for (var i = 0; i < allBtns.length; i++) {
+    allBtns[i].classList.remove('srg-active');
+  }
+  var activeBtn = document.getElementById('b-' + key);
+  if (activeBtn) activeBtn.classList.add('srg-active');
+
+  document.getElementById('srgOutName').innerText = d.name;
+  document.getElementById('srgOutLord').innerText = "स्वामी ग्रह: " + d.lord;
+  document.getElementById('srgOutStone').innerText = d.stone;
+  document.getElementById('srgOutSub').innerText = d.sub;
+  document.getElementById('srgOutMetal').innerText = d.metal;
+  document.getElementById('srgOutFinger').innerText = d.finger;
+  document.getElementById('srgOutDay').innerText = d.day;
+  document.getElementById('srgOutBenefits').innerText = d.benefits;
+
+  srgRenderHoraTable(d.horaKey);
+
+  var waText = encodeURIComponent(
+    "Pranam Shree Royal Gems,\n" +
+    "Maine website par check kiya hai. Meri Rashi *" + d.name + "* hai.\n" +
+    "Mera Bhagya Ratan *" + d.stone + "* nikla hai.\n" +
+    "Kripya original stone ke photos, rate aur dharan vidhi WhatsApp par bhejein."
+  );
+  document.getElementById('srgOutWaBtn').href = "https://wa.me/919065665497?text=" + waText;
+}
+
+// Initial render for Mesh on load
+srgRenderHoraTable('mangal');
+</script>
+<!-- ==================== END SHREE ROYAL GEMS RECOMMENDER ==================== -->
 </html>

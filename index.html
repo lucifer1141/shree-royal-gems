@@ -484,18 +484,41 @@
   // Safe Base64 decoded key (Prevents GitHub Secret Scanner popup)
   const GEMINI_API_KEY = atob("QVEuQWI4Uk42SzJNVkU3R1ZBMlNpaTVhR1R0cjlZNDlsaTYzNWU4cnp6YzBUMUt3bTg4YlE=");
   let selectedPalmBase64 = "";
-  let selectedPalmType = "image/jpeg";
 
+  // Smart Mobile Photo Compressor (Makes upload instant & 100% reliable)
   document.getElementById('aiPalmPhotoFile').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (!file) return;
-    selectedPalmType = file.type || "image/jpeg";
+
     const reader = new FileReader();
     reader.onload = function(evt) {
-      selectedPalmBase64 = evt.target.result;
-      document.getElementById('aiPreviewImg').src = selectedPalmBase64;
-      document.getElementById('aiUploadPlaceholder').classList.add('hidden');
-      document.getElementById('aiPreviewBox').classList.remove('hidden');
+      const img = new Image();
+      img.onload = function() {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        const maxDim = 1024;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) {
+            height = Math.round((height * maxDim) / width);
+            width = maxDim;
+          } else {
+            width = Math.round((width * maxDim) / height);
+            height = maxDim;
+          }
+        }
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        
+        // Convert to high-quality compressed JPEG
+        selectedPalmBase64 = canvas.toDataURL('image/jpeg', 0.85);
+        document.getElementById('aiPreviewImg').src = selectedPalmBase64;
+        document.getElementById('aiUploadPlaceholder').classList.add('hidden');
+        document.getElementById('aiPreviewBox').classList.remove('hidden');
+      };
+      img.src = evt.target.result;
     };
     reader.readAsDataURL(file);
   });
@@ -515,7 +538,7 @@
 
     const promptText = `
 You are the Chief Vedic Astro-Palmistry Acharya of Shree Royal Gems & Jewellery (Purani Bazar, Muzaffarpur, Bihar).
-Analyze this uploaded image for customer: "${name}" (${gender}, testing ${hand}).
+Analyze this uploaded palm image for customer: "${name}" (${gender}, testing ${hand}).
 
 KNOWLEDGE BASES TO APPLY STRICTLY:
 1. "Astro-Palmistry" by Mihiracharya (Planetary mounts, signs, lines mapped to Rashi/Planetary energies).
@@ -523,7 +546,7 @@ KNOWLEDGE BASES TO APPLY STRICTLY:
 3. Joyce Wilson Chirognomy (Earth, Fire, Air, Water hand types, texture, fingers).
 
 STRICT VERIFICATION:
-Inspect the image. Is this genuinely a human palm/hand?
+Inspect the image carefully. Is this genuinely a human palm/hand?
 If this is an object (cup, shoe, dog, chair, selfie, paper, cartoon, blurred clutter), set "is_palm": false and provide "rejection_reason" in Hindi asking for an open palm photo.
 
 If it IS a human palm, set "is_palm": true and describe the ACTUAL visible lines in THIS photo:
@@ -566,18 +589,28 @@ Return STRICT JSON with keys:
           contents: [{
             parts: [
               { text: promptText },
-              { inline_data: { mime_type: selectedPalmType, data: pureBase64 } }
+              {
+                inlineData: {
+                  mimeType: "image/jpeg",
+                  data: pureBase64
+                }
+              }
             ]
           }],
           generationConfig: {
-            response_mime_type: "application/json"
+            responseMimeType: "application/json"
           }
         })
       });
 
       const resData = await response.json();
-      if (!resData.candidates || !resData.candidates[0]) {
-        throw new Error("AI से कोई उत्तर नहीं मिला");
+
+      if (resData.error) {
+        throw new Error(resData.error.message || JSON.stringify(resData.error));
+      }
+
+      if (!resData.candidates || !resData.candidates[0] || !resData.candidates[0].content) {
+        throw new Error("AI ने कोई परिणाम नहीं भेजा। कृपया दोबारा प्रयास करें।");
       }
 
       const result = JSON.parse(resData.candidates[0].content.parts[0].text);
@@ -589,7 +622,7 @@ Return STRICT JSON with keys:
       }
 
       document.getElementById('outNameHeading').innerText = `${name} जी का वैदिक हस्तरेखा फलित (${hand})`;
-      document.getElementById('outHandType').innerText = result.hand_type || "वैदिक सामुद्रिक स्वरूप";
+      document.getElementById('outHandType').innerText = result.hand_type || "वैदिक सामुद्रic स्वरूप";
       document.getElementById('outLifeLine').innerText = result.life_line;
       document.getElementById('outHeadLine').innerText = result.head_line;
       document.getElementById('outHeartLine').innerText = result.heart_line;

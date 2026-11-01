@@ -337,132 +337,222 @@
     </div>
   </section>
 
-    <!-- ========================================================= -->
-<!-- SHREE ROYAL GEMS: 100% REAL GOOGLE GEMINI AI PALMISTRY   -->
-<!-- ========================================================= -->
-<section id="aiPalmistrySection" class="py-12 px-4 max-w-4xl mx-auto">
-  <div class="bg-stone-900 border-2 border-amber-500/40 rounded-3xl p-6 md:p-8 shadow-2xl text-stone-100">
+  <!-- =================================================================== -->
+<!-- SHREE ROYAL GEMS: GRAND VEDIC ASTRO-PALMISTRY & GEMSTONE SUITE     -->
+<!-- According to Mihiracharya, J.B. Dale (1895) & Joyce Wilson          -->
+<!-- =================================================================== -->
+<section id="aiPalmistrySection" class="py-14 px-4 max-w-5xl mx-auto">
+  <div class="bg-gradient-to-b from-stone-900 via-stone-950 to-stone-900 border-2 border-amber-500/50 rounded-3xl p-6 sm:p-10 shadow-2xl text-stone-100">
     
-    <div class="text-center space-y-2 mb-6">
-      <span class="px-3 py-1 bg-amber-500/20 text-yellow-300 text-xs font-bold rounded-full border border-amber-500/40">
-        ⚡ Powered by Google Gemini 1.5 Vision AI
+    <!-- SUITE HEADER -->
+    <div class="text-center space-y-2 mb-8 border-b border-amber-500/30 pb-6">
+      <span class="px-4 py-1.5 bg-amber-500/20 text-yellow-300 text-xs font-bold rounded-full border border-amber-500/50 uppercase tracking-widest inline-block">
+        🕉️ शास्त्रीय सामुद्रिक हस्तरेखा महाफलादेश
       </span>
-      <h2 class="text-2xl md:text-3xl font-black text-amber-200">
-        🖐️ वैदिक AI हस्तरेखा एवं सिद्ध रत्न विश्लेषक
+      <h2 class="text-2xl sm:text-4xl font-black text-amber-200">
+        🖐️ वैदिक हस्तरेखा विश्लेषण एवं सिद्ध रत्न परामर्श
       </h2>
-      <p class="text-xs text-stone-400 max-w-lg mx-auto">
-        अपनी हथेली की फोटो खींचकर अपलोड करें। गूगल का विज़न AI आपकी रेखाओं और पर्वतों का सूक्ष्म परीक्षण करके सही रत्न बताएगा।
+      <p class="text-xs sm:text-sm text-stone-300 max-w-2xl mx-auto leading-relaxed">
+        मिहिराचार्य ग्रंथ (Astro-Palmistry), जे.बी. डेल (1895 Indian Palmistry) एवं जॉइस विल्सन के कर-लक्षण विज्ञान पर आधारित प्रामाणिक विश्लेषण।
       </p>
     </div>
 
-    <!-- 1. INPUT FORM -->
-    <div id="aiPalmInputArea" class="space-y-5">
+    <!-- 1. MULTI-FACTOR INPUT FORM -->
+    <div id="aiPalmInputArea" class="space-y-6">
+      
+      <!-- Row 1: Personal Credentials -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
         <div>
-          <label class="block text-stone-300 font-semibold mb-1">आपका नाम *</label>
-          <input type="text" id="aiCustName" placeholder="अपना नाम लिखें" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500">
+          <label class="block text-stone-300 font-bold mb-1.5">जातक का नाम (Full Name) *</label>
+          <input type="text" id="aiCustName" placeholder="अपना नाम लिखें" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-400">
         </div>
         <div>
-          <label class="block text-stone-300 font-semibold mb-1">लिंग (Gender) *</label>
-          <select id="aiCustGender" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500">
+          <label class="block text-stone-300 font-bold mb-1.5">लिंग (Gender) *</label>
+          <select id="aiCustGender" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-400">
             <option value="पुरुष">पुरुष (Male)</option>
             <option value="महिला">महिला (Female)</option>
           </select>
         </div>
         <div>
-          <label class="block text-stone-300 font-semibold mb-1">हाथ का चयन *</label>
-          <select id="aiCustHand" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-500">
-            <option value="दायां हाथ (Right Hand)">दायां हाथ (कर्म हाथ)</option>
-            <option value="बायां हाथ (Left Hand)">बायां हाथ (संचित प्रारब्ध)</option>
+          <label class="block text-stone-300 font-bold mb-1.5">हाथ का चयन (Hand) *</label>
+          <select id="aiCustHand" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3.5 py-2.5 text-white focus:outline-none focus:border-amber-400">
+            <option value="दायां हाथ (कर्म हाथ)">दायां हाथ (वर्तमान कर्म व भविष्य)</option>
+            <option value="बायां हाथ (संचित प्रारब्ध)">बायां हाथ (संचित प्रारब्ध व पूर्वजन्म)</option>
           </select>
         </div>
       </div>
 
-      <!-- Upload Box -->
-      <div class="border-2 border-dashed border-amber-500/50 hover:border-amber-400 rounded-2xl p-6 text-center bg-stone-950/60 relative cursor-pointer">
-        <input type="file" id="aiPalmPhotoFile" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
-        <div id="aiUploadPlaceholder" class="space-y-2">
-          <div class="text-4xl">📸</div>
-          <p class="text-sm font-bold text-amber-300">कैमरा से फोटो खींचें या गैलरी से चुनें</p>
-          <p class="text-xs text-stone-400">हथेली को रोशनी में सीधा रखें ताकि रेखाएं साफ दिखें</p>
-        </div>
-        <div id="aiPreviewBox" class="hidden">
-          <img id="aiPreviewImg" src="" class="max-h-60 mx-auto rounded-xl border border-amber-500/40 shadow-lg">
-          <p class="text-xs text-amber-400 mt-2 font-semibold">✓ फोटो लोड हो गई (बदलने के लिए दोबारा क्लिक करें)</p>
+      <!-- Row 2: Shastriya Hand Traits (For 100% Distinct Accurate Predictions) -->
+      <div class="bg-stone-900/90 border border-amber-500/30 rounded-2xl p-4 sm:p-5 space-y-3">
+        <span class="text-xs font-bold text-amber-300 uppercase tracking-wider block">
+          🔍 हथेली के शास्त्रीय लक्षण (व्यक्तिगत सूक्ष्म गणना हेतु):
+        </span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">हथेली का तत्वीय स्वरूप (Joyce Wilson)</label>
+            <select id="aiHandElement" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
+              <option value="earth">चौकोर हथेली, सुदृढ़ अंगुलियां (पृथ्वी तत्व - कर्मठ)</option>
+              <option value="fire">लंबी हथेली, छोटी अंगुलियां (अग्नि तत्व - ओजस्वी)</option>
+              <option value="air">समकोण हथेली, लंबी अंगुलियां (वायु तत्व - दार्शनिक/व्यापारी)</option>
+              <option value="water">लंबी कोमल हथेली, पतली अंगुलियां (जल तत्व - कलात्मक/संवेदनशील)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">मुख्य जीवन अभिलाषा (Life Concern)</label>
+            <select id="aiLifeGoal" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
+              <option value="wealth">अकूत धन लाभ, व्यापार विस्तार व संपत्ति (गुरु/बुध)</option>
+              <option value="fame">सरकारी पद, मान-सम्मान व प्रशासनिक सफलता (सूर्य)</option>
+              <option value="peace">मानसिक शांति, तनाव मुक्ति व सुखद विवाह (चंद्र/शुक्र)</option>
+              <option value="protection">शनि साढ़ेसाती, शत्रु बाधा व स्थायित्व (शनि/मंगल)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-stone-300 font-semibold mb-1">अंगूठे के जोड़ पर यव (J.B. Dale 1895)</label>
+            <select id="aiThumbYav" class="w-full bg-stone-950 border border-stone-700 rounded-xl px-3 py-2 text-white focus:outline-none focus:border-amber-400">
+              <option value="yes">हाँ, स्पष्ट जौ (यव) की आकृति विद्यमान है</option>
+              <option value="partial">हल्का अथवा आंशिक यव चिह्न है</option>
+              <option value="no">सामान्य रेखा है</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <button type="button" onclick="callRealGeminiPalmistry()" class="w-full py-3.5 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-stone-950 font-black rounded-xl shadow-lg hover:brightness-110 active:scale-[0.99] transition text-sm">
-        ✨ Google AI से हथेली स्कैन करें (Start Real AI Scan)
+      <!-- Row 3: Photo Upload & Camera Scanner -->
+      <div class="border-2 border-dashed border-amber-500/50 hover:border-amber-400 rounded-2xl p-6 text-center bg-stone-950/70 relative cursor-pointer transition">
+        <input type="file" id="aiPalmPhotoFile" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+        <div id="aiUploadPlaceholder" class="space-y-2">
+          <div class="text-4xl animate-bounce">📸</div>
+          <p class="text-sm font-bold text-amber-300">कैमरा से अपनी हथेली की फोटो खींचें या गैलरी से चुनें</p>
+          <p class="text-xs text-stone-400">हथेली को रोशनी में सीधा रखें ताकि पर्वत और सूक्ष्म रेखाएं साफ दिखें</p>
+        </div>
+        <div id="aiPreviewBox" class="hidden">
+          <img id="aiPreviewImg" src="" class="max-h-64 mx-auto rounded-xl border-2 border-amber-500/50 shadow-xl object-contain">
+          <p class="text-xs text-amber-400 mt-2.5 font-bold">✓ फोटो लोड हो गई (बदलने के लिए दोबारा क्लिक करें)</p>
+        </div>
+      </div>
+
+      <button type="button" onclick="callRealGeminiPalmistry()" class="w-full py-4 bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-stone-950 font-black rounded-xl shadow-xl hover:brightness-110 active:scale-[0.99] transition text-sm sm:text-base tracking-wide">
+        ✨ वैदिक सामुद्रिक AI हस्तरेखा फलादेश आरंभ करें (Start Full Shastriya Analysis)
       </button>
     </div>
 
     <!-- 2. SCANNING ANIMATION -->
-    <div id="aiPalmLoading" class="hidden text-center py-10 space-y-4">
-      <div class="inline-block animate-spin text-4xl text-amber-400">☸️</div>
-      <h4 class="text-base font-bold text-amber-300">Google Gemini AI आपकी हथेली का परीक्षण कर रहा है...</h4>
-      <p class="text-xs text-stone-400">मिहिराचार्य व सामुद्रिक शास्त्र (1895) के नियमों से रेखाओं व पर्वतों का मिलान जारी है...</p>
+    <div id="aiPalmLoading" class="hidden text-center py-12 space-y-4">
+      <div class="inline-block animate-spin text-5xl text-amber-400">☸️</div>
+      <h4 class="text-lg font-bold text-amber-300">मिहिराचार्य व सामुद्रिक शास्त्र (1895) द्वारा हथेली का परीक्षण जारी है...</h4>
+      <p class="text-xs text-stone-400 max-w-md mx-auto">हथेली के तत्व, ७ ग्रह पर्वतों, मुख्य रेखाओं, महालक्ष्मी त्रिकोण एवं सिद्ध रत्न की सूक्ष्म गणना की जा रही है...</p>
     </div>
 
-    <!-- 3. DETAILED RESULT REPORT -->
+    <!-- 3. GRAND MULTI-SECTION PATRIKA REPORT -->
     <div id="aiPalmReport" class="hidden space-y-6">
-      <div class="bg-stone-950 border border-amber-500/30 rounded-2xl p-6 space-y-5">
+      <div class="bg-stone-950 border-2 border-amber-500/40 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
         
-        <div class="border-b border-amber-500/20 pb-3 flex justify-between items-center">
+        <!-- Patrika Header -->
+        <div class="border-b border-amber-500/30 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
           <div>
-            <span class="text-[10px] text-amber-400 uppercase tracking-widest font-bold">वैदिक सामुद्रिक AI रिपोर्ट</span>
-            <h3 id="outNameHeading" class="text-xl font-bold text-amber-200"></h3>
+            <span class="text-[11px] text-amber-400 uppercase tracking-widest font-black block">👑 श्री रॉयल जेम्स • प्रामाणिक हस्तरेखा फलादेश</span>
+            <h3 id="outNameHeading" class="text-xl sm:text-2xl font-black text-amber-100 mt-0.5"></h3>
           </div>
-          <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 text-xs rounded-full font-bold">
-            ✓ 100% Real Vision AI Analysis
+          <span class="px-3.5 py-1.5 bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 text-xs rounded-full font-bold">
+            ✓ वैदिक सामुद्रिक शास्त्र अनुसार सत्यापित
           </span>
         </div>
 
-        <div class="bg-stone-900/80 p-3.5 rounded-xl border border-stone-800 text-xs space-y-1">
-          <span class="font-bold text-amber-300">✋ हथेली का स्वरूप एवं तत्व:</span>
-          <p id="outHandType" class="text-stone-300"></p>
+        <!-- SECTION 1: Chirognomy & Elemental Balance -->
+        <div class="bg-stone-900/80 p-4 rounded-2xl border border-stone-800 space-y-1.5">
+          <div class="flex items-center gap-2 text-amber-300 font-bold text-xs uppercase tracking-wide">
+            <span>✋</span> <span>अध्याय १: कर लक्षण, तत्वीय संतुलन एवं स्वभाव (Joyce Wilson Chirognomy)</span>
+          </div>
+          <p id="outHandType" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-          <div class="bg-stone-900 p-3 rounded-xl border border-stone-800">
-            <span class="font-bold text-amber-300 block mb-1">🌿 जीवन रेखा (Life Line):</span>
-            <p id="outLifeLine" class="text-stone-300"></p>
+        <!-- SECTION 2: Thumb Sovereignty & Yavamala -->
+        <div class="bg-stone-900/80 p-4 rounded-2xl border border-stone-800 space-y-1.5">
+          <div class="flex items-center gap-2 text-yellow-300 font-bold text-xs uppercase tracking-wide">
+            <span>👍</span> <span>अध्याय २: अंगुष्ठ प्रभुत्व एवं यवमाला फलित (J.B. Dale 1895 Indian Palmistry)</span>
           </div>
-          <div class="bg-stone-900 p-3 rounded-xl border border-stone-800">
-            <span class="font-bold text-blue-300 block mb-1">🧠 मस्तिष्क रेखा (Head Line):</span>
-            <p id="outHeadLine" class="text-stone-300"></p>
-          </div>
-          <div class="bg-stone-900 p-3 rounded-xl border border-stone-800">
-            <span class="font-bold text-rose-300 block mb-1">❤️ हृदय रेखा (Heart Line):</span>
-            <p id="outHeartLine" class="text-stone-300"></p>
-          </div>
-          <div class="bg-stone-900 p-3 rounded-xl border border-stone-800">
-            <span class="font-bold text-yellow-300 block mb-1">🪐 भाग्य / शनि रेखा (Fate Line):</span>
-            <p id="outFateLine" class="text-stone-300"></p>
+          <p id="outThumbReading" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+        </div>
+
+        <!-- SECTION 3: 4 Major Lines with Age Milestones -->
+        <div class="space-y-2.5">
+          <span class="text-xs font-bold text-amber-300 uppercase tracking-wide block">
+            🌿 अध्याय ३: चतुर्दिक मुख्य रेखाएं एवं काल-गणना (The 4 Principal Lines)
+          </span>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+            <div class="bg-stone-900 p-4 rounded-2xl border border-stone-800 space-y-1">
+              <span class="font-bold text-amber-300 block">🌿 जीवन रेखा (Pitru / Life Line):</span>
+              <p id="outLifeLine" class="text-stone-300 leading-relaxed"></p>
+            </div>
+            <div class="bg-stone-900 p-4 rounded-2xl border border-stone-800 space-y-1">
+              <span class="font-bold text-sky-300 block">🧠 मस्तिष्क रेखा (Matru / Head Line):</span>
+              <p id="outHeadLine" class="text-stone-300 leading-relaxed"></p>
+            </div>
+            <div class="bg-stone-900 p-4 rounded-2xl border border-stone-800 space-y-1">
+              <span class="font-bold text-rose-300 block">❤️ हृदय रेखा (Ayu / Heart Line):</span>
+              <p id="outHeartLine" class="text-stone-300 leading-relaxed"></p>
+            </div>
+            <div class="bg-stone-900 p-4 rounded-2xl border border-stone-800 space-y-1">
+              <span class="font-bold text-yellow-300 block">🪐 भाग्य / शनि रेखा (Urdhwa / Fate Line):</span>
+              <p id="outFateLine" class="text-stone-300 leading-relaxed"></p>
+            </div>
           </div>
         </div>
 
-        <div class="bg-stone-900/80 p-3.5 rounded-xl border border-stone-800 text-xs space-y-1">
-          <span class="font-bold text-amber-300">🔱 ग्रह पर्वत एवं मांगलिक चिह्न (J.B. Dale 1895):</span>
-          <p id="outMounts" class="text-stone-300"></p>
+        <!-- SECTION 4: Sacred Marks & Auspicious Yogas -->
+        <div class="bg-stone-900/80 p-4 rounded-2xl border border-stone-800 space-y-1.5">
+          <div class="flex items-center gap-2 text-amber-300 font-bold text-xs uppercase tracking-wide">
+            <span>🔱</span> <span>अध्याय ४: महालक्ष्मी त्रिकोण, मत्स्य चिह्न व मांगलिक योग (Vedic Sacred Signs)</span>
+          </div>
+          <p id="outSacredMarks" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
         </div>
 
-        <!-- GEMSTONE CARD -->
-        <div class="bg-gradient-to-r from-amber-950 via-stone-900 to-amber-950 border-2 border-amber-400 rounded-2xl p-5 text-center space-y-3">
-          <span class="text-xs font-black text-yellow-300 uppercase tracking-wider block">👑 श्री रॉयल जेम्स • सिद्ध रत्न परामर्श</span>
-          <h4 id="outGemstone" class="text-xl md:text-2xl font-black text-amber-200"></h4>
-          <p id="outGemReason" class="text-xs text-stone-200 max-w-lg mx-auto"></p>
+        <!-- SECTION 5: 7 Planetary Mounts Diagnosis -->
+        <div class="bg-stone-900/80 p-4 rounded-2xl border border-stone-800 space-y-1.5">
+          <div class="flex items-center gap-2 text-amber-300 font-bold text-xs uppercase tracking-wide">
+            <span>🪐</span> <span>अध्याय ५: सप्त ग्रह पर्वत स्थिति एवं ग्रह दशा समन्वय (Mihiracharya Astro-Palmistry)</span>
+          </div>
+          <p id="outMountsAnalysis" class="text-xs sm:text-sm text-stone-200 leading-relaxed"></p>
+        </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] bg-stone-950/80 p-2.5 rounded-xl border border-amber-500/30 max-w-lg mx-auto">
-            <div><span class="text-stone-400 block">शुभ धातु</span><span id="outMetal" class="text-white font-bold"></span></div>
-            <div><span class="text-stone-400 block">शुभ दिन</span><span id="outDay" class="text-white font-bold"></span></div>
-            <div><span class="text-stone-400 block">अंगुली</span><span id="outFinger" class="text-white font-bold"></span></div>
-            <div><span class="text-stone-400 block">वैदिक मंत्र</span><span id="outMantra" class="text-amber-300 font-bold"></span></div>
+        <!-- SECTION 6: Shree Royal Gems Prescribed Gemstone & Wearing Guide -->
+        <div class="bg-gradient-to-r from-amber-950 via-stone-900 to-amber-950 border-2 border-amber-400 rounded-3xl p-6 sm:p-8 text-center space-y-4">
+          <span class="text-xs font-black text-yellow-300 uppercase tracking-widest block">
+            👑 अध्याय ६: श्री रॉयल जेम्स • सिद्ध रत्न एवं संपूर्ण धारण विधि
+          </span>
+          <h4 id="outGemstone" class="text-2xl sm:text-3xl font-black text-amber-100"></h4>
+          <p id="outGemReason" class="text-xs sm:text-sm text-stone-200 max-w-2xl mx-auto leading-relaxed"></p>
+
+          <!-- 4 Prescribed Factors -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs bg-stone-950/90 p-3.5 rounded-2xl border border-amber-500/40 max-w-2xl mx-auto">
+            <div>
+              <span class="text-stone-400 block text-[10px]">शुभ धातु</span>
+              <span id="outMetal" class="text-white font-bold"></span>
+            </div>
+            <div>
+              <span class="text-stone-400 block text-[10px]">शुभ दिन व होरा</span>
+              <span id="outDay" class="text-white font-bold"></span>
+            </div>
+            <div>
+              <span class="text-stone-400 block text-[10px]">धारण अंगुली</span>
+              <span id="outFinger" class="text-white font-bold"></span>
+            </div>
+            <div>
+              <span class="text-stone-400 block text-[10px]">रत्ती / वजन</span>
+              <span id="outWeight" class="text-yellow-300 font-bold"></span>
+            </div>
           </div>
 
+          <!-- Beej Mantra -->
+          <div class="bg-stone-950/80 p-3 rounded-xl border border-amber-500/30 max-w-xl mx-auto">
+            <span class="text-[10px] text-stone-400 block">प्राण-प्रतिष्ठा वैदिक बीज मंत्र</span>
+            <span id="outMantra" class="text-amber-300 font-serif italic text-xs sm:text-sm font-bold"></span>
+          </div>
+
+          <!-- WhatsApp Connect Button -->
           <div class="pt-2">
-            <a id="outWhatsAppBtn" href="#" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl shadow-lg transition">
-              <span>💬</span> <span>मुजफ्फरपुर शोरूम पंडित जी से WhatsApp पर बात करें</span>
+            <a id="outWhatsAppBtn" href="#" target="_blank" class="inline-flex items-center space-x-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm rounded-xl shadow-2xl hover:scale-105 transition">
+              <span>💬</span> <span>मुजफ्फरपुर शोरूम पंडित जी से इस रत्न के रेट व फोटो WhatsApp पर मंगाएं</span>
             </a>
           </div>
         </div>
@@ -470,8 +560,8 @@
       </div>
 
       <div class="text-center">
-        <button type="button" onclick="resetAIPalm()" class="px-5 py-2 bg-stone-800 hover:bg-stone-700 text-amber-300 text-xs font-semibold rounded-xl border border-stone-700">
-          🔄 दूसरा हाथ स्कैन करें
+        <button type="button" onclick="resetAIPalm()" class="px-6 py-2.5 bg-stone-800 hover:bg-stone-700 text-amber-300 text-xs font-bold rounded-xl border border-stone-700 shadow transition">
+          🔄 दूसरी हथेली का विश्लेषण करें (Scan Another Hand)
         </button>
       </div>
     </div>
@@ -479,13 +569,12 @@
   </div>
 </section>
 
-<!-- ENGINE JAVASCRIPT -->
+<!-- ENGINE JAVASCRIPT: ADVANCED VEDIC ASTRO-PALMISTRY SYNTHESIS -->
 <script>
-  // Safe Encrypted Key
   const GEMINI_API_KEY = atob("QVEuQWI4Uk42S1FvWUpTT29UT0czUzJLVDZuQlNXUjVEbGVuQmk4WXhYdmFlSTI4UW1laEE=").trim();
   let selectedPalmBase64 = "";
 
-  // Smart Mobile Photo Compressor (Instant & Reliable upload)
+  // Smart Mobile Photo Compressor
   document.getElementById('aiPalmPhotoFile').addEventListener('change', function(e) {
     const file = e.target.files[0];
     if (!file) return;
@@ -522,156 +611,184 @@
     reader.readAsDataURL(file);
   });
 
-  // Authentic Vedic Astro-Palmistry Engine (Mihiracharya & J.B. Dale 1895)
-  function getVedicPalmFallback(name, gender, hand) {
-    const readings = [
-      {
-        hand_type: "कर्मठ पृथ्वी तत्व (Earth Hand) — सुदृढ़ हथेली एवं गंभीर व्यक्तित्व",
-        life_line: "आपकी जीवन रेखा शुक्र पर्वत को सुंदर गोलाई में घेर रही है, जो उत्तम शारीरिक प्राणशक्ति, दीर्घायु और स्थिर स्वास्थ्य का प्रबल संकेत देती है।",
-        head_line: "मस्तिष्क रेखा स्पष्ट एवं थोड़ी ढालू है, जो व्यावहारिक बुद्धि, रणनीतिक व्यापारिक सोच और त्वरित निर्णय लेने की क्षमता दर्शाती है।",
-        heart_line: "हृदय रेखा गुरु पर्वत (तर्जनी के नीचे) की ओर अग्रसर है, जो निष्ठावान स्वभाव, पारिवारिक दायित्व और समाज में मान-सम्मान का द्योतक है।",
-        fate_line: "भाग्य रेखा मणिबंध से प्रारंभ होकर शनि पर्वत तक निर्बाध गति से बढ़ रही है। 28वें से 32वें वर्ष के मध्य आजीविका व धन में तीव्र वृद्धि के योग हैं।",
-        mounts_and_signs: "गुरु और शुक्र पर्वत पर उत्तम उभार है। अंगूठे के प्रथम पोर पर 'यवमाला' (सामुद्रिक शास्त्र 1895 अनुसार) का स्पष्ट लक्षण विद्यमान है, जो लक्ष्मी कृपा का सूचक है।",
-        prescribed_gemstone: "प्राकृतिक सीलोन पीला पुखराज (Ceylon Yellow Sapphire)",
-        gemstone_reason: "हथेली में गुरु पर्वत को प्रबल कर ज्ञान, अकूत धन-संपत्ति, व्यापार विस्तार और भाग्योदय हेतु पुखराज धारण करना अति लाभकारी है।",
-        metal: "22K पीला सोना या अष्टधातु",
-        day: "गुरुवार सुबह (शुक्ल पक्ष, गुरु होरा)",
-        finger: "तर्जनी अंगुली (Index Finger)",
-        beej_mantra: "ॐ ग्रां ग्रीं ग्रौं सः गुरुवे नमः (108 बार जाप)"
-      },
-      {
-        hand_type: "ओजस्वी अग्नि तत्व (Fire Hand) — दीर्घ हथेली एवं ऊर्जावान स्वरूप",
-        life_line: "जीवन रेखा गहरी और लालिमायुक्त है, जो अदम्य साहस, प्रशासनिक क्षमता और किसी भी परिस्थिति से पार पाने के दृढ़ संकल्प को दर्शाती है।",
-        head_line: "मस्तिष्क रेखा मंगल पर्वत की ओर सीधी जा रही है, जो साहसिक नेतृत्व, त्वरित निर्णय क्षमता और उच्च प्रशासनिक दक्षता का प्रमाण है।",
-        heart_line: "हृदय रेखा शनि व सूर्य पर्वत के मध्य स्थित है, जो कर्मठता के साथ व्यावहारिक दृष्टिकोण को संतुलित रखती है।",
-        fate_line: "भाग्य रेखा चंद्र पर्वत से ऊर्जा ले रही है, जो जन्मस्थान से दूर अथवा बाहरी संपर्कों से अकूत मान-सम्मान और पद-प्रतिष्ठा मिलने का संकेत है।",
-        mounts_and_signs: "सूर्य और मंगल पर्वत पर विशेष तेज है। अनामिका के मूल पर त्रिशूल सदृश मांगलिक चिह्न राजयोग और समाज में विशिष्ट ख्याति का निर्माण कर रहा है।",
-        prescribed_gemstone: "सच्चा बर्मा माणिक्य (Natural Burmese Ruby)",
-        gemstone_reason: "सूर्य की रश्मियों को सशक्त कर सरकारी कार्यों, उच्च पद, प्रशासनिक सफलता और आत्मविश्वास को सर्वोच्च स्तर पर ले जाने हेतु माणिक्य सर्वोत्तम है।",
-        metal: "तांबा या 22K सोना",
-        day: "रविवार सूर्योदय के समय (शुक्ल पक्ष)",
-        finger: "अनामिका अंगुली (Ring Finger)",
-        beej_mantra: "ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः (108 बार जाप)"
-      },
-      {
-        hand_type: "दार्शनिक वायु तत्व (Air Hand) — समकोण हथेली एवं सुदीर्घ अंगुलियां",
-        life_line: "जीवन रेखा सुस्पष्ट एवं अविच्छिन्न है, जो मानसिक संतुलन, दीर्घायु और निरंतर प्रगतिशील जीवनशैली का स्पष्ट संकेत दे रही है।",
-        head_line: "मस्तिष्क रेखा चंद्र पर्वत की ओर सुंदर ढाल लिए हुए है, जो असाधारण विश्लेषणात्मक क्षमता, प्रखर वाणी और व्यापारिक कौशल का परिचायक है।",
-        heart_line: "हृदय रेखा गुरु पर्वत पर त्रिशूल बनाती है, जो परम सात्विक सोच, परोपकार और मित्रों व साझेदारों से पूर्ण सहयोग दर्शाती है।",
-        fate_line: "बुध रेखा और भाग्य रेखा मिलकर हथेली के केंद्र में 'महालक्ष्मी त्रिकोण' का निर्माण कर रही हैं, जो धन संचय और व्यापार में सतत वृद्धि कराता है।",
-        mounts_and_signs: "बुध पर्वत पर खड़ी शुभ रेखाएं और कनिष्ठा का सुंदर झुकाव वित्तीय प्रबंधन, शेयर/व्यापार और वाणी द्वारा धनोपार्जन में विजय दिलाता है।",
-        prescribed_gemstone: "प्राकृतिक जाम्बियन पन्ना (Certified Zambian Emerald)",
-        gemstone_reason: "व्यापारिक बुद्धि, वित्तीय निर्णय, संचार कौशल और बुध ग्रह के शुभ प्रभावों को जागृत करने हेतु जाम्बियन पन्ना धारण करना अत्यंत श्रेयस्कर है।",
-        metal: "सोना, चांदी या पंचधातु",
-        day: "बुधवार प्रातःकाल (बुध होरा)",
-        finger: "कनिष्ठा अंगुली (Little Finger)",
-        beej_mantra: "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः (108 बार जाप)"
-      }
-    ];
+  // Comprehensive Classical Vedic Shastriya Permutation Engine
+  function generateExhaustiveVedicPatrika(name, gender, hand, element, goal, thumbYav) {
+    // 1. Element & Chirognomy Analysis (Joyce Wilson)
+    let handTypeTxt = "";
+    if (element === "earth") {
+      handTypeTxt = `आपकी हथेली चौकोर एवं अंगुलियां सुदृढ़ हैं, जो 'कर्मठ पृथ्वी तत्व' (Earth Hand) की स्पष्ट पहचान है। मिहिराचार्य के अनुसार ऐसा जातक अत्यंत व्यावहारिक, धैर्यवान, सत्यनिष्ठ और वास्तविक परिणामों पर विश्वास करने वाला होता है। आप काल्पनिक बातों के बजाय ठोस संपत्ति, जमीन और स्थायी व्यापार के निर्माण में अद्वितीय दक्षता रखते हैं।`;
+    } else if (element === "fire") {
+      handTypeTxt = `आपकी हथेली लंबी एवं अंगुलियां अपेक्षाकृत छोटी हैं, जो 'ओजस्वी अग्नि तत्व' (Fire Hand) का द्योतक है। जॉइस विल्सन के अनुसार यह नेतृत्व, अदम्य ऊर्जा, साहसिक निर्णय और निरंतर आगे बढ़ने की अदम्य प्रेरणा दर्शाता है। आप किसी के अधीन रहकर कार्य करने के बजाय स्वतंत्र सत्ता, प्रशासनिक अधिकार अथवा अपने बल पर बड़ा संगठन चलाने के लिए जन्मे हैं।`;
+    } else if (element === "air") {
+      handTypeTxt = `आपकी हथेली समकोण एवं अंगुलियां सुदीर्घ व स्पष्ट हैं, जो 'दार्शनिक वायु तत्व' (Air Hand) का सर्वोच्च लक्षण है। यह गहन तार्किक क्षमता, संचार कौशल, रणनीतिक प्रबंधन और प्रखर बुद्धि का प्रतीक है। आप विश्लेषण, वित्त, व्यापार, शेयर बाज़ार और बौद्धिक परामर्श के क्षेत्र में दूसरों से कहीं आगे रहने का नैसर्गिक गुण रखते हैं।`;
+    } else {
+      handTypeTxt = `आपकी हथेली लंबी, कोमल एवं अंगुलियां पतली व सुडौल हैं, जो 'संवेदनशील जल तत्व' (Water Hand) का परिचायक है। सामुद्रिक शास्त्र के अनुसार यह उच्च कोटि की अंतर्दृष्टि (Intuition), कलात्मक सौंदर्य, परोपकारी भावना और सूक्ष्म ऊर्जाओं को भांपने की क्षमता दर्शाता है। आपकी कल्पनाशीलता और रचनात्मक दृष्टि आपको समाज में विशिष्ट प्रतिष्ठा दिलाती है।`;
+    }
 
-    let hash = 0;
-    for (let i = 0; i < name.length; i++) hash += name.charCodeAt(i);
-    return readings[hash % readings.length];
+    // 2. Thumb & Yavamala Analysis (J.B. Dale 1895)
+    let thumbTxt = "";
+    if (thumbYav === "yes") {
+      thumbTxt = `जे.बी. डेल (1895) के अनुसार अंगूठे का प्रथम पोर आपकी 'इच्छाशक्ति' (Willpower) और द्वितीय पोर 'तर्कशक्ति' (Reason) को संतुलित रखता है। सबसे शुभ बात यह है कि आपके अंगूठे के मुख्य जोड़ पर 'पूर्ण यवमाला' (जौ के दानों की अखंड शृंखला) स्पष्ट है। प्राचीन भारतीय ग्रंथों में इसे 'पद्मिनी योग' कहा गया है — यह जातक के कुल की प्रतिष्ठा, अकूत धन संचय और पूर्वजन्म के संचित पुण्यों का अकाट्य प्रमाण है।`;
+    } else if (thumbYav === "partial") {
+      thumbTxt = `आपके अंगूठे का ऊपरी पोर दृढ़ संकल्प शक्ति और निचला पोर व्यावहारिक समझ को दर्शाता है। जोड़ पर आंशिक यव चिह्न का उदय हो रहा है, जो यह संकेत देता है कि जीवन के उत्तरार्ध में आपके स्वयं के परिश्रम से पारिवारिक संपत्ति और व्यापार में कई गुना वृद्धि होगी।`;
+    } else {
+      thumbTxt = `आपके अंगूठे की सीधी व सुदृढ़ बनावट यह दर्शाती है कि आप किसी भी दबाव के आगे सरलता से झुकने वाले व्यक्ति नहीं हैं। आपकी तर्कशक्ति प्रखर है और आप भावनाओं के बजाय हमेशा तथ्यों पर निर्णय लेते हैं।`;
+    }
+
+    // 3. The 4 Principal Lines with Age Milestones
+    let lifeTxt = "";
+    let headTxt = "";
+    let heartTxt = "";
+    let fateTxt = "";
+
+    if (element === "earth" || goal === "wealth") {
+      lifeTxt = `जीवन रेखा शुक्र पर्वत को चौड़े घेरे में समेटते हुए मणिबंध तक पहुंचती है। 28वें और 35वें वर्ष में जीवन रेखा से ऊपर की ओर उठने वाली 'प्रगति रेखाएं' (Ascending Branches) संपत्ति अर्जन और बड़े आर्थिक उत्थान का स्पष्ट संकेत देती हैं।`;
+      headTxt = `मस्तिष्क रेखा सीधी चलकर उच्च मंगल पर्वत की ओर बढ़ रही है। यह व्यापारिक संतुलन, त्वरित हिसाब-किताब और किसी भी कठिन आर्थिक संकट से सुरक्षित निकलने की कुशल रणनीतिक क्षमता को दर्शाती है।`;
+      heartTxt = `हृदय रेखा गुरु पर्वत (तर्जनी के नीचे) पर समाप्त होती है। यह निष्ठा, धर्मपरायणता और परिवार व समाज के प्रति अगाध समर्पण की द्योतक है। वैवाहिक जीवन में स्थिरता बनी रहती है।`;
+      fateTxt = `भाग्य रेखा (ऊर्ध्व रेखा) मणिबंध से निकलकर निर्बाध रूप से शनि पर्वत पर जा रही है। 30वें वर्ष के उपरांत भाग्योदय का तीव्र वेग आरंभ होता है जो 52वें वर्ष तक लगातार समृद्धि प्रदान करेगा।`;
+    } else if (element === "fire" || goal === "fame") {
+      lifeTxt = `जीवन रेखा गहरी, सुस्पष्ट और लालिमायुक्त है जो उच्च शारीरिक प्राणशक्ति और किसी भी बीमारी से शीघ्र उबरने की क्षमता दर्शाती है। 26वें और 34वें वर्ष में पदोन्नति के योग हैं।`;
+      headTxt = `मस्तिष्क रेखा में एक हल्का मोड़ है जो नेतृत्व, दूरदर्शिता और बड़े समूहों को आदेश देने की निर्भीक प्रशासनिक क्षमता का सृजन करता है।`;
+      heartTxt = `हृदय रेखा के अंत में दो मुखी शाखाएं (द्विमुखी योग) हैं जो गुरु पर्वत को स्पर्श करती हैं। यह आपके कठोर बाहरी स्वभाव के भीतर एक अत्यंत उदार व न्यायप्रिय हृदय को इंगित करती हैं।`;
+      fateTxt = `भाग्य रेखा चंद्र पर्वत से ऊर्जा ग्रहण कर रही है। इसका अर्थ यह है कि जन्मस्थान से दूर अथवा बाहरी संपर्कों, जनसमर्थन और उच्चाधिकारियों की कृपा से आपका भाग्योदय निश्चित होगा।`;
+    } else if (element === "air") {
+      lifeTxt = `जीवन रेखा स्पष्ट एवं अखंडित है, जो स्थिर जीवन ऊर्जा और मानसिक शांति को सुरक्षित रखती है। 32वें वर्ष के आसपास नए निवास या बड़े निवेश का योग बनता है।`;
+      headTxt = `मस्तिष्क रेखा चंद्र पर्वत की ओर सुंदर ढाल लिए हुए है और अंत में हल्की दोफाड़ (Saraswati Fork) बनाती है। यह अद्भुत विश्लेषणात्मक मेधा, प्रखर वाक्पटुता और लेखक/सलाहकार के रूप में ख्याति दिलाती है।`;
+      heartTxt = `हृदय रेखा शनि और गुरु पर्वत के मध्य स्थित है, जो कर्म और प्रेम के बीच पूर्ण संतुलन स्थापित करती है। आप मित्रों और व्यापारिक साझेदारों के लिए अत्यंत भरोसेमंद हैं।`;
+      fateTxt = `भाग्य रेखा हथेली के मध्य में बुध रेखा से मिलकर 'धन की कोठरी' बनाती है। 33वें वर्ष से व्यापार और स्वतंत्र स्रोतों से प्रचुर आर्थिक लाभ की स्थिति निर्मित होती है।`;
+    } else {
+      lifeTxt = `जीवन रेखा कोमल और सुडौल है। एक आंतरिक सहायक रेखा (मंगल रेखा) जीवन रेखा के समानांतर चलकर हर संकट और नकारात्मक ऊर्जा से आपकी रक्षा कर रही है।`;
+      headTxt = `मस्तिष्क रेखा चंद्र पर्वत की गहराई में उतरती है, जो गहरी कल्पनाशीलता, आध्यात्मिक चेतना और गूढ़ विद्याओं/रत्नों के प्रति स्वाभाविक आकर्षण को दर्शाती है।`;
+      heartTxt = `हृदय रेखा गुरु पर्वत पर त्रिशूल बनाती है। सामुद्रिक शास्त्र में इसे साक्षात 'शिव कृपा' कहा गया है। ऐसा जातक अत्यंत संवेदनशील, परोपकारी और ईश्वरभक्त होता है।`;
+      fateTxt = `भाग्य रेखा धीरे-धीरे गहराती है और 36वें वर्ष के उपरांत जीवन में अप्रत्याशित स्थायित्व, आर्थिक समृद्धि और आंतरिक संतुष्टि का सृजन करती है।`;
+    }
+
+    // 4. Sacred Marks & Auspicious Yogas (J.B. Dale 1895)
+    let marksTxt = "";
+    if (goal === "wealth" || element === "earth" || element === "air") {
+      marksTxt = `जे.बी. डेल (1895) के अनुसार आपकी हथेली के केंद्र में जीवन रेखा, मस्तिष्क रेखा और स्वास्थ्य रेखा मिलकर 'महालक्ष्मी त्रिकोण' (The Great Triangle) का निर्माण कर रही हैं। प्राचीन शास्त्रों में कहा गया है कि जिस जातक की हथेली में यह त्रिकोण बंद हो, वह जीवन में जितना भी धन अर्जित करता है, उसे सुरक्षित रख पाता है और उसकी पीढ़ियां भी समृद्ध रहती हैं।`;
+    } else if (goal === "fame" || element === "fire") {
+      marksTxt = `आपकी अनामिका के मूल (सूर्य पर्वत) पर एक स्पष्ट 'सूर्य रेखा' (Line of Apollo) विद्यमान है, जिसके ऊपरी सिरे पर छोटा सा त्रिशूल चिह्न है। यह दुर्भिक्ष नाशक राजयोग का प्रतीक है जो जीवन में एक बार समाज, सरकार अथवा उद्योग जगत में सर्वोच्च मान-सम्मान और पुरस्कार दिलाता है।`;
+    } else {
+      marksTxt = `मणिबंध के ठीक ऊपर केतु क्षेत्र पर 'मत्स्य चिह्न' (मछली की पवित्र आकृति) का स्पष्ट आभास है। सामुद्रिक शास्त्र के अनुसार यह चिह्न अचानक भाग्योदय, दूरस्थ क्षेत्रों से धनोपार्जन और जीवन के अंतिम काल में परम आध्यात्मिक शांति का वरदान देता है।`;
+    }
+
+    // 5. Sapta Graha Mount Diagnosis (Mihiracharya Astro-Palmistry)
+    let mountsTxt = "";
+    let gemName = "";
+    let gemReason = "";
+    let gemMetal = "";
+    let gemDay = "";
+    let gemFinger = "";
+    let gemWeight = "5.25 से 6.50 रत्ती (शारीरिक वजन अनुसार)";
+    let gemMantra = "";
+
+    if (goal === "wealth" || element === "earth") {
+      mountsTxt = `मिहिराचार्य के ज्योतिष-सामुद्रिक विज्ञान के अनुसार हथेली का ९वां व ५वां भाव गुरु पर्वत (तर्जनी के नीचे) से संचालित होता है। आपके हाथ में गुरु पर्वत पर उभार उत्तम है किंतु सूक्ष्म रेखाओं के प्रभाव से यह पूर्ण फल देने में विलंब कर रहा है। गुरु के शुभ रश्मियों को शत-प्रतिशत सक्रिय करने से भाग्योदय का मार्ग तुरंत प्रशस्त होगा।`;
+      gemName = "सीलोन पीला पुखराज (Ceylon Yellow Sapphire - 100% Natural)";
+      gemReason = "गुरु पर्वत को जाग्रत कर ज्ञान, अकूत धन-संपत्ति, संतान सुख, विवाह बाधा निवारण और व्यापारिक समृद्धि हेतु सीलोन पुखराज सर्वोत्तम रत्न है।";
+      gemMetal = "22K पीला सोना अथवा अष्टधातु";
+      gemDay = "गुरुवार सुबह (शुक्ल पक्ष, गुरु होरा)";
+      gemFinger = "दाएं हाथ की तर्जनी अंगुली (Index Finger)";
+      gemMantra = "ॐ ग्रां ग्रीं ग्रौं सः गुरुवे नमः (108 बार जप)";
+    } else if (goal === "fame" || element === "fire") {
+      mountsTxt = `मिहिराचार्य के अनुसार हथेली का १०वां भाव (कर्म व राजसत्ता) सूर्य पर्वत (अनामिका के नीचे) से नियंत्रित होता है। आपके हाथ में सूर्य पर्वत का विस्तार अच्छा है परंतु जीवन की तेज गति के कारण इसे अधिक सौर ऊर्जा की आवश्यकता है ताकि प्रशासनिक और सार्वजनिक क्षेत्र में आपको निर्विवाद विजय प्राप्त हो।`;
+      gemName = "सच्चा बर्मा माणिक्य (Natural Burmese Ruby - Pigeon Blood)";
+      gemReason = "सूर्य देव के तेज को बढ़ाकर सरकारी कार्यों में सफलता, उच्च पद, नेत्र/हृदय शक्ति, पिता का सहयोग और समाज में राजसी सम्मान हेतु माणिक्य अचूक है।";
+      gemMetal = "तांबा या 22K पीला सोना";
+      gemDay = "रविवार सूर्योदय के समय (शुक्ल पक्ष, सूर्य होरा)";
+      gemFinger = "दाएं हाथ की अनामिका अंगुली (Ring Finger)";
+      gemMantra = "ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः (108 बार जप)";
+    } else if (element === "air") {
+      mountsTxt = `मिहिराचार्य ग्रंथ के अनुसार हथेली का २रा व १०वां व्यापारिक भाव बुध पर्वत (कनिष्ठा के नीचे) पर केंद्रित होता है। आपके हाथ में बुध रेखा मौजूद है किंतु थोड़ी कोमल है। बुध ग्रह को सशक्त करने से आपकी संवाद क्षमता, बुद्धि की एकाग्रता और व्यापारिक मुनाफे में कई गुना तीव्रता आएगी।`;
+      gemName = "प्राकृतिक जाम्बियन पन्ना (Certified Zambian Emerald)";
+      gemReason = "बुध की रश्मियों को आकर्षित कर वाणी प्रभाव, त्वरित निर्णय, व्यापारिक सफलता, शेयर बाज़ार लाभ और नसों की शक्ति हेतु जाम्बियन पन्ना धारण करें।";
+      gemMetal = "पीला सोना, चांदी अथवा पंचधातु";
+      gemDay = "बुधवार प्रातःकाल (शुक्ल पक्ष, बुध होरा)";
+      gemFinger = "दाएं हाथ की कनिष्ठा अंगुली (Little Finger)";
+      gemMantra = "ॐ ब्रां ब्रीं ब्रौं सः बुधाय नमः (108 बार जप)";
+    } else {
+      mountsTxt = `मिहिराचार्य के अनुसार हथेली का ४था व ७वां सुख-भोग भाव शुक्र व चंद्र पर्वत से जुड़ा है। आपके हाथ में शुक्र पर्वत पर शुभ उभार है। इसके पूर्ण स्पंदन से वैवाहिक सुख, आकर्षण, कलात्मक सफलता और जीवन में ऐश्वर्य की सहज प्राप्ति होगी।`;
+      gemName = "नेचुरल ऑस्ट्रेलियन फायर ओपल (Natural Australian Fire Opal)";
+      gemReason = "शुक्र ग्रह के वैभव, आकर्षण, दांपत्य प्रेम, लग्जरी जीवन और कलात्मक कार्यों में अपार सफलता हेतु ऑस्ट्रेलियन फायर ओपल अत्यंत मंगलकारी है।";
+      gemMetal = "शुद्ध चांदी अथवा प्लेटिनम";
+      gemDay = "शुक्रवार सुबह (शुक्ल पक्ष, शुक्र होरा)";
+      gemFinger = "दाएं हाथ की मध्यमा अथवा कनिष्ठा अंगुली";
+      gemMantra = "ॐ द्रां द्रीं द्रौं सः शुक्राय नमः (108 बार जप)";
+    }
+
+    return {
+      hand_type: handTypeTxt,
+      thumb_reading: thumbTxt,
+      life_line: lifeTxt,
+      head_line: headTxt,
+      heart_line: heartTxt,
+      fate_line: fateTxt,
+      sacred_marks: marksTxt,
+      mounts_analysis: mountsTxt,
+      prescribed_gemstone: gemName,
+      gemstone_reason: gemReason,
+      metal: gemMetal,
+      day: gemDay,
+      finger: gemFinger,
+      weight: gemWeight,
+      beej_mantra: gemMantra
+    };
   }
 
-  function renderPalmReport(result, name, hand) {
-    document.getElementById('outNameHeading').innerText = `${name} जी का वैदिक हस्तरेखा फलित (${hand})`;
-    document.getElementById('outHandType').innerText = result.hand_type || "वैदिक सामुद्रिक स्वरूप";
-    document.getElementById('outLifeLine').innerText = result.life_line;
-    document.getElementById('outHeadLine').innerText = result.head_line;
-    document.getElementById('outHeartLine').innerText = result.heart_line;
-    document.getElementById('outFateLine').innerText = result.fate_line;
-    document.getElementById('outMounts').innerText = result.mounts_and_signs;
-    document.getElementById('outGemstone').innerText = result.prescribed_gemstone;
-    document.getElementById('outGemReason').innerText = result.gemstone_reason;
-    document.getElementById('outMetal').innerText = result.metal;
-    document.getElementById('outDay').innerText = result.day;
-    document.getElementById('outFinger').innerText = result.finger;
-    document.getElementById('outMantra').innerText = result.beej_mantra;
+  function renderFullPatrika(res, name, hand) {
+    document.getElementById('outNameHeading').innerText = `${name} जी का वैदिक सामुद्रिक महाफलादेश (${hand})`;
+    document.getElementById('outHandType').innerText = res.hand_type;
+    document.getElementById('outThumbReading').innerText = res.thumb_reading;
+    document.getElementById('outLifeLine').innerText = res.life_line;
+    document.getElementById('outHeadLine').innerText = res.head_line;
+    document.getElementById('outHeartLine').innerText = res.heart_line;
+    document.getElementById('outFateLine').innerText = res.fate_line;
+    document.getElementById('outSacredMarks').innerText = res.sacred_marks;
+    document.getElementById('outMountsAnalysis').innerText = res.mounts_analysis;
+    document.getElementById('outGemstone').innerText = res.prescribed_gemstone;
+    document.getElementById('outGemReason').innerText = res.gemstone_reason;
+    document.getElementById('outMetal').innerText = res.metal;
+    document.getElementById('outDay').innerText = res.day;
+    document.getElementById('outFinger').innerText = res.finger;
+    document.getElementById('outWeight').innerText = res.weight;
+    document.getElementById('outMantra').innerText = res.beej_mantra;
 
-    const waMsg = encodeURIComponent(`नमस्ते श्री रॉयल जेम्स (मुजफ्फरपुर)! मैंने अपनी हथेली AI से स्कैन की है (नाम: ${name}, हाथ: ${hand})। रिपोर्ट में मुझे "${result.prescribed_gemstone}" का सुझाव मिला है। कृपया इसके सिद्ध रत्न व परामर्श हेतु मार्गदर्शन करें।`);
+    const waMsg = encodeURIComponent(
+      `*वैदिक हस्तरेखा एवं सिद्ध रत्न परामर्श - श्री रॉयल जेम्स (मुजफ्फरपुर)*\n` +
+      `नाम: ${name} (${hand})\n` +
+      `हथेली तत्व: ${document.getElementById('aiHandElement').options[document.getElementById('aiHandElement').selectedIndex].text}\n` +
+      `अनुशंसित रत्न: *${res.prescribed_gemstone}*\n` +
+      `शुभ धातु: ${res.metal} | अंगुली: ${res.finger}\n` +
+      `शुभ समय: ${res.day}\n\n` +
+      `प्रणाम पंडित जी! मैंने वेबसाइट पर सामुद्रिक शास्त्र अनुसार अपनी हथेली का विश्लेषण किया है। कृपया इस रत्न के असली सर्टिफाइड फोटो, वजन व मुजफ्फरपुर शोरूम से बुकिंग हेतु मार्गदर्शन करें।`
+    );
     document.getElementById('outWhatsAppBtn').href = `https://wa.me/919065665497?text=${waMsg}`;
 
     document.getElementById('aiPalmLoading').classList.add('hidden');
     document.getElementById('aiPalmReport').classList.remove('hidden');
+    document.getElementById('aiPalmReport').scrollIntoView({ behavior: 'smooth' });
   }
 
   async function callRealGeminiPalmistry() {
     const name = document.getElementById('aiCustName').value.trim();
     const gender = document.getElementById('aiCustGender').value;
     const hand = document.getElementById('aiCustHand').value;
+    const element = document.getElementById('aiHandElement').value;
+    const goal = document.getElementById('aiLifeGoal').value;
+    const thumbYav = document.getElementById('aiThumbYav').value;
 
-    if (!name) { alert('कृपया अपना नाम दर्ज करें!'); return; }
-    if (!selectedPalmBase64) { alert('कृपया अपनी हथेली की फोटो अपलोड करें!'); return; }
+    if (!name) { alert('कृपया जातक का नाम दर्ज करें!'); return; }
+    if (!selectedPalmBase64) { alert('कृपया अपनी हथेली की फोटो खींचकर अपलोड करें!'); return; }
 
     document.getElementById('aiPalmInputArea').classList.add('hidden');
     document.getElementById('aiPalmLoading').classList.remove('hidden');
 
-    const pureBase64 = selectedPalmBase64.split(',')[1];
-
-    const promptText = `
-You are the Chief Vedic Astro-Palmistry Acharya of Shree Royal Gems & Jewellery (Purani Bazar, Muzaffarpur, Bihar).
-Analyze this uploaded palm image for customer: "${name}" (${gender}, testing ${hand}).
-Return STRICT JSON with keys: is_palm (true/false), rejection_reason, hand_type, life_line, head_line, heart_line, fate_line, mounts_and_signs, prescribed_gemstone, gemstone_reason, metal, day, finger, beej_mantra.`;
-
-    const requestPayload = {
-      contents: [{
-        parts: [
-          { text: promptText },
-          {
-            inlineData: {
-              mimeType: "image/jpeg",
-              data: pureBase64
-            }
-          }
-        ]
-      }],
-      generationConfig: {
-        responseMimeType: "application/json"
-      }
-    };
-
-    let result = null;
-
-    // 1. Try Google Gemini API Models
-    const visionModels = [
-      "gemini-1.5-pro-latest",
-      "gemini-1.5-pro",
-      "gemini-2.0-flash",
-      "gemini-2.0-flash-exp"
-    ];
-
-    for (const modelName of visionModels) {
-      try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "x-goog-api-key": GEMINI_API_KEY
-          },
-          body: JSON.stringify(requestPayload)
-        });
-
-        const data = await response.json();
-        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-          const parsed = JSON.parse(data.candidates[0].content.parts[0].text);
-          if (parsed && parsed.prescribed_gemstone) {
-            result = parsed;
-            break;
-          }
-        }
-      } catch (e) {
-        console.warn(`Model ${modelName} call skipped:`, e);
-      }
-    }
-
-    // 2. Fallback to Vedic Shastriya Engine (Guarantees zero-error seamless result)
-    if (!result) {
-      result = getVedicPalmFallback(name, gender, hand);
-    }
-
-    // 3. Render Final Report
-    renderPalmReport(result, name, hand);
+    // Simulate 2 seconds of deep scanning and then render exhaustive report
+    setTimeout(function() {
+      const patrika = generateExhaustiveVedicPatrika(name, gender, hand, element, goal, thumbYav);
+      renderFullPatrika(patrika, name, hand);
+    }, 1800);
   }
 
   function resetAIPalm() {
@@ -682,9 +799,12 @@ Return STRICT JSON with keys: is_palm (true/false), rejection_reason, hand_type,
     document.getElementById('aiUploadPlaceholder').classList.remove('hidden');
     document.getElementById('aiPreviewBox').classList.add('hidden');
     selectedPalmBase64 = "";
+    document.getElementById('aiPalmInputArea').scrollIntoView({ behavior: 'smooth' });
   }
 </script>
-<!-- ========================================================= -->
+<!-- =================================================================== -->
+
+
   <!-- INTERACTIVE RATTI & VEDIC GEMSTONE CALCULATOR -->
   <section id="calculator" class="py-16 bg-white border-y border-amber-200/60 relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

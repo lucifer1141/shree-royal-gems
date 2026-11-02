@@ -1975,12 +1975,31 @@ document.addEventListener('keydown', function(e) {
           </div>
           <div>
             <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Payment Method</label>
-            <select id="custPayment" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs focus:outline-none focus:border-brand-gold">
-              <option value="UPI">UPI / QR Code Scan</option>
+            <select id="custPayment" onchange="srgToggleUpiBox()" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-xs font-semibold focus:outline-none focus:border-brand-gold">
+              <option value="UPI">⚡ Instant 1-Tap UPI / QR Code (PhonePe, GPay, Paytm)</option>
               <option value="COD">Cash on Delivery (COD)</option>
               <option value="Showroom">Pay & Collect at Muzaffarpur Showroom</option>
-              <option value="Card">Credit / Debit Card (Razorpay)</option>
             </select>
+          </div>
+        </div>
+
+        <!-- 1-TAP UPI & QR BOX FOR SHREE ROYAL SHOWROOM -->
+        <div id="srgUpiPayBox" class="p-3 bg-amber-50/80 rounded-xl border border-amber-300 text-slate-800 space-y-2">
+          <div class="flex items-center justify-between text-xs font-bold text-amber-950">
+            <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-brand-gold"></i> दुकान का आधिकारिक UPI:</span>
+            <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded text-[11px] font-mono">9065665497@upi</span>
+          </div>
+
+          <!-- Mobile 1-Tap Pay Button -->
+          <a id="srgTapToPayBtn" href="upi://pay?pa=9065665497@upi&pn=Shree%20Royal%20Gems&cu=INR" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-slate-950 font-black text-xs shadow-md hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-mobile-screen-button text-base"></i>
+            <span>📱 Tap to Pay (PhonePe / GPay / Paytm)</span>
+          </a>
+
+          <!-- Desktop Dynamic QR Image -->
+          <div id="srgDesktopQrBox" class="text-center pt-1">
+            <p class="text-[10.5px] text-slate-600 mb-1.5">या किसी भी UPI स्कैनर से यह QR कोड स्कैन करें:</p>
+            <img id="srgDynamicQrImg" src="" alt="Showroom UPI QR Code" class="w-32 h-32 mx-auto rounded-lg border-2 border-amber-300 shadow-sm bg-white p-1">
           </div>
         </div>
 
@@ -1996,10 +2015,54 @@ document.addEventListener('keydown', function(e) {
         </div>
 
         <div class="space-y-2 pt-2">
-          <button type="submit" class="w-full py-3.5 rounded-xl gold-gradient text-slate-900 font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2">
-            <i class="fa-brands fa-whatsapp text-base text-emerald-800"></i>
-            <span>Confirm Order & Send to WhatsApp</span>
+          <button type="submit" id="srgConfirmOrderBtn" class="w-full py-3.5 rounded-xl gold-gradient text-slate-900 font-bold text-xs uppercase tracking-wider shadow-lg hover:brightness-105 active:scale-95 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-circle-check text-base text-emerald-800"></i>
+            <span id="srgSubmitBtnText">✅ Payment Done! Confirm Order (पेमेंट पूरा हो गया)</span>
           </button>
+        </div>
+
+        <script>
+        function srgToggleUpiBox() {
+          const payMode = document.getElementById('custPayment').value;
+          const upiBox = document.getElementById('srgUpiPayBox');
+          const submitTxt = document.getElementById('srgSubmitBtnText');
+          if (payMode === 'UPI') {
+            if (upiBox) upiBox.style.display = 'block';
+            if (submitTxt) submitTxt.textContent = '✅ Payment Done! Confirm Order (पेमेंट पूरा हो गया)';
+          } else {
+            if (upiBox) upiBox.style.display = 'none';
+            if (submitTxt) submitTxt.textContent = 'Confirm Order & Send to WhatsApp';
+          }
+        }
+
+        function srgRefreshUpiLinkAndQr() {
+          const subtotal = (typeof cart !== 'undefined' && cart.length > 0)
+            ? cart.reduce((sum, item) => sum + (item.price * item.qty), 0)
+            : 0;
+          const tax = Math.round(subtotal * 0.03);
+          const disc = (typeof appliedDiscount !== 'undefined') ? appliedDiscount : 0;
+          const grandTotal = Math.max(0, subtotal + tax - disc);
+
+          const upiId = '9065665497@upi';
+          const payee = 'Shree Royal Gems';
+          const note = 'Gemstone Booking';
+
+          const upiUrl = 'upi://pay?pa=' + upiId + '&pn=' + encodeURIComponent(payee) + '&am=' + grandTotal + '&cu=INR&tn=' + encodeURIComponent(note);
+          const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=' + encodeURIComponent(upiUrl);
+
+          const tapBtn = document.getElementById('srgTapToPayBtn');
+          if (tapBtn) tapBtn.href = upiUrl;
+
+          const qrImg = document.getElementById('srgDynamicQrImg');
+          if (qrImg) qrImg.src = qrUrl;
+
+          srgToggleUpiBox();
+        }
+
+        document.getElementById('openCheckoutBtn').addEventListener('click', function() {
+          setTimeout(srgRefreshUpiLinkAndQr, 100);
+        });
+        </script>
         </div>
 
       </form>

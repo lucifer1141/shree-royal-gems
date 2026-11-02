@@ -2968,7 +2968,7 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
     runCalculator();
     handleRouting();
   </script>
- <!-- ==================== SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
+<!-- ==================== SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
 <!-- Firebase Cloud SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -3193,7 +3193,6 @@ if (!firebase.apps.length) {
 }
 const srgDb = firebase.firestore();
 
-// Hook Checkout Form Submission to Save in Cloud Firestore
 // Hook Checkout Form Submission with Event Capture (Guarantees Items & Total are Saved)
 (function hookCloudCheckout() {
   const chkForm = document.getElementById('checkoutForm');
@@ -3370,76 +3369,6 @@ async function srgDeleteOrder(docId) {
     } catch(err) {
       alert("हटाने में समस्या आई: " + err.message);
     }
-  }
-};
-  } else {
-    document.getElementById('srgPinErr').style.display = 'block';
-  }
-}
-function srgLogout() {
-  document.getElementById('srgDashSection').style.display = 'none';
-  document.getElementById('srgPinSection').style.display = 'block';
-  document.getElementById('srgOwnerPin').value = '';
-  srgCloseOwnerModal();
-}
-function srgSwitchTab(tab) {
-  if (tab === 'orders') {
-    document.getElementById('tabBtnOrders').classList.add('active');
-    document.getElementById('tabBtnAdd').classList.remove('active');
-    document.getElementById('srgTabOrders').style.display = 'block';
-    document.getElementById('srgTabAdd').style.display = 'none';
-    srgLoadCloudOrders();
-  } else {
-    document.getElementById('tabBtnAdd').classList.add('active');
-    document.getElementById('tabBtnOrders').classList.remove('active');
-    document.getElementById('srgTabAdd').style.display = 'block';
-    document.getElementById('srgTabOrders').style.display = 'none';
-  }
-}
-
-// Fetch Live Orders from Firestore
-async function srgLoadCloudOrders() {
-  const listEl = document.getElementById('srgCloudOrdersList');
-  listEl.innerHTML = '<p style="text-align:center; color:#94a3b8; font-size:12px; padding:20px 0;">लाइव ऑर्डर्स लोड हो रहे हैं...</p>';
-
-  try {
-    const snapshot = await srgDb.collection("orders").orderBy("createdAt", "desc").limit(30).get();
-    document.getElementById('srgOrderCount').innerText = snapshot.size;
-
-    if (snapshot.empty) {
-      listEl.innerHTML = '<p style="text-align:center; color:#64748b; font-size:13px; padding:30px 0;">अभी कोई ऑर्डर नहीं आया है।</p>';
-      return;
-    }
-
-    let html = '';
-    snapshot.forEach(doc => {
-      const data = doc.data();
-      const itemsStr = (data.items || []).map(i => `${i.title} (${i.weight || ''}) x${i.qty}`).join(', ');
-      html += `
-        <div class="srg-order-card">
-          <div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px solid #1e293b; padding-bottom:4px;">
-            <b style="color:#d4af37;">${data.invoiceNo || 'INV'}</b>
-            <span style="color:#22c55e; font-weight:700;">₹${(data.grandTotal || 0).toLocaleString('en-IN')}</span>
-          </div>
-          <div style="color:#e2e8f0; font-size:12px; margin-bottom:4px;">
-            <b>ग्राहक:</b> ${data.name || ''} | <a href="tel:${data.phone}" style="color:#38bdf8;">📞 ${data.phone || ''}</a>
-          </div>
-          <div style="color:#94a3b8; font-size:11px; margin-bottom:6px;">
-            <b>पता:</b> ${data.address || ''}, PIN: ${data.pincode || ''}
-          </div>
-          <div style="background:#090d16; padding:6px 8px; border-radius:6px; font-size:11px; color:#cbd5e1;">
-            <b>आइटम्स:</b> ${itemsStr}
-          </div>
-          <div style="margin-top:6px; font-size:10px; color:#64748b; display:flex; justify-content:space-between;">
-            <span>पेमेंट: ${data.payment || 'UPI'}</span>
-            <span>तारीख: ${data.createdDate || ''}</span>
-          </div>
-        </div>
-      `;
-    });
-    listEl.innerHTML = html;
-  } catch (err) {
-    listEl.innerHTML = `<p style="color:#ef4444; font-size:12px;">डेटाबेस लोड नहीं हो पाया: ${err.message}</p>`;
   }
 }
 

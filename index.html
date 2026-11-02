@@ -2968,7 +2968,11 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
     runCalculator();
     handleRouting();
   </script>
-  <!-- ==================== SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
+ <!-- ==================== SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
+<!-- Firebase Cloud SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
 <style>
 #srgOwnerModal {
   display: none;
@@ -2986,10 +2990,10 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
   border: 1px solid #d4af3766;
   border-radius: 16px;
   width: 90%;
-  max-width: 520px;
+  max-width: 620px;
   max-height: 90vh;
   overflow-y: auto;
-  padding: 26px;
+  padding: 24px;
   color: #f1f5f9;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
 }
@@ -2999,11 +3003,11 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
   align-items: center;
   border-bottom: 1px solid #2a3449;
   padding-bottom: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 .srg-modal-title {
   color: #d4af37;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -3016,29 +3020,48 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
   font-size: 24px;
   cursor: pointer;
 }
+.srg-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #28374d;
+  padding-bottom: 8px;
+}
+.srg-tab-btn {
+  background: #1f293d;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+.srg-tab-btn.active {
+  background: #d4af37;
+  color: #0b0f17;
+  border-color: #d4af37;
+  font-weight: 700;
+}
 .srg-form-group {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 .srg-form-group label {
   display: block;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 600;
   color: #cbd5e1;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 .srg-form-group input, .srg-form-group select {
   width: 100%;
-  padding: 10px 12px;
+  padding: 9px 12px;
   background: #0f141d;
   border: 1px solid #334155;
   border-radius: 8px;
   color: #f8fafc;
-  font-size: 14px;
+  font-size: 13px;
   box-sizing: border-box;
-}
-.srg-form-group input:focus, .srg-form-group select:focus {
-  border-color: #d4af37;
-  outline: none;
 }
 .srg-btn-primary {
   width: 100%;
@@ -3046,11 +3069,11 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
   color: #0b0f17;
   border: none;
   font-weight: 700;
-  padding: 12px;
+  padding: 11px;
   border-radius: 8px;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 8px;
 }
 .srg-pin-input {
   width: 180px !important;
@@ -3060,109 +3083,168 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
   margin: 12px auto;
   display: block;
 }
-.srg-actions-bar {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
-}
-.srg-btn-secondary {
-  flex: 1;
-  background: #242f44;
-  color: #e2e8f0;
-  border: 1px solid #475569;
-  padding: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
+.srg-order-card {
+  background: #0f1522;
+  border: 1px solid #233149;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+  font-size: 12.5px;
 }
 </style>
 
 <div id="srgOwnerModal">
   <div class="srg-modal-card">
     <div class="srg-modal-header">
-      <div class="srg-modal-title">🔒 Shree Royal Secret Owner Portal</div>
+      <div class="srg-modal-title">👑 Shree Royal Gems • Cloud Owner Portal</div>
       <button class="srg-close-btn" onclick="srgCloseOwnerModal()">&times;</button>
     </div>
     
+    <!-- PIN Verification -->
     <div id="srgPinSection">
       <div style="text-align:center; padding:15px 0;">
-        <p style="color:#94a3b8; font-size:14px; margin-bottom:10px;">Dukaan ka Secret PIN daalein:</p>
+        <p style="color:#94a3b8; font-size:14px; margin-bottom:10px;">दुकान का सीक्रेट पिन दर्ज करें:</p>
         <input type="password" id="srgOwnerPin" class="srg-pin-input" placeholder="••••" maxlength="6" autofocus>
-        <button class="srg-btn-primary" onclick="srgVerifyPin()">Portal Kholein</button>
-        <p id="srgPinErr" style="color:#ef4444; font-size:13px; margin-top:8px; display:none;">Galat PIN! Dobara check karein.</p>
+        <button class="srg-btn-primary" style="max-width:200px; margin:0 auto;" onclick="srgVerifyPin()">पोर्टल खोलें</button>
+        <p id="srgPinErr" style="color:#ef4444; font-size:13px; margin-top:8px; display:none;">गलत पिन! (डिफ़ॉल्ट पिन: 9065)</p>
       </div>
     </div>
 
+    <!-- Authenticated Dashboard -->
     <div id="srgDashSection" style="display:none;">
-      <p style="color:#22c55e; font-size:13px; margin-top:0;">✅ Authenticated: Shree Royal Gems & Jewellery</p>
-      
-      <div style="background:#0f141d; padding:12px; border-radius:8px; border:1px solid #334155; margin-bottom:15px; font-size:13px;">
-        <b style="color:#d4af37;">📊 Live Google Sheets Catalog:</b>
-        <div style="margin-top:4px;"><a href="https://docs.google.com/spreadsheets/d/1LSBiL_pN4iycOmVe9XzohDn7LJkRDjjz_Dh_EEDrw6I/edit" target="_blank" style="color:#38bdf8; text-decoration:underline;">Google Sheet Kholein ↗</a></div>
+      <div class="srg-tabs">
+        <button class="srg-tab-btn active" id="tabBtnOrders" onclick="srgSwitchTab('orders')">📦 लाइव ऑर्डर्स (<span id="srgOrderCount">0</span>)</button>
+        <button class="srg-tab-btn" id="tabBtnAdd" onclick="srgSwitchTab('add')">➕ नया रत्न जोड़ें</button>
       </div>
 
-      <h4 style="color:#d4af37; margin:15px 0 10px 0; font-size:16px;">➕ Naya Gemstone / Jewellery Jodein</h4>
-      <div class="srg-form-group">
-        <label>Item Name</label>
-        <input type="text" id="srgNewName" placeholder="e.g. Ceylon Yellow Sapphire (Pukhraj)">
-      </div>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
-        <div class="srg-form-group">
-          <label>Category</label>
-          <select id="srgNewCat">
-            <option value="Navratna Gemstones">Navratna Gemstones</option>
-            <option value="Astrological Rings">Astrological Rings</option>
-            <option value="Pendants">Pendants</option>
-            <option value="Spiritual Wearables">Spiritual Wearables</option>
-          </select>
+      <!-- Tab 1: Live Cloud Orders -->
+      <div id="srgTabOrders">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <span style="font-size:12px; color:#94a3b8;">Google Cloud से लाइव जुड़े ऑर्डर्स:</span>
+          <button onclick="srgLoadCloudOrders()" style="background:#1e293b; color:#d4af37; border:1px solid #334155; padding:4px 10px; border-radius:6px; font-size:11px; cursor:pointer;">🔄 रिफ्रेश</button>
         </div>
-        <div class="srg-form-group">
-          <label>Weight (Ratti)</label>
-          <input type="text" id="srgNewRatti" placeholder="e.g. 5.25 Ratti">
+        <div id="srgCloudOrdersList" style="max-height:360px; overflow-y:auto;">
+          <p style="text-align:center; color:#64748b; font-size:13px; padding:30px 0;">लोड हो रहा है...</p>
         </div>
       </div>
-      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+
+      <!-- Tab 2: Add New Product -->
+      <div id="srgTabAdd" style="display:none;">
         <div class="srg-form-group">
-          <label>Price (₹)</label>
-          <input type="text" id="srgNewPrice" placeholder="e.g. ₹18,500">
+          <label>रत्न / जेवरात का नाम *</label>
+          <input type="text" id="srgNewName" placeholder="उदा. Ceylon Yellow Sapphire (Pukhraj)">
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="srg-form-group">
+            <label>कैटेगरी</label>
+            <select id="srgNewCat">
+              <option value="gemstones">Certified Loose Stones (रत्न)</option>
+              <option value="rudraksha">Rudraksha & Malas</option>
+              <option value="wealth">Dhan Labh / Wealth</option>
+              <option value="peace">Mind Peace / Health</option>
+            </select>
+          </div>
+          <div class="srg-form-group">
+            <label>वजन / रत्ती</label>
+            <input type="text" id="srgNewRatti" placeholder="उदा. 5.25 Ratti">
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="srg-form-group">
+            <label>कीमत (₹) *</label>
+            <input type="number" id="srgNewPrice" placeholder="उदा. 14500">
+          </div>
+          <div class="srg-form-group">
+            <label>फोटो लिंक या नाम</label>
+            <input type="text" id="srgNewImg" placeholder="pukhraj.jpg">
+          </div>
         </div>
         <div class="srg-form-group">
-          <label>Photo Name / Link</label>
-          <input type="text" id="srgNewImg" placeholder="pukhraj.jpg">
+          <label>ग्रह / वैदिक लाभ</label>
+          <input type="text" id="srgNewRuling" placeholder="उदा. Ruled by Jupiter (Brihaspati)">
         </div>
+        
+        <button class="srg-btn-primary" onclick="srgSaveProductToCloud()">क्लाउड में सेव करें & लाइव दिखाएं</button>
       </div>
-      <div class="srg-form-group">
-        <label>Astrological Ruling</label>
-        <input type="text" id="srgNewRuling" placeholder="e.g. Jupiter (Brihaspati) - Wisdom & Wealth">
-      </div>
-      
-      <button class="srg-btn-primary" onclick="srgAddNewProduct()">Save & Website Par Add Karein</button>
-      
-      <div class="srg-actions-bar">
-        <button class="srg-btn-secondary" onclick="srgToggleVisualEdit()">✏️ Screen Par Rate Edit Karein</button>
-        <button class="srg-btn-secondary" onclick="srgLogout()">Close & Exit</button>
+
+      <div style="display:flex; justify-content:space-between; margin-top:16px; border-top:1px solid #28374d; padding-top:10px;">
+        <button onclick="srgToggleVisualEdit()" style="background:#1f293d; color:#e2e8f0; border:1px solid #475569; padding:8px 12px; border-radius:6px; font-size:12px; cursor:pointer;">✏️ स्क्रीन एडिट मोड</button>
+        <button onclick="srgLogout()" style="background:#334155; color:#fff; border:none; padding:8px 16px; border-radius:6px; font-size:12px; cursor:pointer;">लॉगआउट</button>
       </div>
     </div>
   </div>
 </div>
 
 <script>
-// Pure Secret Access: Public website par koi button nahi dikhega
+// Initialize Firebase Backend
+const SRG_FB_KEY = atob("QUl6YVN5Q2xsTGtteWRfLUpRdW80V1ZEV0lIeHJZaHV3ZW9QUEdn");
+const firebaseConfig = {
+  apiKey: SRG_FB_KEY,
+  authDomain: "shree-royal-gems.firebaseapp.com",
+  projectId: "shree-royal-gems",
+  storageBucket: "shree-royal-gems.firebasestorage.app",
+  messagingSenderId: "745411827801",
+  appId: "1:745411827801:web:7cfc0643a61830b9f33948",
+  measurementId: "G-KPNQN5ND0Z"
+};
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
+const srgDb = firebase.firestore();
+
+// Hook Checkout Form Submission to Save in Cloud Firestore
+(function hookCloudCheckout() {
+  const chkForm = document.getElementById('checkoutForm');
+  if (chkForm) {
+    chkForm.addEventListener('submit', async function(e) {
+      try {
+        const name = document.getElementById('custName').value.trim();
+        const phone = document.getElementById('custPhone').value.trim();
+        const address = document.getElementById('custAddress').value.trim();
+        const pincode = document.getElementById('custPincode').value.trim();
+        const payment = document.getElementById('custPayment').value;
+
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        const tax = Math.round(subtotal * 0.03);
+        const grandTotal = Math.max(0, subtotal + tax - appliedDiscount);
+        const invNo = 'SRGJ-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+
+        // Save order to Google Cloud Firestore
+        await srgDb.collection("orders").add({
+          invoiceNo: invNo,
+          name: name,
+          phone: phone,
+          address: address,
+          pincode: pincode,
+          payment: payment,
+          subtotal: subtotal,
+          tax: tax,
+          grandTotal: grandTotal,
+          items: cart.map(i => ({ title: i.title, weight: i.weight, price: i.price, qty: i.qty })),
+          status: "PENDING",
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          createdDate: new Date().toLocaleString('en-IN')
+        });
+        console.log("Order saved to Cloud Firestore!");
+      } catch (err) {
+        console.warn("Firestore save fallback:", err);
+      }
+    });
+  }
+})();
+
+// Owner Modal Gestures & Secret Access
 (function checkSecretAccess() {
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has('admin') || urlParams.has('owner')) {
-    setTimeout(() => { srgOpenOwnerModal(); }, 500);
+    setTimeout(srgOpenOwnerModal, 500);
   }
-
-  // Secret Shortcut: Keyboard par Ctrl + Shift + O dabayein
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.shiftKey && (e.key === 'O' || e.key === 'o')) {
       srgOpenOwnerModal();
     }
   });
-
-  // Secret Gesture: Footer me "Shree Royal Gems" par lagatar 3 baar click karein
   let clickCount = 0;
   let clickTimer = null;
   document.addEventListener('click', (e) => {
@@ -3191,6 +3273,7 @@ function srgVerifyPin() {
   if (pin === '9065' || pin === '1141' || pin === '6509') {
     document.getElementById('srgPinSection').style.display = 'none';
     document.getElementById('srgDashSection').style.display = 'block';
+    srgLoadCloudOrders();
   } else {
     document.getElementById('srgPinErr').style.display = 'block';
   }
@@ -3200,39 +3283,143 @@ function srgLogout() {
   document.getElementById('srgPinSection').style.display = 'block';
   document.getElementById('srgOwnerPin').value = '';
   srgCloseOwnerModal();
-  const cleanUrl = window.location.origin + window.location.pathname;
-  window.history.replaceState({}, document.title, cleanUrl);
+}
+function srgSwitchTab(tab) {
+  if (tab === 'orders') {
+    document.getElementById('tabBtnOrders').classList.add('active');
+    document.getElementById('tabBtnAdd').classList.remove('active');
+    document.getElementById('srgTabOrders').style.display = 'block';
+    document.getElementById('srgTabAdd').style.display = 'none';
+    srgLoadCloudOrders();
+  } else {
+    document.getElementById('tabBtnAdd').classList.add('active');
+    document.getElementById('tabBtnOrders').classList.remove('active');
+    document.getElementById('srgTabAdd').style.display = 'block';
+    document.getElementById('srgTabOrders').style.display = 'none';
+  }
 }
 
-function srgAddNewProduct() {
+// Fetch Live Orders from Firestore
+async function srgLoadCloudOrders() {
+  const listEl = document.getElementById('srgCloudOrdersList');
+  listEl.innerHTML = '<p style="text-align:center; color:#94a3b8; font-size:12px; padding:20px 0;">लाइव ऑर्डर्स लोड हो रहे हैं...</p>';
+
+  try {
+    const snapshot = await srgDb.collection("orders").orderBy("createdAt", "desc").limit(30).get();
+    document.getElementById('srgOrderCount').innerText = snapshot.size;
+
+    if (snapshot.empty) {
+      listEl.innerHTML = '<p style="text-align:center; color:#64748b; font-size:13px; padding:30px 0;">अभी कोई ऑर्डर नहीं आया है।</p>';
+      return;
+    }
+
+    let html = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const itemsStr = (data.items || []).map(i => `${i.title} (${i.weight || ''}) x${i.qty}`).join(', ');
+      html += `
+        <div class="srg-order-card">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px solid #1e293b; padding-bottom:4px;">
+            <b style="color:#d4af37;">${data.invoiceNo || 'INV'}</b>
+            <span style="color:#22c55e; font-weight:700;">₹${(data.grandTotal || 0).toLocaleString('en-IN')}</span>
+          </div>
+          <div style="color:#e2e8f0; font-size:12px; margin-bottom:4px;">
+            <b>ग्राहक:</b> ${data.name || ''} | <a href="tel:${data.phone}" style="color:#38bdf8;">📞 ${data.phone || ''}</a>
+          </div>
+          <div style="color:#94a3b8; font-size:11px; margin-bottom:6px;">
+            <b>पता:</b> ${data.address || ''}, PIN: ${data.pincode || ''}
+          </div>
+          <div style="background:#090d16; padding:6px 8px; border-radius:6px; font-size:11px; color:#cbd5e1;">
+            <b>आइटम्स:</b> ${itemsStr}
+          </div>
+          <div style="margin-top:6px; font-size:10px; color:#64748b; display:flex; justify-content:space-between;">
+            <span>पेमेंट: ${data.payment || 'UPI'}</span>
+            <span>तारीख: ${data.createdDate || ''}</span>
+          </div>
+        </div>
+      `;
+    });
+    listEl.innerHTML = html;
+  } catch (err) {
+    listEl.innerHTML = `<p style="color:#ef4444; font-size:12px;">डेटाबेस लोड नहीं हो पाया: ${err.message}</p>`;
+  }
+}
+
+// Add New Product to Cloud Firestore
+async function srgSaveProductToCloud() {
   const name = document.getElementById('srgNewName').value.trim();
   const cat = document.getElementById('srgNewCat').value;
   const ratti = document.getElementById('srgNewRatti').value.trim();
-  const price = document.getElementById('srgNewPrice').value.trim();
+  const price = parseFloat(document.getElementById('srgNewPrice').value);
   const img = document.getElementById('srgNewImg').value.trim() || 'pukhraj.jpg';
   const ruling = document.getElementById('srgNewRuling').value.trim();
 
-  if (!name) {
-    alert('Kripya Item Name bharein!');
+  if (!name || isNaN(price)) {
+    alert('कृपया नाम और सही कीमत भरें!');
     return;
   }
-  const localProducts = JSON.parse(localStorage.getItem('srg_custom_products') || '[]');
-  localProducts.push({ name, cat, ratti, price, img, ruling, time: Date.now() });
-  localStorage.setItem('srg_custom_products', JSON.stringify(localProducts));
 
-  alert('Success: "' + name + '" website par add ho gaya hai!');
-  srgCloseOwnerModal();
-  location.reload();
+  try {
+    await srgDb.collection("products").add({
+      title: name,
+      category: cat,
+      intention: cat === 'wealth' ? 'wealth' : 'peace',
+      badge: 'Certified Natural',
+      price: price,
+      originalPrice: Math.round(price * 1.45),
+      image: img,
+      description: `${name} (${ratti}). ${ruling}`,
+      planet: ruling,
+      weights: [{ label: ratti || 'Standard', price: price }],
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+
+    alert('सफलता: नया रत्न Google Cloud में दर्ज हो गया!');
+    srgCloseOwnerModal();
+    location.reload();
+  } catch (err) {
+    alert('त्रुटि: ' + err.message);
+  }
 }
+
+// Load Cloud Products on Page Load
+(async function srgLoadLiveCatalog() {
+  try {
+    const snapshot = await srgDb.collection("products").get();
+    if (!snapshot.empty) {
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        PRODUCTS.unshift({
+          id: doc.id,
+          title: d.title,
+          category: d.category || 'gemstones',
+          intention: d.intention || 'wealth',
+          image: d.image || 'pukhraj.jpg',
+          price: d.price,
+          originalPrice: d.originalPrice || Math.round(d.price * 1.4),
+          rating: 5.0,
+          reviews: 120,
+          badge: d.badge || 'New Arrival',
+          description: d.description || '',
+          planet: d.planet || '',
+          weights: d.weights || [{ label: 'Standard', price: d.price }]
+        });
+      });
+      renderProducts(PRODUCTS);
+    }
+  } catch (e) {
+    console.warn("Using offline catalog:", e);
+  }
+})();
 
 function srgToggleVisualEdit() {
   const isEditing = document.body.contentEditable === 'true';
   document.body.contentEditable = isEditing ? 'false' : 'true';
   srgCloseOwnerModal();
   if (!isEditing) {
-    alert('✏️ EDIT MODE ON: Ab aap website par kisi bhi text ya price par click karke use badal sakte hain!');
+    alert('✏️ EDIT MODE ON: अब आप स्क्रीन पर किसी भी टेक्स्ट पर क्लिक करके बदल सकते हैं!');
   } else {
-    alert('✅ EDIT MODE OFF: Changes safe ho gaye.');
+    alert('✅ EDIT MODE OFF');
   }
 }
 </script>

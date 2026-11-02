@@ -376,6 +376,13 @@ document.addEventListener('keydown', function(e) {
             <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i> Chat with Sevak
           </a>
 
+          <!-- Customer Account / Login Button -->
+          <button id="srgCustomerAuthBtn" onclick="srgOpenCustomerModal()" class="relative p-2 rounded-full hover:bg-amber-50 text-slate-800 transition-colors flex items-center gap-1.5 text-xs font-bold" aria-label="Customer Account">
+            <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-900 border border-brand-gold/40 flex items-center justify-center">
+              <i class="fa-solid fa-user text-xs"></i>
+            </div>
+            <span id="srgAuthBtnText" class="hidden md:inline text-slate-800">लॉगिन</span>
+          </button>
           <!-- Cart Button -->
           <button id="cartBtn" class="relative p-2.5 rounded-full hover:bg-amber-50 text-slate-800 transition-colors" aria-label="View Shopping Bag">
             <i class="fa-solid fa-bag-shopping text-xl text-slate-800"></i>
@@ -3176,6 +3183,434 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
     runCalculator();
     handleRouting();
   </script>
+  <!-- ==================== SHREE ROYAL GEMS - CUSTOMER ACCOUNT & ORDERS SUITE ==================== -->
+<style>
+#srgCustomerModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 12, 18, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 9999999;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.srg-c-card {
+  background: #141b27;
+  border: 1px solid #d4af3766;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 24px;
+  color: #f1f5f9;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+.srg-c-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #28374d;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.srg-c-title {
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.srg-c-close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 24px;
+  cursor: pointer;
+}
+.srg-c-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #28374d;
+  padding-bottom: 8px;
+}
+.srg-c-tab-btn {
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  flex: 1;
+}
+.srg-c-tab-btn.active {
+  background: #d4af37;
+  color: #0b0f17;
+  border-color: #d4af37;
+  font-weight: 700;
+}
+.srg-c-form-group {
+  margin-bottom: 12px;
+}
+.srg-c-form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 4px;
+}
+.srg-c-form-group input, .srg-c-form-group textarea {
+  width: 100%;
+  padding: 9px 12px;
+  background: #0d121c;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: #f8fafc;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+.srg-c-btn-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  color: #0b0f17;
+  border: none;
+  font-weight: 700;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.srg-c-order-box {
+  background: #0d121c;
+  border: 1px solid #233149;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+</style>
+
+<div id="srgCustomerModal">
+  <div class="srg-c-card">
+    <div class="srg-c-header">
+      <div class="srg-c-title" id="srgCModalHeading">👤 श्री रॉयल ग्राहक खाता (Customer Account)</div>
+      <button class="srg-c-close" onclick="srgCloseCustomerModal()">&times;</button>
+    </div>
+
+    <!-- 1. NOT LOGGED IN: TABS (LOGIN / REGISTER) -->
+    <div id="srgCAuthViews">
+      <div class="srg-c-tabs">
+        <button class="srg-c-tab-btn active" id="srgTabBtnLogin" onclick="srgSwitchAuthTab('login')">🔑 लॉगिन (Login)</button>
+        <button class="srg-c-tab-btn" id="srgTabBtnReg" onclick="srgSwitchAuthTab('register')">📝 नया खाता (Register)</button>
+      </div>
+
+      <!-- Tab A: Login -->
+      <div id="srgViewLogin">
+        <div class="srg-c-form-group">
+          <label>मोबाइल नंबर (WhatsApp Number) *</label>
+          <input type="tel" id="srgLoginPhone" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10">
+        </div>
+        <div class="srg-c-form-group">
+          <label>पासवर्ड या 4-अंकों का पिन (PIN) *</label>
+          <input type="password" id="srgLoginPin" placeholder="••••" maxlength="6">
+        </div>
+        <button class="srg-c-btn-submit" onclick="srgCustomerLogin()">लॉगिन करें (Login)</button>
+        <p style="text-align:center; font-size:12px; color:#94a3b8; margin-top:12px;">
+          खाता नहीं है? <a href="javascript:void(0)" onclick="srgSwitchAuthTab('register')" style="color:#d4af37; font-weight:700;">यहाँ नया खाता बनाएँ</a>
+        </p>
+      </div>
+
+      <!-- Tab B: Register -->
+      <div id="srgViewRegister" style="display:none;">
+        <div class="srg-c-form-group">
+          <label>पूरा नाम (Full Name) *</label>
+          <input type="text" id="srgRegName" placeholder="उदा. राहुल शर्मा">
+        </div>
+        <div class="srg-c-form-group">
+          <label>मोबाइल नंबर (WhatsApp Number) *</label>
+          <input type="tel" id="srgRegPhone" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10">
+        </div>
+        <div class="srg-c-form-group">
+          <label>डिलीवरी का पता (Delivery Address) *</label>
+          <textarea id="srgRegAddress" rows="2" placeholder="मकान नं., मोहल्ला/सड़क, शहर"></textarea>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+          <div class="srg-c-form-group">
+            <label>पिन कोड (PIN Code) *</label>
+            <input type="text" id="srgRegPincode" placeholder="उदा. 842002" maxlength="6">
+          </div>
+          <div class="srg-c-form-group">
+            <label>पासवर्ड / पिन चुनें *</label>
+            <input type="password" id="srgRegPin" placeholder="••••" maxlength="6">
+          </div>
+        </div>
+        <button class="srg-c-btn-submit" onclick="srgCustomerRegister()">खाता बनाएँ (Register Account)</button>
+      </div>
+    </div>
+
+    <!-- 2. LOGGED IN: PROFILE & ORDERS VIEW -->
+    <div id="srgCProfileView" style="display:none;">
+      <div style="background:#0b1019; border:1px solid #d4af3744; border-radius:12px; padding:14px; margin-bottom:14px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h4 style="margin:0; font-size:16px; color:#ffffff;" id="srgProfName">ग्राहक का नाम</h4>
+            <span style="font-size:12px; color:#94a3b8;" id="srgProfPhone">📞 9876543210</span>
+          </div>
+          <span style="background:rgba(16,185,129,0.15); color:#10b981; border:1px solid #10b98144; padding:3px 8px; border-radius:12px; font-size:11px; font-weight:700;">
+            ✓ सत्यापित ग्राहक
+          </span>
+        </div>
+        <div style="margin-top:8px; font-size:11.5px; color:#cbd5e1; border-top:1px solid #1a2538; padding-top:6px;" id="srgProfAddress">
+          पता: मुजफ्फरपुर
+        </div>
+      </div>
+
+      <!-- Customer Orders History -->
+      <div style="margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
+        <h4 style="margin:0; font-size:14px; color:#d4af37;">📦 आपके ऑर्डर्स (My Purchase History):</h4>
+        <button onclick="srgLoadCustomerOrders()" style="background:#1e293b; color:#d4af37; border:1px solid #334155; padding:3px 8px; border-radius:4px; font-size:11px; cursor:pointer;">🔄 रिफ्रेश</button>
+      </div>
+
+      <div id="srgCustomerOrdersList" style="max-height:240px; overflow-y:auto; margin-bottom:14px;">
+        <p style="text-align:center; color:#94a3b8; font-size:12px; padding:20px 0;">ऑर्डर्स लोड हो रहे हैं...</p>
+      </div>
+
+      <button onclick="srgCustomerLogout()" style="width:100%; background:#1f293d; color:#ef4444; border:1px solid #334155; padding:9px; border-radius:8px; font-size:12px; font-weight:700; cursor:pointer;">
+        🚪 लॉगआउट (Logout)
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Customer Auth State Manager
+function srgGetLoggedInCustomer() {
+  try {
+    return JSON.parse(localStorage.getItem('srg_customer_user')) || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function srgUpdateNavbarAuthUI() {
+  const user = srgGetLoggedInCustomer();
+  const authTxt = document.getElementById('srgAuthBtnText');
+  const mobTxt = document.getElementById('srgMobileAuthText');
+
+  if (user && user.name) {
+    const firstName = user.name.split(' ')[0];
+    if (authTxt) authTxt.textContent = firstName;
+    if (mobTxt) mobTxt.textContent = `👤 ${firstName} जी (खाता / ऑर्डर्स)`;
+  } else {
+    if (authTxt) authTxt.textContent = "लॉगिन";
+    if (mobTxt) mobTxt.textContent = "ग्राहक खाता (Login / Register)";
+  }
+}
+
+function srgOpenCustomerModal() {
+  const user = srgGetLoggedInCustomer();
+  document.getElementById('srgCustomerModal').style.display = 'flex';
+
+  if (user && user.phone) {
+    document.getElementById('srgCAuthViews').style.display = 'none';
+    document.getElementById('srgCProfileView').style.display = 'block';
+    document.getElementById('srgCModalHeading').textContent = `👑 स्वागत है, ${user.name} जी`;
+    document.getElementById('srgProfName').textContent = user.name;
+    document.getElementById('srgProfPhone').textContent = `📞 ${user.phone}`;
+    document.getElementById('srgProfAddress').textContent = `📍 डिलीवरी का पता: ${user.address || ''}, PIN: ${user.pincode || ''}`;
+    srgLoadCustomerOrders();
+  } else {
+    document.getElementById('srgCAuthViews').style.display = 'block';
+    document.getElementById('srgCProfileView').style.display = 'none';
+    document.getElementById('srgCModalHeading').textContent = "👤 श्री रॉयल ग्राहक खाता (Customer Account)";
+    srgSwitchAuthTab('login');
+  }
+}
+
+function srgCloseCustomerModal() {
+  document.getElementById('srgCustomerModal').style.display = 'none';
+}
+
+function srgSwitchAuthTab(tab) {
+  if (tab === 'login') {
+    document.getElementById('srgTabBtnLogin').classList.add('active');
+    document.getElementById('srgTabBtnReg').classList.remove('active');
+    document.getElementById('srgViewLogin').style.display = 'block';
+    document.getElementById('srgViewRegister').style.display = 'none';
+  } else {
+    document.getElementById('srgTabBtnReg').classList.add('active');
+    document.getElementById('srgTabBtnLogin').classList.remove('active');
+    document.getElementById('srgViewRegister').style.display = 'block';
+    document.getElementById('srgViewLogin').style.display = 'none';
+  }
+}
+
+// 1. Customer Register
+async function srgCustomerRegister() {
+  const name = document.getElementById('srgRegName').value.trim();
+  const phone = document.getElementById('srgRegPhone').value.trim();
+  const address = document.getElementById('srgRegAddress').value.trim();
+  const pincode = document.getElementById('srgRegPincode').value.trim();
+  const pin = document.getElementById('srgRegPin').value.trim();
+
+  if (!name || !phone || phone.length < 10 || !address || !pin) {
+    alert("कृपया नाम, 10 अंकों का मोबाइल नंबर, पता और पिन दर्ज करें!");
+    return;
+  }
+
+  const customerObj = {
+    name: name,
+    phone: phone,
+    address: address,
+    pincode: pincode,
+    pin: pin,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+  };
+
+  try {
+    if (typeof srgDb !== 'undefined') {
+      await srgDb.collection("customers").doc(phone).set(customerObj);
+    }
+    localStorage.setItem('srg_customer_user', JSON.stringify({
+      name: name,
+      phone: phone,
+      address: address,
+      pincode: pincode
+    }));
+
+    srgAutoFillCheckout();
+    srgUpdateNavbarAuthUI();
+    alert(`बधाई ${name} जी! आपका श्री रॉयल ग्राहक खाता तैयार हो गया है।`);
+    srgOpenCustomerModal();
+  } catch (err) {
+    alert("खाता बनाने में समस्या आई: " + err.message);
+  }
+}
+
+// 2. Customer Login
+async function srgCustomerLogin() {
+  const phone = document.getElementById('srgLoginPhone').value.trim();
+  const pin = document.getElementById('srgLoginPin').value.trim();
+
+  if (!phone || !pin) {
+    alert("कृपया अपना मोबाइल नंबर और पिन दर्ज करें!");
+    return;
+  }
+
+  try {
+    if (typeof srgDb !== 'undefined') {
+      const doc = await srgDb.collection("customers").doc(phone).get();
+      if (doc.exists) {
+        const data = doc.data();
+        if (data.pin === pin) {
+          localStorage.setItem('srg_customer_user', JSON.stringify({
+            name: data.name,
+            phone: data.phone,
+            address: data.address,
+            pincode: data.pincode
+          }));
+          srgAutoFillCheckout();
+          srgUpdateNavbarAuthUI();
+          srgOpenCustomerModal();
+          return;
+        } else {
+          alert("गलत पिन! कृपया सही पिन दर्ज करें।");
+          return;
+        }
+      }
+    }
+    alert("यह मोबाइल नंबर पंजीकृत नहीं है। कृपया 'नया खाता' टैब में जाकर रजिस्टर करें!");
+  } catch (err) {
+    alert("लॉगिन में समस्या आई: " + err.message);
+  }
+}
+
+function srgCustomerLogout() {
+  localStorage.removeItem('srg_customer_user');
+  srgUpdateNavbarAuthUI();
+  srgOpenCustomerModal();
+}
+
+// 3. Load Customer Orders History from Firestore
+async function srgLoadCustomerOrders() {
+  const user = srgGetLoggedInCustomer();
+  const listEl = document.getElementById('srgCustomerOrdersList');
+  if (!user || !user.phone || !listEl) return;
+
+  listEl.innerHTML = '<p style="text-align:center; color:#94a3b8; font-size:12px; padding:15px 0;">आपके ऑर्डर्स लोड हो रहे हैं...</p>';
+
+  try {
+    if (typeof srgDb !== 'undefined') {
+      const snapshot = await srgDb.collection("orders").where("phone", "==", user.phone).get();
+      if (snapshot.empty) {
+        listEl.innerHTML = '<p style="text-align:center; color:#64748b; font-size:12px; padding:20px 0;">अभी आपका कोई ऑर्डर दर्ज नहीं है।</p>';
+        return;
+      }
+
+      let html = '';
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        const itemsStr = (d.items || []).map(i => `${i.title} (${i.weight || ''}) x${i.qty}`).join(', ');
+        const statusColor = d.status === 'DELIVERED' ? '#10b981' : (d.status === 'DISPATCHED' ? '#38bdf8' : '#f59e0b');
+
+        html += `
+          <div class="srg-c-order-box">
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+              <b style="color:#d4af37;">${d.invoiceNo || 'INV'}</b>
+              <span style="color:${statusColor}; font-weight:700;">● ${d.status || 'PENDING'}</span>
+            </div>
+            <div style="font-size:11px; color:#cbd5e1; margin-bottom:4px;">
+              <b>सामान:</b> ${itemsStr}
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:10.5px; color:#94a3b8; border-top:1px solid #1e293b; padding-top:4px;">
+              <span>कुल रकम: <b style="color:#22c55e;">₹${(d.grandTotal || 0).toLocaleString('en-IN')}</b></span>
+              <span>तारीख: ${d.createdDate || ''}</span>
+            </div>
+          </div>
+        `;
+      });
+      listEl.innerHTML = html;
+    }
+  } catch (err) {
+    listEl.innerHTML = `<p style="color:#ef4444; font-size:11px;">ऑर्डर्स लोड करने में त्रुटि: ${err.message}</p>`;
+  }
+}
+
+// 4. Auto-Fill Checkout Form if Customer is Logged In
+function srgAutoFillCheckout() {
+  const user = srgGetLoggedInCustomer();
+  if (user) {
+    const elName = document.getElementById('custName');
+    const elPhone = document.getElementById('custPhone');
+    const elAddr = document.getElementById('custAddress');
+    const elPin = document.getElementById('custPincode');
+
+    if (elName && !elName.value) elName.value = user.name || '';
+    if (elPhone && !elPhone.value) elPhone.value = user.phone || '';
+    if (elAddr && !elAddr.value) elAddr.value = user.address || '';
+    if (elPin && !elPin.value) elPin.value = user.pincode || '';
+  }
+}
+
+// Auto Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  srgUpdateNavbarAuthUI();
+  srgAutoFillCheckout();
+});
+setTimeout(function() {
+  srgUpdateNavbarAuthUI();
+  srgAutoFillCheckout();
+}, 600);
+</script>
+<!-- ==================== END CUSTOMER SUITE ==================== -->
 <!-- ==================== SHREE ROYAL GEMS SECRET ADMIN (INVISIBLE) ==================== -->
 <!-- Firebase Cloud SDK -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>

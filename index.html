@@ -3194,9 +3194,11 @@ if (!firebase.apps.length) {
 const srgDb = firebase.firestore();
 
 // Hook Checkout Form Submission to Save in Cloud Firestore
+// Hook Checkout Form Submission with Event Capture (Guarantees Items & Total are Saved)
 (function hookCloudCheckout() {
   const chkForm = document.getElementById('checkoutForm');
   if (chkForm) {
+    // True enables Capture Phase (Runs BEFORE cart is cleared!)
     chkForm.addEventListener('submit', async function(e) {
       try {
         const name = document.getElementById('custName').value.trim();
@@ -3205,32 +3207,38 @@ const srgDb = firebase.firestore();
         const pincode = document.getElementById('custPincode').value.trim();
         const payment = document.getElementById('custPayment').value;
 
-        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        // Snapshot cart items and calculations before cart is emptied
+        const orderItems = (cart && cart.length > 0) 
+          ? cart.map(i => ({ title: i.title, weight: i.weight || '', price: i.price, qty: i.qty }))
+          : [];
+
+        const subtotal = orderItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
         const tax = Math.round(subtotal * 0.03);
-        const grandTotal = Math.max(0, subtotal + tax - appliedDiscount);
+        const grandTotal = Math.max(0, subtotal + tax - (typeof appliedDiscount !== 'undefined' ? appliedDiscount : 0));
         const invNo = 'SRGJ-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
 
-        // Save order to Google Cloud Firestore
-        await srgDb.collection("orders").add({
-          invoiceNo: invNo,
-          name: name,
-          phone: phone,
-          address: address,
-          pincode: pincode,
-          payment: payment,
-          subtotal: subtotal,
-          tax: tax,
-          grandTotal: grandTotal,
-          items: cart.map(i => ({ title: i.title, weight: i.weight, price: i.price, qty: i.qty })),
-          status: "PENDING",
-          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-          createdDate: new Date().toLocaleString('en-IN')
-        });
-        console.log("Order saved to Cloud Firestore!");
+        if (orderItems.length > 0 || name) {
+          await srgDb.collection("orders").add({
+            invoiceNo: invNo,
+            name: name,
+            phone: phone,
+            address: address,
+            pincode: pincode,
+            payment: payment,
+            subtotal: subtotal,
+            tax: tax,
+            grandTotal: grandTotal,
+            items: orderItems,
+            status: "PENDING",
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            createdDate: new Date().toLocaleString('en-IN')
+          });
+          console.log("✓ Cloud Firestore: Order snapshot saved with full items & total!");
+        }
       } catch (err) {
-        console.warn("Firestore save fallback:", err);
+        console.warn("Firestore save error:", err);
       }
-    });
+    }, true);
   }
 })();
 
@@ -3274,6 +3282,96 @@ function srgVerifyPin() {
     document.getElementById('srgPinSection').style.display = 'none';
     document.getElementById('srgDashSection').style.display = 'block';
     srgLoadCloudOrders();
+  } else {
+    document.getElementById('srgPinErr').style.display = 'block';
+  }
+}
+function srgLogout() {
+  document.getElementById('srgDashSection').style.display = 'none';
+  document.getElementById('srgPinSection').style.display = 'block';
+  document.getElementById('srgOwnerPin').value = '';
+  srgCloseOwnerModal();
+}
+function srgSwitchTab(tab) {
+  if (tab === 'orders') {
+    document.getElementById('tabBtnOrders').classList.add('active');
+    document.getElementById('tabBtnAdd').classList.remove('active');
+    document.getElementById('srgTabOrders').style.display = 'block';
+    document.getElementById('srgTabAdd').style.display = 'none';
+    srgLoadCloudOrders();
+  } else {
+    document.getElementById('tabBtnAdd').classList.add('active');
+    document.getElementById('tabBtnOrders').classList.remove('active');
+    document.getElementById('srgTabAdd').style.display = 'block';
+    document.getElementById('srgTabOrders').style.display = 'none';
+  }
+}
+
+// Fetch Live Orders from Firestore (with Delete and Status Support)
+async function srgLoadCloudOrders() {
+  const listEl = document.getElementById('srgCloudOrdersList');
+  listEl.innerHTML = '<p style="text-align:center; color:#94a3b8; font-size:12px; padding:20px 0;">लाइव ऑर्डर्स लोड हो रहे हैं...</p>';
+
+  try {
+    const snapshot = await srgDb.collection("orders").orderBy("createdAt", "desc").limit(30).get();
+    document.getElementById('srgOrderCount').innerText = snapshot.size;
+
+    if (snapshot.empty) {
+      listEl.innerHTML = '<p style="text-align:center; color:#64748b; font-size:13px; padding:30px 0;">अभी कोई ऑर्डर नहीं आया है।</p>';
+      return;
+    }
+
+    let html = '';
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const docId = doc.id;
+      const itemsStr = (data.items && data.items.length > 0)
+        ? data.items.map(i => `<b>${i.title}</b> (${i.weight || ''}) x${i.qty} - ₹${(i.price * i.qty).toLocaleString('en-IN')}`).join('<br>')
+        : '<span style="color:#f59e0b;">(टेस्ट ऑर्डर / कोई आइटम नहीं)</span>';
+
+      html += `
+        <div class="srg-order-card" id="order_${docId}">
+          <div style="display:flex; justify-content:space-between; margin-bottom:6px; border-bottom:1px solid #1e293b; padding-bottom:4px;">
+            <b style="color:#d4af37;">${data.invoiceNo || 'INV'}</b>
+            <span style="color:#22c55e; font-weight:700; font-size:14px;">₹${(data.grandTotal || 0).toLocaleString('en-IN')}</span>
+          </div>
+          <div style="color:#e2e8f0; font-size:12px; margin-bottom:4px;">
+            <b>ग्राहक:</b> ${data.name || ''} | <a href="tel:${data.phone}" style="color:#38bdf8; text-decoration:none;">📞 ${data.phone || ''}</a>
+          </div>
+          <div style="color:#94a3b8; font-size:11px; margin-bottom:6px;">
+            <b>पता:</b> ${data.address || ''}, PIN: ${data.pincode || ''}
+          </div>
+          <div style="background:#090d16; padding:8px 10px; border-radius:6px; font-size:11px; color:#cbd5e1; line-height:1.6; border:1px solid #1e293b;">
+            <span style="color:#94a3b8; display:block; font-size:10px; margin-bottom:2px;">ऑर्डर किए गए रत्न/सामान:</span>
+            ${itemsStr}
+          </div>
+          <div style="margin-top:8px; font-size:10px; color:#64748b; display:flex; justify-content:space-between; align-items:center;">
+            <span>पेमेंट: <b>${data.payment || 'UPI'}</b> | ${data.createdDate || ''}</span>
+            <button onclick="srgDeleteOrder('${docId}')" style="background:#ef444422; color:#ef4444; border:1px solid #ef444444; padding:3px 8px; border-radius:4px; font-size:10px; cursor:pointer;">🗑️ हटाएं</button>
+          </div>
+        </div>
+      `;
+    });
+    listEl.innerHTML = html;
+  } catch (err) {
+    listEl.innerHTML = `<p style="color:#ef4444; font-size:12px;">डेटाबेस लोड नहीं हो पाया: ${err.message}</p>`;
+  }
+}
+
+// Delete an Order from Cloud Firestore
+async function srgDeleteOrder(docId) {
+  if (confirm("क्या आप वाकई इस ऑर्डर को हटाना चाहते हैं?")) {
+    try {
+      await srgDb.collection("orders").doc(docId).delete();
+      const el = document.getElementById("order_" + docId);
+      if (el) el.remove();
+      const countEl = document.getElementById('srgOrderCount');
+      countEl.innerText = Math.max(0, parseInt(countEl.innerText || 1) - 1);
+    } catch(err) {
+      alert("हटाने में समस्या आई: " + err.message);
+    }
+  }
+};
   } else {
     document.getElementById('srgPinErr').style.display = 'block';
   }

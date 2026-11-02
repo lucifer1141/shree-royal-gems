@@ -383,6 +383,11 @@ document.addEventListener('keydown', function(e) {
             </div>
             <span id="srgAuthBtnText" class="hidden md:inline text-slate-800">लॉगिन</span>
           </button>
+          <!-- Wishlist Button -->
+          <button id="wishlistBtn" onclick="openWishlist()" class="relative p-2.5 rounded-full hover:bg-amber-50 text-slate-800 transition-colors" aria-label="View Saved Wishlist">
+            <i class="fa-regular fa-heart text-xl text-rose-600"></i>
+            <span id="wishlistCount" class="absolute top-1 right-1 w-5 h-5 rounded-full bg-rose-600 text-white text-[11px] font-bold flex items-center justify-center shadow-sm">0</span>
+          </button>
           <!-- Cart Button -->
           <button id="cartBtn" class="relative p-2.5 rounded-full hover:bg-amber-50 text-slate-800 transition-colors" aria-label="View Shopping Bag">
             <i class="fa-solid fa-bag-shopping text-xl text-slate-800"></i>
@@ -539,8 +544,25 @@ document.addEventListener('keydown', function(e) {
           <h3 class="text-xl sm:text-2xl font-royal font-bold text-slate-900">Featured Bestsellers</h3>
           <p class="text-slate-500 text-xs mt-0.5">Handpicked for authenticity, brilliant cut, and maximum planetary beneficence.</p>
         </div>
-        <div class="text-xs text-slate-600 font-medium mt-3 sm:mt-0 flex items-center gap-1">
-          <span id="resultsCount">Showing 8 verified products</span>
+        <!-- Sort & Budget Filters -->
+        <div class="flex flex-wrap items-center gap-2 mt-3 sm:mt-0">
+          <span id="resultsCount" class="text-xs text-slate-500 font-medium mr-1 hidden md:inline">Showing products</span>
+
+          <!-- Price Range Filter -->
+          <select id="priceFilter" onchange="applyFilters()" class="px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-semibold text-slate-700 focus:outline-none focus:border-brand-gold cursor-pointer">
+            <option value="all">💰 All Budgets (सभी कीमतें)</option>
+            <option value="under1k">Under ₹1,000 (बजट व रुद्राक्ष)</option>
+            <option value="1k-10k">₹1,000 – ₹10,000 (जेवरात व माला)</option>
+            <option value="above10k">Above ₹10,000 (प्रमाणित रत्न)</option>
+          </select>
+
+          <!-- Sorting Filter -->
+          <select id="sortBy" onchange="applyFilters()" class="px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-xs font-semibold text-slate-700 focus:outline-none focus:border-brand-gold cursor-pointer">
+            <option value="featured">✨ Bestsellers (लोकप्रिय)</option>
+            <option value="price-asc">Price: Low to High (सस्ता से महंगा)</option>
+            <option value="price-desc">Price: High to Low (महंगा से सस्ता)</option>
+            <option value="rating">Top Rated (सर्वोच्च रेटिंग)</option>
+          </select>
         </div>
       </div>
 
@@ -3246,6 +3268,327 @@ setInterval(refreshMetalRates, 15 * 60 * 1000);
     runCalculator();
     handleRouting();
   </script>
+  <!-- ==================== SHREE ROYAL GEMS - WISHLIST & FLOATING CONCIERGE SUITE ==================== -->
+<style>
+/* Floating Showroom Concierge Widget */
+#srgFloatingConcierge {
+  position: fixed;
+  right: 18px;
+  bottom: 24px;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  font-family: inherit;
+}
+@media (max-width: 768px) {
+  #srgFloatingConcierge {
+    bottom: 68px; /* Above mobile sticky bottom bar */
+    right: 14px;
+  }
+}
+.srg-concierge-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: 2px solid #34d399;
+  padding: 12px 18px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+.srg-concierge-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.65);
+}
+.srg-concierge-menu {
+  background: #141b27;
+  border: 1px solid #d4af3766;
+  border-radius: 14px;
+  padding: 14px;
+  width: 280px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85);
+  color: #f1f5f9;
+}
+.srg-c-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: #e2e8f0;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.srg-c-item:hover {
+  background: #1e293d;
+  color: #fcd34d;
+}
+
+/* Wishlist Drawer */
+#wishlistDrawerBackdrop {
+  transition: opacity 0.3s ease;
+}
+#wishlistDrawer {
+  transition: transform 0.3s ease-in-out;
+}
+</style>
+
+<!-- Floating Concierge Button & Menu -->
+<div id="srgFloatingConcierge">
+  <div id="srgConciergeMenu" class="srg-concierge-menu hidden">
+    <div style="border-bottom:1px solid #28374d; padding-bottom:8px; margin-bottom:8px;">
+      <div style="font-size:12px; font-weight:800; color:#d4af37;">👑 Shree Royal Gems Showroom</div>
+      <div style="font-size:10.5px; color:#94a3b8;">Purani Bazar, Muzaffarpur • Live Help Desk</div>
+    </div>
+    <a href="https://wa.me/919065665497?text=Namaste%20Shree%20Royal%20Gems,%20I%20want%20to%20see%20gemstones%20live%20on%20video%20call" target="_blank" class="srg-c-item">
+      <span style="font-size:16px;">📹</span> <span>Live Video Call Inspection</span>
+    </a>
+    <a href="tel:9065665497" class="srg-c-item">
+      <span style="font-size:16px;">📞</span> <span>Call Showroom (+91 9065665497)</span>
+    </a>
+    <a href="https://maps.google.com/?q=Royal+Marriage+Hall+Muzaffarpur+Bihar" target="_blank" class="srg-c-item">
+      <span style="font-size:16px;">📍</span> <span>Showroom Directions (Maps)</span>
+    </a>
+    <div onclick="document.getElementById('rateDeskModal').classList.remove('hidden'); srgToggleConcierge();" class="srg-c-item">
+      <span style="font-size:16px;">⚖️</span> <span>Today's Gold & Silver Rate</span>
+    </div>
+  </div>
+
+  <button class="srg-concierge-btn" onclick="srgToggleConcierge()" aria-label="Showroom Help">
+    <i class="fa-brands fa-whatsapp text-lg"></i>
+    <span>💬 Showroom Help / Call</span>
+  </button>
+</div>
+
+<!-- Wishlist Slide-Over Drawer -->
+<div id="wishlistDrawerBackdrop" class="fixed inset-0 bg-slate-950/60 z-50 backdrop-blur-sm hidden" onclick="closeWishlist()"></div>
+<aside id="wishlistDrawer" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-50 shadow-2xl flex flex-col transform translate-x-full">
+  <div class="p-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+    <div class="flex items-center gap-2">
+      <i class="fa-solid fa-heart text-rose-600 text-lg"></i>
+      <h3 class="font-royal font-bold text-base text-slate-900">Your Saved Wishlist</h3>
+    </div>
+    <button onclick="closeWishlist()" class="text-slate-400 hover:text-slate-700 p-1" aria-label="Close wishlist">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+  </div>
+
+  <div id="wishlistItemsList" class="flex-1 overflow-y-auto p-4 space-y-3">
+    <!-- Populated via JS -->
+  </div>
+</aside>
+
+<script>
+// Wishlist State Manager
+let wishlist = (function() {
+  try {
+    return JSON.parse(localStorage.getItem('sr_wishlist')) || [];
+  } catch(e) { return []; }
+})();
+
+function saveWishlist() {
+  try {
+    localStorage.setItem('sr_wishlist', JSON.stringify(wishlist));
+  } catch(e) {}
+}
+
+function updateWishlistUI() {
+  const countEl = document.getElementById('wishlistCount');
+  if (countEl) countEl.textContent = wishlist.length;
+
+  const listEl = document.getElementById('wishlistItemsList');
+  if (!listEl) return;
+
+  if (wishlist.length === 0) {
+    listEl.innerHTML = `
+      <div class="py-16 text-center text-slate-400 text-xs">
+        <i class="fa-regular fa-heart text-4xl text-slate-300 mb-3 block"></i>
+        <p class="text-sm font-semibold text-slate-700">Wishlist Khali Hai</p>
+        <p class="text-xs text-slate-400 mt-1">Apne pasandeeda ratan ko save karne ke liye card par ❤️ dabayein.</p>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '';
+  wishlist.forEach((id) => {
+    const item = PRODUCTS.find(p => p.id === id);
+    if (!item) return;
+    html += `
+      <div class="flex items-center gap-3 py-3 border-b border-slate-100 last:border-b-0">
+        <img src="${item.image}" alt="${item.title}" class="w-14 h-14 rounded-xl object-cover border border-slate-200">
+        <div class="flex-1 min-w-0">
+          <h5 class="text-xs font-bold text-slate-900 truncate">${item.title}</h5>
+          <span class="text-xs font-bold text-slate-800">₹${item.price.toLocaleString('en-IN')}</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="addToCart('${item.id}'); toggleWishlist('${item.id}', event);" class="px-2.5 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold text-[11px] shadow-sm">
+            Add to Bag
+          </button>
+          <button onclick="toggleWishlist('${item.id}', event)" class="text-slate-400 hover:text-red-500 p-1">
+            <i class="fa-solid fa-trash-can text-xs"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  });
+  listEl.innerHTML = html;
+}
+
+function toggleWishlist(productId, event) {
+  if (event) event.stopPropagation();
+  const idx = wishlist.indexOf(productId);
+  if (idx > -1) {
+    wishlist.splice(idx, 1);
+    if (typeof showToast === 'function') showToast("Wishlist se hata diya");
+  } else {
+    wishlist.push(productId);
+    if (typeof showToast === 'function') showToast("Wishlist me save ho gaya ❤️");
+  }
+  saveWishlist();
+  updateWishlistUI();
+  applyFilters();
+}
+
+function openWishlist() {
+  const d = document.getElementById('wishlistDrawer');
+  const b = document.getElementById('wishlistDrawerBackdrop');
+  if (d) d.classList.remove('translate-x-full');
+  if (b) b.classList.remove('hidden');
+  updateWishlistUI();
+}
+
+function closeWishlist() {
+  const d = document.getElementById('wishlistDrawer');
+  const b = document.getElementById('wishlistDrawerBackdrop');
+  if (d) d.classList.add('translate-x-full');
+  if (b) b.classList.add('hidden');
+}
+
+function srgToggleConcierge() {
+  const menu = document.getElementById('srgConciergeMenu');
+  if (menu) {
+    menu.classList.toggle('hidden');
+  }
+}
+
+// Upgraded Filter, Price Range & Sort Logic
+(function upgradeEngine() {
+  const oldRender = window.renderProducts;
+  window.renderProducts = function(items) {
+    const grid = document.getElementById('productsGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    if (items.length === 0) {
+      grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-sm">Aapke budget ya filter me koi ratan nahi mila.</div>`;
+      const rc = document.getElementById('resultsCount');
+      if (rc) rc.textContent = '0 products found';
+      return;
+    }
+
+    const rc = document.getElementById('resultsCount');
+    if (rc) rc.textContent = `Showing ${items.length} verified products`;
+
+    items.forEach(product => {
+      const discountPct = Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100);
+      const isWishlisted = wishlist.includes(product.id);
+
+      const card = document.createElement('div');
+      card.className = "bg-white rounded-2xl border border-slate-200/80 hover:border-brand-gold/50 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between overflow-hidden group";
+
+      card.innerHTML = `
+        <div class="relative overflow-hidden bg-slate-100 aspect-[4/3] cursor-pointer" onclick="navigateToProduct('${product.id}')">
+          <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-amber-950/90 text-amber-200 text-[10px] font-bold uppercase tracking-wider backdrop-blur-sm">
+            ${product.badge}
+          </span>
+          <span class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider">
+            ${discountPct}% OFF
+          </span>
+          
+          <!-- Wishlist Heart Button -->
+          <button onclick="toggleWishlist('${product.id}', event)" class="absolute bottom-2.5 right-2.5 w-8 h-8 rounded-full bg-white/95 backdrop-blur-md text-slate-700 hover:text-rose-600 flex items-center justify-center shadow-md transition-all z-10" title="Wishlist">
+            <i class="${isWishlisted ? 'fa-solid fa-heart text-rose-600' : 'fa-regular fa-heart'}"></i>
+          </button>
+        </div>
+
+        <div class="p-4 flex flex-col justify-between flex-1 space-y-3">
+          <div>
+            <div class="flex items-center gap-1.5 text-amber-400 text-[11px] mb-1">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              <span class="text-slate-500 font-semibold ml-0.5">(${product.reviews})</span>
+            </div>
+            <h4 class="font-royal font-bold text-sm text-slate-900 line-clamp-1 hover:text-brand-gold cursor-pointer" onclick="navigateToProduct('${product.id}')">
+              ${product.title}
+            </h4>
+            <p class="text-[11px] text-slate-500 line-clamp-2 mt-1">${product.description}</p>
+          </div>
+
+          <div class="pt-2 border-t border-slate-100">
+            <div class="flex items-baseline gap-2 mb-3">
+              <span class="text-base font-bold text-slate-900">₹${product.price.toLocaleString('en-IN')}</span>
+              <span class="text-xs text-slate-400 line-through">₹${product.originalPrice.toLocaleString('en-IN')}</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="navigateToProduct('${product.id}')" class="py-2 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-950 font-bold text-[11px] border border-amber-200 transition-colors">
+                View Details →
+              </button>
+              <button onclick="addToCart('${product.id}')" class="py-2 rounded-lg gold-gradient text-slate-900 font-bold text-[11px] shadow hover:brightness-105 active:scale-95 transition-all">
+                Add to Bag
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  };
+
+  window.applyFilters = function() {
+    const query = (document.getElementById('searchInput').value || document.getElementById('mobileSearchInput').value || '').toLowerCase();
+    const priceRange = document.getElementById('priceFilter') ? document.getElementById('priceFilter').value : 'all';
+    const sortBy = document.getElementById('sortBy') ? document.getElementById('sortBy').value : 'featured';
+
+    let filtered = PRODUCTS.filter(p => {
+      const matchesCat = (currentCat === 'all') || (p.category === currentCat) || (p.intention === currentCat);
+      const matchesQuery = p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query);
+
+      let matchesPrice = true;
+      if (priceRange === 'under1k') matchesPrice = (p.price <= 1000);
+      else if (priceRange === '1k-10k') matchesPrice = (p.price > 1000 && p.price <= 10000);
+      else if (priceRange === 'above10k') matchesPrice = (p.price > 10000);
+
+      return matchesCat && matchesQuery && matchesPrice;
+    });
+
+    if (sortBy === 'price-asc') {
+      filtered.sort((a, b) => a.price - b.price);
+    } else if (sortBy === 'price-desc') {
+      filtered.sort((a, b) => b.price - a.price);
+    } else if (sortBy === 'rating') {
+      filtered.sort((a, b) => (b.rating || 5) - (a.rating || 5));
+    }
+
+    renderProducts(filtered);
+  };
+
+  updateWishlistUI();
+  applyFilters();
+})();
+</script>
+<!-- ==================== END WISHLIST & CONCIERGE ==================== -->
   <!-- ==================== SHREE ROYAL GEMS - CUSTOMER ACCOUNT & ORDERS SUITE ==================== -->
 <style>
 #srgCustomerModal {
